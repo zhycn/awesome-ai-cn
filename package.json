@@ -1,0 +1,13 @@
+{
+  "name": "awesome-ai-cn",
+  "version": "0.1.0",
+  "private": true,
+  "description": "中文 AI 资源精选清单",
+  "scripts": {
+    "format": "prettier --write \"**/*.md\"",
+    "format:check": "prettier --check \"**/*.md\""
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

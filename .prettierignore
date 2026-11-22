@@ -1,0 +1,5 @@
+# 生成物：由 scripts/build.py 产出，不走格式化
+README.md
+# 依赖与缓存
+node_modules/
+package-lock.json
