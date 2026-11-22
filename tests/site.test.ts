@@ -9,7 +9,7 @@ const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const OUT = join(ROOT, "site");
 
 test("生成静态站点：包含标题、搜索框与全部主题", () => {
-  const result = spawnSync(process.execPath, ["scripts/site.ts"], { cwd: ROOT, encoding: "utf8" });
+  const result = spawnSync("npm", ["run", "build:site"], { cwd: ROOT, encoding: "utf8" });
   assert.equal(result.status, 0, result.stderr);
 
   const html = readFileSync(join(OUT, "index.html"), "utf8");
