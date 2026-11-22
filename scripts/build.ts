@@ -117,28 +117,46 @@ function header(meta: Record<string, unknown>): string {
 [![CI](${repo}/actions/workflows/ci.yml/badge.svg)](${repo}/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> ${meta.tagline}
+*${meta.tagline}*
 
 ${meta.description}
 `;
 }
 
-const EMPTY_HINT = "> 内容正在收录中，首批资源即将上线。\n";
+const DEFAULT_FOOTER_NOTES = [
+  "新增或修正条目请先读 [`CONTRIBUTING.md`](CONTRIBUTING.md)。",
+  "字段定义、写作口吻与排序规则见 [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md)。",
+];
 
-const FOOTER_BODY = `## 收录说明
+type Copy = {
+  emptyHint?: string;
+  footerTitle?: string;
+  footerNotes?: string[];
+};
 
-- 本文件由 [\`scripts/build.ts\`](scripts/build.ts) 自动生成，请勿直接编辑；修正内容请改 \`data/\` 下对应的 JSON，再运行 \`npm run build\`。
-- 新增或修正条目请先读 [\`CONTRIBUTING.md\`](CONTRIBUTING.md)。
-- 字段定义、写作口吻与排序规则见 [\`docs/CONVENTIONS.md\`](docs/CONVENTIONS.md)。
-- 数据以 JSON 为唯一事实源，可被程序或 Agent 直接消费；结构定义见 [\`config/schema.json\`](config/schema.json)。
+function readCopy(meta: Record<string, unknown>): Copy {
+  const raw = meta.copy;
+  return raw && typeof raw === "object" && !Array.isArray(raw) ? (raw as Copy) : {};
+}
 
-`;
+const OWNER_NOTE =
+  "本文件由 [`scripts/build.ts`](scripts/build.ts) 自动生成，请勿直接编辑；修正内容请改 `data/` 下对应的 JSON，再运行 `npm run build`。";
 
 function footer(meta: Record<string, unknown>): string {
+  const copy = readCopy(meta);
   const license = String(meta.license ?? "MIT");
   const author = String(meta.author ?? "");
   const holder = author ? ` © ${author}` : "";
-  return `${FOOTER_BODY}## License
+  const notes =
+    Array.isArray(copy.footerNotes) && copy.footerNotes.length > 0
+      ? copy.footerNotes
+      : DEFAULT_FOOTER_NOTES;
+  const bullets = [OWNER_NOTE, ...notes].map((note) => `- ${note}`).join("\n");
+  return `## ${copy.footerTitle ?? "收录说明"}
+
+${bullets}
+
+## License
 
 [${license}](LICENSE)${holder}
 `;
@@ -186,7 +204,7 @@ function render(): { content: string; sectionCount: number; total: number } {
     total += items.length;
     const body = items.map(itemLine).join("\n");
     let section = `## ${heading}\n`;
-    if (cat.description?.trim()) section += `\n> ${cat.description.trim()}\n`;
+    if (cat.description?.trim()) section += `\n*${cat.description.trim()}*\n`;
     section += `\n${body}\n`;
     sections.push(section);
   }
@@ -198,7 +216,8 @@ function render(): { content: string; sectionCount: number; total: number } {
     parts.push(`## 目录\n\n${toc.join("\n")}\n`);
     parts.push(sections.join("\n"));
   } else {
-    parts.push(EMPTY_HINT);
+    const hint = readCopy(meta).emptyHint ?? "内容正在收录中。";
+    parts.push(`*${hint}*\n`);
   }
 
   parts.push(footer(meta));

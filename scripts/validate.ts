@@ -243,11 +243,41 @@ function main(argv: string[]): number {
     if (typeof meta !== "object" || meta === null) {
       report.errors.push(`${rel(join(CONFIG_DIR, "meta.json"))}: 顶层应为对象`);
     } else {
+      const metaRecord = meta as Record<string, unknown>;
       for (const key of ["name", "tagline", "description", "repo"]) {
-        if (!(meta as Record<string, unknown>)[key]) {
+        if (!metaRecord[key]) {
           report.errors.push(
             `${rel(join(CONFIG_DIR, "meta.json"))}: 缺少字段 '${key}'（build.ts 依赖它）`,
           );
+        }
+      }
+
+      const copy = metaRecord.copy;
+      if (copy !== undefined) {
+        const copyWhere = `${rel(join(CONFIG_DIR, "meta.json"))}.copy`;
+        if (typeof copy !== "object" || copy === null || Array.isArray(copy)) {
+          report.errors.push(`${copyWhere}: 应为对象`);
+        } else {
+          const record = copy as Record<string, unknown>;
+          if (
+            record.emptyHint !== undefined &&
+            (typeof record.emptyHint !== "string" || !record.emptyHint.trim())
+          ) {
+            report.errors.push(`${copyWhere}.emptyHint: 应为非空字符串`);
+          }
+          if (record.footerTitle !== undefined && typeof record.footerTitle !== "string") {
+            report.errors.push(`${copyWhere}.footerTitle: 应为字符串`);
+          }
+          const notes = record.footerNotes;
+          if (notes !== undefined) {
+            if (
+              !Array.isArray(notes) ||
+              notes.length === 0 ||
+              !notes.every((n) => typeof n === "string" && n.trim())
+            ) {
+              report.errors.push(`${copyWhere}.footerNotes: 应为非空字符串数组`);
+            }
+          }
         }
       }
     }

@@ -6,91 +6,91 @@
       "title": "基础模型与 API",
       "emoji": "🧠",
       "file": "01-foundation-models.json",
-      "description": "可直接使用的通用大模型与多模态模型。"
+      "description": "先定一个主力模型：国产可直连，海外看网络条件。"
     },
     {
       "id": "02-model-platforms",
       "title": "模型服务与聚合平台",
       "emoji": "🔀",
       "file": "02-model-platforms.json",
-      "description": "厂商云平台、聚合推理服务与 API 中转网关。"
+      "description": "不想逐个开户，就用聚合平台一处调用。"
     },
     {
       "id": "03-ai-coding",
       "title": "AI 编程",
       "emoji": "💻",
       "file": "03-ai-coding.json",
-      "description": "代码补全、代码评审、终端 Agent 与 AI 原生 IDE。"
+      "description": "按现有编辑器选，别重复装一套。"
     },
     {
       "id": "04-agents",
       "title": "Agent 与工作流",
       "emoji": "🤖",
       "file": "04-agents.json",
-      "description": "智能体编排框架、自动化平台与低代码工作流。"
+      "description": "要自动化而不只是问答，看这节。"
     },
     {
       "id": "05-rag",
       "title": "RAG 与知识库",
       "emoji": "📚",
       "file": "05-rag.json",
-      "description": "检索增强生成、文档解析、向量检索与知识库产品。"
+      "description": "文档解析比向量库更决定效果，先看前两条。"
     },
     {
       "id": "06-multimodal",
       "title": "多模态生成",
       "emoji": "🎨",
       "file": "06-multimodal.json",
-      "description": "文生图、文生视频、语音合成与数字人。"
+      "description": "图、视频、语音各有专精，按产出物挑。"
     },
     {
       "id": "07-frameworks",
       "title": "开发框架与 SDK",
       "emoji": "🧰",
       "file": "07-frameworks.json",
-      "description": "模型调用、编排、可观测等开发者框架与官方 SDK。"
+      "description": "按语言栈挑框架，别为了框架换语言。"
     },
     {
       "id": "08-training-inference",
       "title": "训练与推理部署",
       "emoji": "⚙️",
       "file": "08-training-inference.json",
-      "description": "微调、量化、推理引擎与私有化部署方案。"
+      "description": "要私有化或降本时，从这里开始。"
     },
     {
       "id": "09-data-eval",
       "title": "数据、评测与基准",
       "emoji": "📊",
       "file": "09-data-eval.json",
-      "description": "训练与评测数据集、基准测试与评测平台。"
+      "description": "选型前先看评测口径，别只看名次。"
     },
     {
       "id": "10-products",
       "title": "应用与产品",
       "emoji": "🚀",
       "file": "10-products.json",
-      "description": "开箱即用的成品：写作、搜索、办公、教育、设计。"
+      "description": "不想自己搭，直接用现成的。"
     },
     {
       "id": "11-mcp",
       "title": "MCP 与工具生态",
       "emoji": "🔌",
       "file": "11-mcp.json",
-      "description": "MCP Server、插件与工具调用协议生态。"
+      "description": "让模型能调你自己的工具，从这里接。"
     },
     {
       "id": "12-infra",
       "title": "基础设施",
       "emoji": "🏗️",
       "file": "12-infra.json",
-      "description": "算力云、向量数据库、观测与成本管理。"
+      "description": "算力、向量库与观测，按需取用。"
     },
     {
       "id": "13-learning",
       "title": "学习资源",
       "emoji": "🎓",
       "file": "13-learning.json",
-      "description": "课程、教程、论文清单、社区与资讯源。"
+      "description": "系统入门看课程，跟前沿看媒体。"
     }
   ]
 }
