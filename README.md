@@ -9,7 +9,7 @@
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
-<p align="center"><em>中文 AI 资源清单，按用途整理</em></p>
+<p align="center"><em>给中文开发者的 AI 资源地图</em></p>
 
 <p align="center">收集中文用户能直接使用的 AI 资源，按用途分类；每条附一句话说明，数据以 JSON 维护，程序与 Agent 可直接读取。</p>
 
