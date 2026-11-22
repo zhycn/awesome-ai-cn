@@ -252,6 +252,17 @@ function main(argv: string[]): number {
         }
       }
 
+      const about = metaRecord.about;
+      if (about !== undefined) {
+        if (typeof about !== "string" || !about.trim()) {
+          report.errors.push(`${rel(join(CONFIG_DIR, "meta.json"))}.about: 应为非空字符串`);
+        } else if (about.length > 160) {
+          report.errors.push(
+            `${rel(join(CONFIG_DIR, "meta.json"))}.about: 超过 160 字（${about.length}）`,
+          );
+        }
+      }
+
       const copy = metaRecord.copy;
       if (copy !== undefined) {
         const copyWhere = `${rel(join(CONFIG_DIR, "meta.json"))}.copy`;

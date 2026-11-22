@@ -76,6 +76,25 @@ npm run scaffold -- --name "Awesome Rust CN" --slug awesome-rust-cn \
 - `LICENSE` 的版权年份与署名
 - `CONTRIBUTING.md` 里出现的旧仓库名
 
+## About / Topics 自动同步
+
+仓库右上角的简介与 topics 由 `config/meta.json` 的 `about` 和 `topics` 驱动，改完 push 到 main 会自动同步：
+
+```json
+{
+  "about": "给中文开发者的 AI 资源地图：模型、工具、产品与学习资料",
+  "topics": ["awesome-list", "ai"]
+}
+```
+
+启用步骤（只需一次）：
+
+1. 建一个 PAT（fine-grained 需勾 **Administration: Read and write**；经典 token 勾 `repo`）
+2. 仓库 → Settings → Secrets and variables → Actions → 新建 `META_TOKEN`
+3. 之后改 `meta.json` 即可；也可在 Actions 里手动跑 `Sync repo metadata`
+
+> 没配 `META_TOKEN` 时脚本会静默跳过——派生仓库不做这一步也不会让 CI 变红。
+
 ## 新仓库的 GitHub 设置（仓库里改不了）
 
 - **Description / Topics**：用 `meta.json` 里的 `description` 和 `topics`
