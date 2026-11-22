@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          python3 scripts/check_links.py --timeout 20 2>&1 | tee /tmp/links.log
+          npm run check:links -- --timeout 20 2>&1 | tee /tmp/links.log
       - name: 记录 issue
         if: failure() && steps.links.outcome == 'failure'
         env:
