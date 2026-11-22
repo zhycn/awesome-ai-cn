@@ -33,7 +33,7 @@ HEADER = """<!-- 本文件由 scripts/build.py 自动生成，请勿直接编辑
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml/badge.svg)](https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml)
+[![CI]({repo}/actions/workflows/ci.yml/badge.svg)]({repo}/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > {tagline}
@@ -130,6 +130,7 @@ def render() -> tuple[str, int, int]:
             name=meta["name"],
             tagline=meta["tagline"],
             description=meta["description"],
+            repo=meta["repo"].rstrip("/"),
         )
     ]
 

@@ -133,6 +133,11 @@ def check_value(value: Any, spec: dict[str, Any], where: str, report: Report) ->
 
 
 def check_item_semantics(item: dict[str, Any], where: str, report: Report) -> None:
+    for key in ("name", "desc", "vendor"):
+        value = item.get(key)
+        if isinstance(value, str) and ("\n" in value or "\r" in value):
+            report.error(f"{where}.{key}", "不能包含换行（会破坏 README 渲染）")
+
     desc = item.get("desc")
     if isinstance(desc, str):
         if desc.endswith("。"):
@@ -173,6 +178,13 @@ def main(argv: list[str]) -> int:
     categories_doc = load_json(CONFIG / "categories.json", report)
     schema = load_json(CONFIG / "schema.json", report)
 
+    if isinstance(meta, dict):
+        for key in ("name", "tagline", "description", "repo"):
+            if not meta.get(key):
+                report.error(rel(CONFIG / "meta.json"), f"缺少字段 {key!r}（build.py 依赖它）")
+    elif meta is not None:
+        report.error(rel(CONFIG / "meta.json"), "顶层应为对象")
+
     if not isinstance(schema, dict) or "$defs" not in schema:
         report.error(rel(CONFIG / "schema.json"), "缺少 $defs 定义")
         schema = None
@@ -203,6 +215,8 @@ def main(argv: list[str]) -> int:
         filename = cat.get("file", "")
         if filename and not filename.endswith(".json"):
             report.error(where, f"file 需以 .json 结尾：{filename!r}")
+        if filename and ("/" in filename or "\\" in filename or filename.startswith(".")):
+            report.error(where, f"file 只能是 data/ 下的文件名，不能含路径：{filename!r}")
         if filename in seen_files:
             report.error(where, f"file 重复：{filename!r}")
         seen_files.add(filename)

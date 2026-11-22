@@ -30,7 +30,7 @@
 | `added` | ✅ | 收录日期 `YYYY-MM-DD` |
 | `vendor` | ⬜ | 归属机构，未知就省略 |
 | `lang` | ⬜ | `zh` / `multi` / `en`，默认 `zh` |
-| `featured` | ⬜ | 置顶，每个主题最多 3 条 |
+| `featured` | ⬜ | 加 ⭐ 强调，**不改变位置**；每个主题最多 3 条 |
 | `links` | ⬜ | `{repo, docs}`，仅在入口不唯一时填 |
 
 ## 4. 写作口吻
@@ -39,6 +39,7 @@
 - 陈述句，不加句号、不感叹
 - 禁用营销词：最强、颠覆、革命性、一站式、神器
 - 不要重复名称开头（❌ `LangChain 是一个 LLM 编排框架` → ✅ `LLM 应用编排框架，插件生态完整`）
+- 单行，不能包含换行（校验器会拦截）
 - 60 字上限是硬约束，用于保证 README 扫读效率
 
 ## 5. 顺序
@@ -87,10 +88,13 @@
 
 ```bash
 python3 scripts/validate.py        # 规范校验
-python3 scripts/build.py --check   # README 是否与数据一致
+python3 scripts/build.py           # 重新生成 README
+python3 scripts/build.py --check   # 确认 README 与数据一致（CI 会再跑一遍）
 ```
 
-两条都过再提交。
+全过再提交。
+
+可选：`python3 scripts/check_links.py` 巡检外链（需要网络，CI 每周一自动跑）。
 
 ## 9. 常见校验报错对照
 

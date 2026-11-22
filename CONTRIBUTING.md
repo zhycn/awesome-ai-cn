@@ -15,6 +15,7 @@ git clone https://github.com/<你的名字>/awesome-ai-cn.git && cd awesome-ai-c
 # 3) 校验 + 重新生成 README
 python3 scripts/validate.py
 python3 scripts/build.py
+python3 scripts/build.py --check
 
 # 4) 提交 PR
 ```
@@ -35,6 +36,8 @@ python3 scripts/build.py
   "added": "2026-11-22"
 }
 ```
+
+`tags` 可省略（填不出合适的就整条不填）；`added` 填你提交当天的日期。示例里的 `https://example.com` 请换成项目真实入口。
 
 ### 2. 修正失效链接或过时描述
 
@@ -66,6 +69,7 @@ python3 scripts/build.py
 - [ ] `tags` 只用了受控词表里的词，且同一主题内人人都有的能力没有打标签
 - [ ] 新条目追加在主题末尾（顺序由维护者调整）
 - [ ] 一个 PR 只做一件事（加条目 / 修链接 / 改结构分开提）
+- [ ] CI 变绿（`validate` + `build --check` 会自动跑）
 
 ## 关于排序
 

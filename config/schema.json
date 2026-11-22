@@ -51,6 +51,7 @@
           "maxItems": 3,
           "uniqueItems": true,
           "items": {
+            "type": "string",
             "enum": [
               "国产",
               "多模态",
