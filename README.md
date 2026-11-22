@@ -7,9 +7,9 @@
 [![CI](https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml/badge.svg)](https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> 面向中文用户、以 JSON 为唯一事实源的 AI 资源精选索引
+*中文可用的 AI 模型与工具，按用途分好*
 
-收集中文用户可用的 AI 模型、工具、框架、产品与学习资源；README 由 data/*.json 自动生成，人可读，机可用。
+找中文能用的 AI，不必再翻十篇测评：每条一句话说清能干什么、适合谁；数据以 JSON 维护，程序与 Agent 可直接读取。欢迎 PR 补充条目。
 
 共 **13** 个主题、**143** 条资源。
 
@@ -31,7 +31,7 @@
 
 ## 基础模型与 API
 
-> 可直接使用的通用大模型与多模态模型。
+*先定一个主力模型：国产可直连，海外看网络条件。*
 
 - ⭐ [DeepSeek](https://chat.deepseek.com) - 深度求索的大模型，代码与推理能力突出，权重开源 `国产` `代码`
 - ⭐ [通义千问](https://tongyi.aliyun.com) - 阿里云通用大模型，中文理解与长文本处理见长 `国产` `多模态`
@@ -54,14 +54,14 @@
 
 ## 模型服务与聚合平台
 
-> 厂商云平台、聚合推理服务与 API 中转网关。
+*不想逐个开户，就用聚合平台一处调用。*
 
 - [阿里云百炼](https://www.aliyun.com/product/bailian) - 大模型调用与智能体开发平台，含通义系列 API `企业`
 - [硅基流动](https://siliconflow.cn) - 聚合主流开源模型的推理服务平台，按量计费
 
 ## AI 编程
 
-> 代码补全、代码评审、终端 Agent 与 AI 原生 IDE。
+*按现有编辑器选，别重复装一套。*
 
 - ⭐ [通义灵码](https://lingma.aliyun.com) - 阿里云的 AI 编程助手，支持行级补全与仓库级问答 `国产`
 - [文心快码](https://comate.baidu.com) - 百度的 AI 编程助手，覆盖补全、单测与代码评审 `国产`
@@ -83,7 +83,7 @@
 
 ## Agent 与工作流
 
-> 智能体编排框架、自动化平台与低代码工作流。
+*要自动化而不只是问答，看这节。*
 
 - ⭐ [Dify](https://dify.ai) - 开源的大模型应用开发平台，可视化编排工作流与 Agent `国产`
 - ⭐ [扣子 Coze](https://www.coze.cn) - 字节跳动的智能体搭建平台，拖拽即可发布到多端 `国产`
@@ -103,7 +103,7 @@
 
 ## RAG 与知识库
 
-> 检索增强生成、文档解析、向量检索与知识库产品。
+*文档解析比向量库更决定效果，先看前两条。*
 
 - ⭐ [RAGFlow](https://ragflow.io) - 基于深度文档解析的 RAG 引擎，切片与检索可视化 `国产`
 - [QAnything](https://github.com/netease-youdao/QAnything) - 网易有道的本地知识库问答，支持多种文档格式 `国产`
@@ -116,7 +116,7 @@
 
 ## 多模态生成
 
-> 文生图、文生视频、语音合成与数字人。
+*图、视频、语音各有专精，按产出物挑。*
 
 - ⭐ [即梦](https://jimeng.jianying.com) - 字节的图片与视频生成工具，中文提示词理解好 `国产` `图像` `视频`
 - ⭐ [可灵](https://klingai.com) - 快手的视频生成模型，支持图生视频与运镜控制 `国产` `视频`
@@ -131,7 +131,7 @@
 
 ## 开发框架与 SDK
 
-> 模型调用、编排、可观测等开发者框架与官方 SDK。
+*按语言栈挑框架，别为了框架换语言。*
 
 - ⭐ [LangChain](https://www.langchain.com) - 最通用的 LLM 应用框架，组件与集成极其丰富
 - [LlamaIndex](https://www.llamaindex.ai) - 以数据为中心的 LLM 框架，索引与检索组件齐全
@@ -148,7 +148,7 @@
 
 ## 训练与推理部署
 
-> 微调、量化、推理引擎与私有化部署方案。
+*要私有化或降本时，从这里开始。*
 
 - ⭐ [vLLM](https://vllm.ai) - 高吞吐推理引擎，PagedAttention 显著节省显存
 - [SGLang](https://github.com/sgl-project/sglang) - 面向结构化输出的推理引擎，吞吐表现出色
@@ -167,7 +167,7 @@
 
 ## 数据、评测与基准
 
-> 训练与评测数据集、基准测试与评测平台。
+*选型前先看评测口径，别只看名次。*
 
 - ⭐ [魔搭 ModelScope](https://modelscope.cn) - 阿里的开源模型与数据集社区，中文资源丰富 `国产`
 - ⭐ [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) - 业界通用的评测框架，覆盖主流基准与模型
@@ -180,7 +180,7 @@
 
 ## 应用与产品
 
-> 开箱即用的成品：写作、搜索、办公、教育、设计。
+*不想自己搭，直接用现成的。*
 
 - ⭐ [秘塔 AI 搜索](https://metaso.cn) - 中文 AI 搜索，答案带可溯源引用、无广告 `国产`
 - ⭐ [通义听悟](https://tingwu.aliyun.com) - 会议与课程录音的转写、摘要与问答 `国产` `语音`
@@ -194,7 +194,7 @@
 
 ## MCP 与工具生态
 
-> MCP Server、插件与工具调用协议生态。
+*让模型能调你自己的工具，从这里接。*
 
 - ⭐ [Model Context Protocol](https://modelcontextprotocol.io) - Anthropic 提出的模型上下文协议，统一工具与数据接入
 - [官方 MCP Servers](https://github.com/modelcontextprotocol/servers) - 官方维护的 MCP Server 集合，开箱即可接入
@@ -207,7 +207,7 @@
 
 ## 基础设施
 
-> 算力云、向量数据库、观测与成本管理。
+*算力、向量库与观测，按需取用。*
 
 - ⭐ [Milvus](https://milvus.io) - 开源向量数据库，支持十亿级向量检索 `国产`
 - [Qdrant](https://qdrant.tech) - Rust 编写的向量数据库，过滤检索性能好
@@ -225,7 +225,7 @@
 
 ## 学习资源
 
-> 课程、教程、论文清单、社区与资讯源。
+*系统入门看课程，跟前沿看媒体。*
 
 - ⭐ [动手学深度学习](https://zh.d2l.ai) - 中英文版教材与代码配套，适合系统入门 `国产`
 - ⭐ [Prompt Engineering Guide](https://www.promptingguide.ai) - 提示词工程指南，含中文版与大量示例
@@ -240,9 +240,8 @@
 ## 收录说明
 
 - 本文件由 [`scripts/build.ts`](scripts/build.ts) 自动生成，请勿直接编辑；修正内容请改 `data/` 下对应的 JSON，再运行 `npm run build`。
-- 新增或修正条目请先读 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
-- 字段定义、写作口吻与排序规则见 [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md)。
-- 数据以 JSON 为唯一事实源，可被程序或 Agent 直接消费；结构定义见 [`config/schema.json`](config/schema.json)。
+- 新增或修正条目请先读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+- 字段定义、写作口吻与排序规则见 [docs/CONVENTIONS.md](docs/CONVENTIONS.md)。
 
 ## License
 

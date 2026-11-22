@@ -1,8 +1,8 @@
 {
   "name": "Awesome AI CN",
   "slug": "awesome-ai-cn",
-  "tagline": "面向中文用户、以 JSON 为唯一事实源的 AI 资源精选索引",
-  "description": "收集中文用户可用的 AI 模型、工具、框架、产品与学习资源；README 由 data/*.json 自动生成，人可读，机可用。",
+  "tagline": "中文可用的 AI 模型与工具，按用途分好",
+  "description": "找中文能用的 AI，不必再翻十篇测评：每条一句话说清能干什么、适合谁；数据以 JSON 维护，程序与 Agent 可直接读取。欢迎 PR 补充条目。",
   "repo": "https://github.com/zhycn/awesome-ai-cn",
   "author": "zhycn",
   "license": "MIT",
@@ -22,5 +22,13 @@
     "multimodal",
     "machine-learning",
     "ai-coding"
-  ]
+  ],
+  "copy": {
+    "emptyHint": "内容正在收录中。",
+    "footerTitle": "收录说明",
+    "footerNotes": [
+      "新增或修正条目请先读 [CONTRIBUTING.md](CONTRIBUTING.md)。",
+      "字段定义、写作口吻与排序规则见 [docs/CONVENTIONS.md](docs/CONVENTIONS.md)。"
+    ]
+  }
 }
