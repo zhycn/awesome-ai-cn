@@ -52,22 +52,9 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "enum": [
-              "国产",
-              "多模态",
-              "语音",
-              "图像",
-              "视频",
-              "代码",
-              "知识库",
-              "工作流",
-              "私有化",
-              "企业",
-              "协议",
-              "评测"
-            ]
+            "maxLength": 12
           },
-          "description": "1–3 个细分标签，只能取受控词表中的值；可从 pricing/lang 推出的信息不要做成标签。"
+          "description": "1–3 个细分标签，取值必须来自 config/tags.json 的受控词表；没有合适的就整条省略。"
         },
         "vendor": {
           "type": "string",
