@@ -1,8 +1,8 @@
 {
   "name": "Awesome AI CN",
   "slug": "awesome-ai-cn",
-  "tagline": "给中文开发者的 AI 资源地图",
-  "description": "收集中文用户能直接使用的 AI 资源，并收录绕不开的国际主流，按用途分类。每条一句话说清能做什么；数据以 JSON 维护，程序与 Agent 可直接读取。",
+  "tagline": "给中文开发者的 AI 资源地图：模型、工具、产品与学习资料",
+  "description": "按用途分类，每条一句话说清它强在哪、适合谁；以中文可直接使用为优先，绕不开的国际主流也会保留。数据以 JSON 维护，程序与 Agent 可直接读取。",
   "repo": "https://github.com/zhycn/awesome-ai-cn",
   "author": "zhycn",
   "license": "MIT",

@@ -9,9 +9,9 @@
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 </p>
 
-<p align="center"><em>给中文开发者的 AI 资源地图</em></p>
+<p align="center"><em>给中文开发者的 AI 资源地图：模型、工具、产品与学习资料</em></p>
 
-<p align="center">收集中文用户能直接使用的 AI 资源，并收录绕不开的国际主流，按用途分类。每条一句话说清能做什么；数据以 JSON 维护，程序与 Agent 可直接读取。</p>
+<p align="center">按用途分类，每条一句话说清它强在哪、适合谁；以中文可直接使用为优先，绕不开的国际主流也会保留。数据以 JSON 维护，程序与 Agent 可直接读取。</p>
 
 <p align="center">共 <strong>13</strong> 个主题、<strong>143</strong> 条资源。</p>
 
