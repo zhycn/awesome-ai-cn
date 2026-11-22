@@ -2,6 +2,10 @@ name: 推荐一个条目
 description: 推荐一个值得收录的项目、工具或资源
 title: "[条目] "
 body:
+  - type: markdown
+    attributes:
+      value: |
+        也可以直接在 GitHub 网页上编辑 `data/` 中对应主题的 JSON 文件并发起 PR。步骤见仓库根目录的 `CONTRIBUTING.md`。
   - type: input
     id: name
     attributes:

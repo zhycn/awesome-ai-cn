@@ -6,6 +6,18 @@
 
 ### 1. 新增一条资源
 
+#### 不装环境也能提
+
+只想推荐一个资源时，可以直接在 GitHub 网页上操作，不用安装 Node.js。
+
+1. 打开 [`data/`](data/)，选中对应主题的 JSON 文件。点击铅笔图标编辑；GitHub 提示派生仓库（fork）时，按提示操作。
+2. 参考下面的示例复制一个条目，改成你要推荐的资源。在数组最后一个条目后加逗号，再把新对象放在结尾的 `]` 前。
+3. 提交更改并发起 PR，标题可用 `feat: 收录 项目名`。只提交对应 JSON 文件，README 由脚本生成，不需要手动编辑。
+
+PR 的 CI 会运行 `npm run validate` 和 `npm run build:check`。数据校验报错时，请按日志修正 JSON。如果数据校验通过，只是 README 还没重新生成，请在 PR 里说明，并将 PR 检查清单中的构建项留空。维护者可以代为运行 `npm run build`，把生成的 README 更新到 PR，等 CI 通过后再合并。
+
+#### 本地命令行
+
 ```bash
 # 1) fork 并克隆
 git clone https://github.com/<你的名字>/awesome-ai-cn.git && cd awesome-ai-cn
@@ -24,7 +36,7 @@ npm run format
 # 5) 跑测试
 npm test
 
-# 5) 提交 PR
+# 6) 提交 PR
 ```
 
 条目的字段说明见 [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md)，机器可读定义见 [`config/schema.json`](config/schema.json)。
