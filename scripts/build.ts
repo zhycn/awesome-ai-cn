@@ -98,10 +98,11 @@ function escapeLinkText(text: string): string {
 
 function itemLine(item: Item): string {
   const star = item.featured ? " ⭐" : ""; // 仅作强调，不改变顺序；放在名称后，避免行首不齐
+  const proxy = item.access === "proxy" ? " 🌐" : ""; // 需科学上网
   const tags = (item.tags ?? []).map((tag) => `\`${tag}\``).join(" ");
   // 仅当 URL 含括号时用尖括号包裹（GitHub 已验证可渲染），避免无谓的源码噪音
   const target = item.url.includes("(") || item.url.includes(")") ? `<${item.url}>` : item.url;
-  const line = `- [${escapeLinkText(item.name)}](${target})${star} - ${item.desc}`;
+  const line = `- [${escapeLinkText(item.name)}](${target})${star}${proxy} - ${item.desc}`;
   return tags ? `${line} ${tags}` : line;
 }
 
@@ -172,6 +173,7 @@ function render(): { content: string; sectionCount: number; total: number } {
   const toc: string[] = [];
   const sections: string[] = [];
   let total = 0;
+  let proxyCount = 0;
   // 预置固定标题的锚点，避免主题标题与「目录」「收录说明」「License」重名时跳错
   const usedAnchors = new Map<string, number>();
   for (const name of ["目录", "收录说明", "License"]) usedAnchors.set(slugify(name), 0);
@@ -204,6 +206,7 @@ function render(): { content: string; sectionCount: number; total: number } {
     toc.push(`- [${emoji}${heading}](#${anchor})（${items.length}）`);
 
     total += items.length;
+    proxyCount += items.filter((item) => item.access === "proxy").length;
     const body = items.map(itemLine).join("\n");
     let section = `## ${heading}\n`;
     if (cat.description?.trim()) section += `\n*${cat.description.trim()}*\n`;
@@ -217,6 +220,9 @@ function render(): { content: string; sectionCount: number; total: number } {
     parts.push(
       `<p align="center">共 <strong>${toc.length}</strong> 个主题、<strong>${total}</strong> 条资源。</p>\n`,
     );
+    if (proxyCount > 0) {
+      parts.push(`<p align="center">🌐 需要科学上网（${proxyCount} 条），其余可直接访问</p>\n`);
+    }
     parts.push(`## 目录\n\n${toc.join("\n")}\n`);
     parts.push(sections.join("\n"));
   } else {

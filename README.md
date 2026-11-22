@@ -15,6 +15,8 @@
 
 <p align="center">共 <strong>13</strong> 个主题、<strong>143</strong> 条资源。</p>
 
+<p align="center">🌐 需要科学上网（8 条），其余可直接访问</p>
+
 ## 目录
 
 - [🧠 基础模型与 API](#基础模型与-api)（18）
@@ -47,12 +49,12 @@
 - [阶跃星辰](https://www.stepfun.com) - 阶跃星辰的通用助手，主打多模态与终端场景 `国产` `多模态`
 - [零一万物](https://www.lingyiwanwu.com) - 零一万物的大模型与行业方案，提供开放权重模型 `国产`
 - [盘古大模型](https://www.huaweicloud.com/product/pangu.html) - 华为云行业大模型，面向政企私有化部署 `国产` `私有化` `企业`
-- [ChatGPT](https://chatgpt.com) ⭐ - OpenAI 的通用助手，生态与工具调用能力成熟 `多模态`
+- [ChatGPT](https://chatgpt.com) ⭐ 🌐 - OpenAI 的通用助手，生态与工具调用能力成熟 `多模态`
 - [Claude](https://claude.ai) - Anthropic 的通用助手，长文写作与代码能力突出 `代码`
-- [Gemini](https://gemini.google.com) - Google 的多模态助手，与搜索和办公套件集成 `多模态`
+- [Gemini](https://gemini.google.com) 🌐 - Google 的多模态助手，与搜索和办公套件集成 `多模态`
 - [Llama](https://www.llama.com) - Meta 的开放权重模型系列，可本地部署与微调
-- [Mistral AI](https://mistral.ai) - 法国的开源模型厂商，小尺寸模型性价比高
-- [Grok](https://grok.com) - xAI 的助手，接入实时信息，回答风格直接
+- [Mistral AI](https://mistral.ai) 🌐 - 法国的开源模型厂商，小尺寸模型性价比高
+- [Grok](https://grok.com) 🌐 - xAI 的助手，接入实时信息，回答风格直接
 
 ## 模型服务与聚合平台
 
@@ -72,13 +74,13 @@
 - [腾讯云 AI 代码助手](https://cloud.tencent.com/product/acc) - 腾讯云的编程助手，支持企业私有化与国产化环境 `国产` `私有化` `企业`
 - [华为云 CodeArts](https://www.huaweicloud.com/product/codearts.html) - 华为云的一站式研发工具链，内置智能编程助手 `国产` `企业`
 - [Trae](https://www.trae.cn) - 字节跳动的 AI 原生编辑器，中文界面开箱可用 `国产`
-- [Cursor](https://cursor.com) ⭐ - AI 原生编辑器，多文件改写与补全体验流畅
+- [Cursor](https://cursor.com) ⭐ 🌐 - AI 原生编辑器，多文件改写与补全体验流畅
 - [Claude Code](https://claude.com/product/claude-code) ⭐ - Anthropic 的终端编程 Agent，擅长长任务与重构
 - [GitHub Copilot](https://github.com/features/copilot) - GitHub 官方编程助手，与仓库和 PR 流程深度集成
 - [Codex](https://openai.com/codex/) - OpenAI 的云端编程 Agent，可并行处理多项任务
-- [Cline](https://cline.bot) - 开源的编辑器内 Agent，可自主读写文件并执行命令
+- [Cline](https://cline.bot) 🌐 - 开源的编辑器内 Agent，可自主读写文件并执行命令
 - [Continue](https://www.continue.dev) - 可自托管的编程助手框架，支持接入任意模型
-- [Windsurf](https://windsurf.com) - AI 原生 IDE，主打多文件协同与终端操作
+- [Windsurf](https://windsurf.com) 🌐 - AI 原生 IDE，主打多文件协同与终端操作
 - [Aider](https://aider.chat) - 终端里的结对编程工具，改动以 Git 提交呈现
 - [Gemini CLI](https://github.com/google-gemini/gemini-cli) - Google 的终端编程 Agent，开源且有免费额度
 - [Zed](https://zed.dev) - Rust 编写的高性能编辑器，内置 AI 补全与协作
@@ -192,7 +194,7 @@
 - [WPS AI](https://www.wps.cn) - 办公套件内置写作、表格与 PPT 辅助 `国产` `企业`
 - [夸克](https://quark.cn) - 夸克浏览器，内置 AI 搜索、扫描与文档问答 `国产`
 - [Notion AI](https://www.notion.com/product/ai) - Notion 内置 AI，写作、总结与数据库问答
-- [Gamma](https://gamma.app) - 一句话生成演示文稿与网页，排版自动完成
+- [Gamma](https://gamma.app) 🌐 - 一句话生成演示文稿与网页，排版自动完成
 
 ## MCP 与工具生态
 
