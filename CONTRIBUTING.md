@@ -12,13 +12,13 @@ git clone https://github.com/<你的名字>/awesome-ai-cn.git && cd awesome-ai-c
 
 # 2) 在对应主题的 JSON 末尾追加一条
 #    编辑 data/<主题>.json，追加一个对象
-# 3) 校验 + 重新生成 README
-python3 scripts/validate.py
-python3 scripts/build.py
-python3 scripts/build.py --check
+# 3) 安装依赖（首次）并校验 + 重新生成 README
+npm ci
+npm run validate
+npm run build
+npm run build:check
 
-# 4) 格式化 Markdown（首次需 npm install）
-npm install
+# 4) 格式化 Markdown
 npm run format
 
 # 5) 提交 PR
@@ -67,8 +67,8 @@ npm run format
 
 ## PR 检查清单
 
-- [ ] `python3 scripts/validate.py` 通过
-- [ ] `python3 scripts/build.py` 已运行，README 与数据一致
+- [ ] `npm run validate` 通过
+- [ ] `npm run build` 已运行，README 与数据一致（`npm run build:check` 无差异）
 - [ ] `desc` 是陈述句、不加句号、不超过 60 字（句号只给建议，不阻断 CI）
 - [ ] `tags` 只用了受控词表里的词，且同一主题内人人都有的能力没有打标签
 - [ ] 新条目追加在主题末尾（顺序由维护者调整）

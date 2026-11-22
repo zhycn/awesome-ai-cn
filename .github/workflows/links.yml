@@ -15,9 +15,12 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: "24"
+          cache: "npm"
+      - name: 安装依赖
+        run: npm ci
       - name: 巡检外部链接
         id: links
         shell: bash
