@@ -59,7 +59,7 @@ test("正常派生：品牌、许可证、链接、README 全部替换", () => {
     assert.equal(meta.repo, "https://github.com/u/awesome-test-cn");
 
     const readme = readFileSync(join(dir, "README.md"), "utf8");
-    assert.match(readme, /^# Awesome Test CN$/m);
+    assert.match(readme, /<h1 align="center">Awesome Test CN<\/h1>/);
     assert.match(readme, /awesome-test-cn\/actions\/workflows\/ci\.yml/);
 
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
