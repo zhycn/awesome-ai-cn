@@ -1,8 +1,8 @@
 {
   "name": "Awesome AI CN",
   "slug": "awesome-ai-cn",
-  "tagline": "中文可用的 AI 模型与工具，按用途分好",
-  "description": "找中文能用的 AI，不必再翻十篇测评：每条一句话说清能干什么、适合谁；数据以 JSON 维护，程序与 Agent 可直接读取。欢迎 PR 补充条目。",
+  "tagline": "中文 AI 资源清单，按用途整理",
+  "description": "收集中文用户能直接使用的 AI 资源，按用途分类；每条附一句话说明，数据以 JSON 维护，程序与 Agent 可直接读取。",
   "repo": "https://github.com/zhycn/awesome-ai-cn",
   "author": "zhycn",
   "license": "MIT",

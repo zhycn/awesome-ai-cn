@@ -110,16 +110,18 @@ function header(meta: Record<string, unknown>): string {
   const license = String(meta.license ?? "MIT");
   return `<!-- 本文件由 scripts/build.ts 自动生成，请勿直接编辑；修改 data/*.json 后重新运行即可。 -->
 
-# ${meta.name}
+<h1 align="center">${meta.name}</h1>
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![License: ${license}](https://img.shields.io/badge/License-${encodeURIComponent(license)}-blue.svg)](LICENSE)
-[![CI](${repo}/actions/workflows/ci.yml/badge.svg)](${repo}/actions/workflows/ci.yml)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+<p align="center">
+  <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-${encodeURIComponent(license)}-blue.svg" alt="License: ${license}"></a>
+  <a href="${repo}/actions/workflows/ci.yml"><img src="${repo}/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+</p>
 
-*${meta.tagline}*
+<p align="center"><em>${meta.tagline}</em></p>
 
-${meta.description}
+<p align="center">${meta.description}</p>
 `;
 }
 
@@ -212,7 +214,9 @@ function render(): { content: string; sectionCount: number; total: number } {
   const parts: string[] = [header(meta)];
 
   if (toc.length > 0) {
-    parts.push(`共 **${toc.length}** 个主题、**${total}** 条资源。\n`);
+    parts.push(
+      `<p align="center">共 <strong>${toc.length}</strong> 个主题、<strong>${total}</strong> 条资源。</p>\n`,
+    );
     parts.push(`## 目录\n\n${toc.join("\n")}\n`);
     parts.push(sections.join("\n"));
   } else {

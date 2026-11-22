@@ -1,17 +1,19 @@
 <!-- 本文件由 scripts/build.ts 自动生成，请勿直接编辑；修改 data/*.json 后重新运行即可。 -->
 
-# Awesome AI CN
+<h1 align="center">Awesome AI CN</h1>
 
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml/badge.svg)](https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+<p align="center">
+  <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml"><img src="https://github.com/zhycn/awesome-ai-cn/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+</p>
 
-*中文可用的 AI 模型与工具，按用途分好*
+<p align="center"><em>中文 AI 资源清单，按用途整理</em></p>
 
-找中文能用的 AI，不必再翻十篇测评：每条一句话说清能干什么、适合谁；数据以 JSON 维护，程序与 Agent 可直接读取。欢迎 PR 补充条目。
+<p align="center">收集中文用户能直接使用的 AI 资源，按用途分类；每条附一句话说明，数据以 JSON 维护，程序与 Agent 可直接读取。</p>
 
-共 **13** 个主题、**143** 条资源。
+<p align="center">共 <strong>13</strong> 个主题、<strong>143</strong> 条资源。</p>
 
 ## 目录
 
