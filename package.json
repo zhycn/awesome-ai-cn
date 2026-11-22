@@ -9,15 +9,18 @@
     "validate": "node scripts/validate.ts",
     "check:links": "node scripts/check_links.ts",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write \"**/*.md\"",
-    "format:check": "prettier --check \"**/*.md\"",
+    "format": "prettier --write \"**/*.{md,ts}\"",
+    "format:check": "prettier --check \"**/*.{md,ts}\"",
     "check": "npm run validate && npm run build:check && npm run format:check && npm run typecheck",
-    "scaffold": "node scripts/scaffold.ts"
+    "scaffold": "node scripts/scaffold.ts",
+    "test": "node --test tests/scaffold.test.ts"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@types/node": "^24.10.1",
     "prettier": "^3.6.2",
-    "typescript": "^5.9.3",
-    "@types/node": "^24.10.1"
+    "typescript": "^5.9.3"
   },
   "type": "module",
   "engines": {

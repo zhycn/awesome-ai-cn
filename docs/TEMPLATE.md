@@ -102,6 +102,7 @@ git cherry-pick <母版提交>       # 只挑 scripts/ 与 .github/ 的提交
 - [ ] `npm run build:check` 无差异
 - [ ] `npm run typecheck` 通过
 - [ ] `npm run format:check` 通过
+- [ ] `npm test` 通过
 - [ ] `README.md` 标题、徽章、页脚署名正确
 - [ ] `LICENSE` 与 `SECURITY.md` 已换成本仓库
 - [ ] GitHub description / topics / 分支保护 / Actions 权限 已配置

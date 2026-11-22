@@ -17,7 +17,7 @@
 import { execFile, spawnSync } from "node:child_process";
 import { promisify } from "node:util";
 import { readdirSync, readFileSync, existsSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -116,7 +116,11 @@ async function probe(url: string, timeout: number, useCurl: boolean): Promise<[S
   return last;
 }
 
-async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
+async function mapLimit<T, R>(
+  items: T[],
+  limit: number,
+  fn: (item: T) => Promise<R>,
+): Promise<R[]> {
   const results = new Array<R>(items.length);
   let cursor = 0;
   const workers = Array.from({ length: Math.max(1, Math.min(limit, items.length)) }, async () => {
@@ -151,7 +155,9 @@ function collectTargets(includeArchived: boolean): { targets: Target[]; errors: 
       body = JSON.parse(readFileSync(join(DATA_DIR, file), "utf8"));
     } catch (error) {
       const message = (error as Error).message;
-      errors.push(message.includes("JSON") ? `${file}: JSON 语法错误` : `${file}: 读取失败（${message}）`);
+      errors.push(
+        message.includes("JSON") ? `${file}: JSON 语法错误` : `${file}: 读取失败（${message}）`,
+      );
       continue;
     }
 
@@ -166,7 +172,11 @@ function collectTargets(includeArchived: boolean): { targets: Target[]; errors: 
         return;
       }
       const record = item as Record<string, unknown>;
-      if (!includeArchived && typeof record.status === "string" && HIDDEN_STATUS.has(record.status)) {
+      if (
+        !includeArchived &&
+        typeof record.status === "string" &&
+        HIDDEN_STATUS.has(record.status)
+      ) {
         return;
       }
       const name = record.name;

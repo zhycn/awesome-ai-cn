@@ -1,0 +1,25 @@
+name: 报告失效链接
+description: 某个条目的链接打不开了，或项目已停止维护
+title: "[失效] "
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: 条目名称
+      placeholder: 例如 DeepSeek
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 原链接
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: 现象
+      description: 打不开 / 跳转到别的网站 / 项目已归档，附上你看到的状态
+    validations:
+      required: true

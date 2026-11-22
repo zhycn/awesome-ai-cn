@@ -18,8 +18,11 @@ npm run validate
 npm run build
 npm run build:check
 
-# 4) 格式化 Markdown
+# 4) 格式化 Markdown 与 TypeScript
 npm run format
+
+# 5) 跑测试
+npm test
 
 # 5) 提交 PR
 ```
@@ -73,7 +76,8 @@ npm run format
 - [ ] `tags` 只用了受控词表里的词，且同一主题内人人都有的能力没有打标签
 - [ ] 新条目追加在主题末尾（顺序由维护者调整）
 - [ ] 一个 PR 只做一件事（加条目 / 修链接 / 改结构分开提）
-- [ ] `npm run format:check` 通过（Prettier 只校验手写文档，README 是生成物不入此列）
+- [ ] `npm run format:check` 通过（Prettier 校验手写文档与脚本，README 是生成物不入此列）
+- [ ] `npm test` 通过
 - [ ] CI 变绿（`validate`、`build --check`、`format:check` 会自动跑）
 
 ## 关于排序
@@ -82,7 +86,13 @@ README 里条目的顺序就是 JSON 数组的顺序，由维护者人工编排�
 
 ## 提交信息
 
-遵循 `feat:` / `fix:` / `docs:` / `chore:` 前缀，一句话说清改了什么，例如：
+遵循 Conventional Commits（`feat:` / `fix:` / `docs:` / `chore:` / `refactor:` 等），一句话说清改了什么。**PR 标题会被 CI 用 commitlint 校验**——因为仓库只允许 squash 合并，标题就是最终的提交信息。本地可以先自测：
+
+```bash
+printf 'feat: 收录 Cursor' | npx commitlint
+```
+
+示例：
 
 ```
 feat: 收录 Cursor、Cline 等 5 个 AI 编程工具

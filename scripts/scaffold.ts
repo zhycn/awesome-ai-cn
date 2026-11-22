@@ -119,7 +119,9 @@ function parseArgs(argv: string[]): Options {
 
   const license = values.get("license") ?? "MIT";
   if (license !== "MIT") {
-    fail(`--license 目前只支持 MIT（LICENSE 正文未模板化）。如需 ${license}，请手动替换 LICENSE 后改 config/meta.json。`);
+    fail(
+      `--license 目前只支持 MIT（LICENSE 正文未模板化）。如需 ${license}，请手动替换 LICENSE 后改 config/meta.json。`,
+    );
   }
 
   return {
@@ -150,9 +152,7 @@ function readJson<T>(path: string, label: string): T {
 }
 
 function dataFiles(): string[] {
-  return existsSync(DATA_DIR)
-    ? readdirSync(DATA_DIR).filter((name) => name.endsWith(".json"))
-    : [];
+  return existsSync(DATA_DIR) ? readdirSync(DATA_DIR).filter((name) => name.endsWith(".json")) : [];
 }
 
 function countEntries(files: string[]): number {
@@ -172,7 +172,9 @@ function loadCategories(path: string): { categories: Category[]; extra: Record<s
       : {};
   const raw = Array.isArray(doc) ? doc : (doc as { categories?: unknown })?.categories;
   if (!Array.isArray(raw) || raw.length === 0) {
-    fail("--categories 必须是非空数组，或包含非空 categories 数组的对象（与 config/categories.json 同构）");
+    fail(
+      "--categories 必须是非空数组，或包含非空 categories 数组的对象（与 config/categories.json 同构）",
+    );
   }
 
   const categories = raw.map((entry, index) => {
@@ -219,7 +221,10 @@ function main(argv: string[]): number {
     );
   }
 
-  const topic = options.name.replace(/^Awesome\s+/i, "").replace(/\s+CN$/i, "").trim();
+  const topic = options.name
+    .replace(/^Awesome\s+/i, "")
+    .replace(/\s+CN$/i, "")
+    .trim();
   const tagline = options.tagline ?? `面向中文用户的 ${topic} 资源精选索引`;
   const description =
     options.description ??
@@ -262,7 +267,14 @@ function main(argv: string[]): number {
   if (loaded) {
     const { categories, extra } = loaded;
     const categoriesPath = join(CONFIG_DIR, "categories.json");
-    const doc = { ...extra, categories: categories.map(({ emoji, description, ...rest }) => ({ ...rest, ...(emoji ? { emoji } : {}), ...(description ? { description } : {}) })) };
+    const doc = {
+      ...extra,
+      categories: categories.map(({ emoji, description, ...rest }) => ({
+        ...rest,
+        ...(emoji ? { emoji } : {}),
+        ...(description ? { description } : {}),
+      })),
+    };
     writeFileSync(categoriesPath, `${JSON.stringify(doc, null, 2)}\n`, "utf8");
 
     if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
