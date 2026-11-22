@@ -95,6 +95,18 @@ npm run scaffold -- --name "Awesome Rust CN" --slug awesome-rust-cn \
 
 > 没配 `META_TOKEN` 时脚本会静默跳过——派生仓库不做这一步也不会让 CI 变红。
 
+## 静态站点（GitHub Pages）
+
+仓库自带一个零依赖的静态站生成器 `scripts/site.ts`，输出 `site/`：
+
+```bash
+npm run build:site      # 生成 site/index.html + style.css + app.js
+```
+
+- 支持关键词搜索（按 `/` 聚焦）、主题跳转、🌐 标记、深色模式
+- 推送涉及 `config/`、`data/`、`scripts/site.ts` 的改动时，`pages.yml` 会自动构建并部署
+- 首次启用：仓库 Settings → Pages → Source 选 **GitHub Actions**
+
 ## 新仓库的 GitHub 设置（仓库里改不了）
 
 - **Description / Topics**：用 `meta.json` 里的 `description` 和 `topics`
