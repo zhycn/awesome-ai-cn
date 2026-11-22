@@ -1,0 +1,27 @@
+[
+  {
+    "id": "bailian",
+    "name": "阿里云百炼",
+    "url": "https://www.aliyun.com/product/bailian",
+    "desc": "大模型调用与智能体开发平台，含通义系列 API",
+    "tags": [
+      "企业"
+    ],
+    "vendor": "阿里云",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "siliconflow",
+    "name": "硅基流动",
+    "url": "https://siliconflow.cn",
+    "desc": "聚合主流开源模型的推理服务平台，按量计费",
+    "vendor": "硅基流动",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]
