@@ -75,9 +75,9 @@
   },
   {
     "id": "codearts-snap",
-    "name": "CodeArts Snap",
-    "url": "https://www.huaweicloud.com/product/codearts/snap.html",
-    "desc": "华为云的智能编程助手，覆盖需求到测试的研发流程",
+    "name": "华为云 CodeArts",
+    "url": "https://www.huaweicloud.com/product/codearts.html",
+    "desc": "华为云的一站式研发工具链，内置智能编程助手",
     "tags": [
       "国产",
       "企业"

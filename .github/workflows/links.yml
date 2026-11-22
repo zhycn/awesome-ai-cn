@@ -22,5 +22,4 @@ jobs:
         run: |
           gh issue create \
             --title "链接巡检失败 $(date +%F)" \
-            --body "查看 Actions 运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
-            --label "link-check" || true
+            --body "查看 Actions 运行日志：${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

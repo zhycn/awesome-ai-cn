@@ -68,7 +68,7 @@
 - [豆包 MarsCode](https://www.marscode.cn) - 字节跳动的编程助手，附带云端 IDE 与一键部署 `国产`
 - [CodeGeeX](https://codegeex.cn) - 智谱的代码大模型与 IDE 插件，支持私有化部署 `国产` `私有化`
 - [腾讯云 AI 代码助手](https://cloud.tencent.com/product/acc) - 腾讯云的编程助手，支持企业私有化与国产化环境 `国产` `私有化` `企业`
-- [CodeArts Snap](https://www.huaweicloud.com/product/codearts/snap.html) - 华为云的智能编程助手，覆盖需求到测试的研发流程 `国产` `企业`
+- [华为云 CodeArts](https://www.huaweicloud.com/product/codearts.html) - 华为云的一站式研发工具链，内置智能编程助手 `国产` `企业`
 - [Trae](https://www.trae.cn) - 字节跳动的 AI 原生编辑器，中文界面开箱可用 `国产`
 - ⭐ [Cursor](https://cursor.com) - AI 原生编辑器，多文件改写与补全体验流畅
 - ⭐ [Claude Code](https://claude.com/product/claude-code) - Anthropic 的终端编程 Agent，擅长长任务与重构
