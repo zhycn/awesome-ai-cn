@@ -4,10 +4,10 @@
 
 ## 框架层与内容层
 
-| 层     | 文件                                                                                                                             | 新清单是否要改 |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| 框架层 | `scripts/*.ts`、`tsconfig.json`、`.prettier*`、`.gitignore`、`.gitattributes`、`.github/workflows/`、`config/schema.json` 的结构 | 否             |
-| 内容层 | `config/meta.json`、`config/categories.json`、`config/tags.json`、`data/*.json`、`LICENSE`、`SECURITY.md` 的署名                 | 是             |
+| 层     | 文件                                                                                                                                                     | 新清单是否要改 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| 框架层 | `scripts/*.ts`、`tests/`、`tsconfig.json`、`commitlint.config.mjs`、`.prettier*`、`.editorconfig`、`.nvmrc`、`.gitignore`、`.gitattributes`、`.github/*` | 否             |
+| 内容层 | `config/meta.json`、`config/categories.json`、`config/tags.json`、`config/schema.json` 的 `$id`/标题、`data/*.json`、`LICENSE`、`SECURITY.md` 的署名     | 是             |
 
 `scripts/` 不含任何项目名、作者、仓库地址——全部从 `config/meta.json` 读取。
 
