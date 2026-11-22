@@ -35,8 +35,8 @@
 
 *先定一个主力模型：国产可直连，海外看网络条件。*
 
-- ⭐ [DeepSeek](https://chat.deepseek.com) - 深度求索的大模型，代码与推理能力突出，权重开源 `国产` `代码`
-- ⭐ [通义千问](https://tongyi.aliyun.com) - 阿里云通用大模型，中文理解与长文本处理见长 `国产` `多模态`
+- [DeepSeek](https://chat.deepseek.com) ⭐ - 深度求索的大模型，代码与推理能力突出，权重开源 `国产` `代码`
+- [通义千问](https://tongyi.aliyun.com) ⭐ - 阿里云通用大模型，中文理解与长文本处理见长 `国产` `多模态`
 - [豆包](https://www.doubao.com) - 字节跳动的通用助手，语音与多模态交互自然 `国产` `多模态`
 - [Kimi](https://www.kimi.com) - 月之暗面的长文本助手，擅长资料阅读与总结 `国产`
 - [智谱清言](https://chatglm.cn) - 智谱 AI 的通用助手，基于 GLM 系列模型 `国产`
@@ -47,7 +47,7 @@
 - [阶跃星辰](https://www.stepfun.com) - 阶跃星辰的通用助手，主打多模态与终端场景 `国产` `多模态`
 - [零一万物](https://www.lingyiwanwu.com) - 零一万物的大模型与行业方案，提供开放权重模型 `国产`
 - [盘古大模型](https://www.huaweicloud.com/product/pangu.html) - 华为云行业大模型，面向政企私有化部署 `国产` `私有化` `企业`
-- ⭐ [ChatGPT](https://chatgpt.com) - OpenAI 的通用助手，生态与工具调用能力成熟 `多模态`
+- [ChatGPT](https://chatgpt.com) ⭐ - OpenAI 的通用助手，生态与工具调用能力成熟 `多模态`
 - [Claude](https://claude.ai) - Anthropic 的通用助手，长文写作与代码能力突出 `代码`
 - [Gemini](https://gemini.google.com) - Google 的多模态助手，与搜索和办公套件集成 `多模态`
 - [Llama](https://www.llama.com) - Meta 的开放权重模型系列，可本地部署与微调
@@ -65,15 +65,15 @@
 
 *按现有编辑器选，别重复装一套。*
 
-- ⭐ [通义灵码](https://lingma.aliyun.com) - 阿里云的 AI 编程助手，支持行级补全与仓库级问答 `国产`
+- [通义灵码](https://lingma.aliyun.com) ⭐ - 阿里云的 AI 编程助手，支持行级补全与仓库级问答 `国产`
 - [文心快码](https://comate.baidu.com) - 百度的 AI 编程助手，覆盖补全、单测与代码评审 `国产`
 - [豆包 MarsCode](https://www.marscode.cn) - 字节跳动的编程助手，附带云端 IDE 与一键部署 `国产`
 - [CodeGeeX](https://codegeex.cn) - 智谱的代码大模型与 IDE 插件，支持私有化部署 `国产` `私有化`
 - [腾讯云 AI 代码助手](https://cloud.tencent.com/product/acc) - 腾讯云的编程助手，支持企业私有化与国产化环境 `国产` `私有化` `企业`
 - [华为云 CodeArts](https://www.huaweicloud.com/product/codearts.html) - 华为云的一站式研发工具链，内置智能编程助手 `国产` `企业`
 - [Trae](https://www.trae.cn) - 字节跳动的 AI 原生编辑器，中文界面开箱可用 `国产`
-- ⭐ [Cursor](https://cursor.com) - AI 原生编辑器，多文件改写与补全体验流畅
-- ⭐ [Claude Code](https://claude.com/product/claude-code) - Anthropic 的终端编程 Agent，擅长长任务与重构
+- [Cursor](https://cursor.com) ⭐ - AI 原生编辑器，多文件改写与补全体验流畅
+- [Claude Code](https://claude.com/product/claude-code) ⭐ - Anthropic 的终端编程 Agent，擅长长任务与重构
 - [GitHub Copilot](https://github.com/features/copilot) - GitHub 官方编程助手，与仓库和 PR 流程深度集成
 - [Codex](https://openai.com/codex/) - OpenAI 的云端编程 Agent，可并行处理多项任务
 - [Cline](https://cline.bot) - 开源的编辑器内 Agent，可自主读写文件并执行命令
@@ -87,10 +87,10 @@
 
 *要自动化而不只是问答，看这节。*
 
-- ⭐ [Dify](https://dify.ai) - 开源的大模型应用开发平台，可视化编排工作流与 Agent `国产`
-- ⭐ [扣子 Coze](https://www.coze.cn) - 字节跳动的智能体搭建平台，拖拽即可发布到多端 `国产`
+- [Dify](https://dify.ai) ⭐ - 开源的大模型应用开发平台，可视化编排工作流与 Agent `国产`
+- [扣子 Coze](https://www.coze.cn) ⭐ - 字节跳动的智能体搭建平台，拖拽即可发布到多端 `国产`
 - [腾讯元器](https://yuanqi.tencent.com) - 腾讯的智能体开发平台，可接入公众号与微信生态 `国产`
-- ⭐ [Manus](https://manus.im) - 通用型 Agent，可自主拆解并执行多步任务 `国产`
+- [Manus](https://manus.im) ⭐ - 通用型 Agent，可自主拆解并执行多步任务 `国产`
 - [AgentScope](https://github.com/agentscope-ai/agentscope) - 阿里开源的多智能体框架，含调试与评测工具 `国产`
 - [MetaGPT](https://github.com/geekan/MetaGPT) - 模拟软件公司的多智能体框架，输入需求输出代码 `国产`
 - [FastGPT](https://fastgpt.io) - 开源的知识库问答与工作流平台，支持私有化部署 `国产` `私有化`
@@ -107,9 +107,9 @@
 
 *文档解析比向量库更决定效果，先看前两条。*
 
-- ⭐ [RAGFlow](https://ragflow.io) - 基于深度文档解析的 RAG 引擎，切片与检索可视化 `国产`
+- [RAGFlow](https://ragflow.io) ⭐ - 基于深度文档解析的 RAG 引擎，切片与检索可视化 `国产`
 - [QAnything](https://github.com/netease-youdao/QAnything) - 网易有道的本地知识库问答，支持多种文档格式 `国产`
-- ⭐ [AnythingLLM](https://anythingllm.com) - 可本地部署的知识库对话应用，可接入任意模型 `私有化`
+- [AnythingLLM](https://anythingllm.com) ⭐ - 可本地部署的知识库对话应用，可接入任意模型 `私有化`
 - [Onyx](https://onyx.app) - 开源的企业知识搜索与问答平台，可连常见数据源 `企业`
 - [MinerU](https://github.com/opendatalab/MinerU) - PDF 与文档解析工具，输出结构化内容供 RAG 用 `国产`
 - [MarkItDown](https://github.com/microsoft/markitdown) - 微软的文档转 Markdown 工具，适配大模型输入
@@ -120,8 +120,8 @@
 
 *图、视频、语音各有专精，按产出物挑。*
 
-- ⭐ [即梦](https://jimeng.jianying.com) - 字节的图片与视频生成工具，中文提示词理解好 `国产` `图像` `视频`
-- ⭐ [可灵](https://klingai.com) - 快手的视频生成模型，支持图生视频与运镜控制 `国产` `视频`
+- [即梦](https://jimeng.jianying.com) ⭐ - 字节的图片与视频生成工具，中文提示词理解好 `国产` `图像` `视频`
+- [可灵](https://klingai.com) ⭐ - 快手的视频生成模型，支持图生视频与运镜控制 `国产` `视频`
 - [海螺 AI](https://hailuoai.com) - MiniMax 的语音与视频生成入口，音色自然 `国产` `语音` `视频`
 - [通义万相](https://tongyi.aliyun.com/wanxiang/) - 阿里的图像与视频生成模型，中文场景理解到位 `国产` `图像` `视频`
 - [ComfyUI](https://www.comfy.org) - 节点式图像生成工作流，插件与生态非常丰富
@@ -135,9 +135,9 @@
 
 *按语言栈挑框架，别为了框架换语言。*
 
-- ⭐ [LangChain](https://www.langchain.com) - 最通用的 LLM 应用框架，组件与集成极其丰富
+- [LangChain](https://www.langchain.com) ⭐ - 最通用的 LLM 应用框架，组件与集成极其丰富
 - [LlamaIndex](https://www.llamaindex.ai) - 以数据为中心的 LLM 框架，索引与检索组件齐全
-- ⭐ [Vercel AI SDK](https://ai-sdk.dev) - TypeScript 的 AI 应用 SDK，前后端流式集成顺手
+- [Vercel AI SDK](https://ai-sdk.dev) ⭐ - TypeScript 的 AI 应用 SDK，前后端流式集成顺手
 - [Semantic Kernel](https://github.com/microsoft/semantic-kernel) - 微软的 LLM 编排 SDK，.NET 与 Java 生态友好
 - [Spring AI](https://spring.io/projects/spring-ai) - Spring 生态的 AI 集成框架，Java 团队上手成本低 `企业`
 - [LangChain4j](https://github.com/langchain4j/langchain4j) - Java 版 LangChain，支持主流模型与向量库
@@ -152,9 +152,9 @@
 
 *要私有化或降本时，从这里开始。*
 
-- ⭐ [vLLM](https://vllm.ai) - 高吞吐推理引擎，PagedAttention 显著节省显存
+- [vLLM](https://vllm.ai) ⭐ - 高吞吐推理引擎，PagedAttention 显著节省显存
 - [SGLang](https://github.com/sgl-project/sglang) - 面向结构化输出的推理引擎，吞吐表现出色
-- ⭐ [Ollama](https://ollama.com) - 本地一键运行开源模型，命令行与 API 都简单 `私有化`
+- [Ollama](https://ollama.com) ⭐ - 本地一键运行开源模型，命令行与 API 都简单 `私有化`
 - [llama.cpp](https://github.com/ggml-org/llama.cpp) - C++ 实现的推理，可在 CPU 与消费级显卡上运行
 - [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) - 一站式微调框架，覆盖主流模型与训练方法 `国产`
 - [Unsloth](https://unsloth.ai) - 单卡微调加速库，显存占用低、训练更快
@@ -171,8 +171,8 @@
 
 *选型前先看评测口径，别只看名次。*
 
-- ⭐ [魔搭 ModelScope](https://modelscope.cn) - 阿里的开源模型与数据集社区，中文资源丰富 `国产`
-- ⭐ [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) - 业界通用的评测框架，覆盖主流基准与模型
+- [魔搭 ModelScope](https://modelscope.cn) ⭐ - 阿里的开源模型与数据集社区，中文资源丰富 `国产`
+- [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) ⭐ - 业界通用的评测框架，覆盖主流基准与模型
 - [OpenCompass](https://opencompass.org.cn) - 上海 AI Lab 的评测平台，含中文榜单与工具链 `国产`
 - [C-Eval](https://github.com/hkust-nlp/ceval) - 中文基础能力评测基准，覆盖多学科选择题 `国产`
 - [CMMLU](https://github.com/haonan-li/CMMLU) - 中文多任务语言理解基准，覆盖 67 个学科 `国产`
@@ -184,8 +184,8 @@
 
 *不想自己搭，直接用现成的。*
 
-- ⭐ [秘塔 AI 搜索](https://metaso.cn) - 中文 AI 搜索，答案带可溯源引用、无广告 `国产`
-- ⭐ [通义听悟](https://tingwu.aliyun.com) - 会议与课程录音的转写、摘要与问答 `国产` `语音`
+- [秘塔 AI 搜索](https://metaso.cn) ⭐ - 中文 AI 搜索，答案带可溯源引用、无广告 `国产`
+- [通义听悟](https://tingwu.aliyun.com) ⭐ - 会议与课程录音的转写、摘要与问答 `国产` `语音`
 - [讯飞听见](https://www.iflyrec.com) - 语音转文字与会议纪要，中文识别准确 `国产` `语音`
 - [沉浸式翻译](https://immersivetranslate.com) - 浏览器双语翻译插件，可切换多种翻译引擎 `国产`
 - [秘塔写作猫](https://xiezuocat.com) - 中文写作润色与校对的在线工具 `国产`
@@ -198,10 +198,10 @@
 
 *让模型能调你自己的工具，从这里接。*
 
-- ⭐ [Model Context Protocol](https://modelcontextprotocol.io) - Anthropic 提出的模型上下文协议，统一工具与数据接入
+- [Model Context Protocol](https://modelcontextprotocol.io) ⭐ - Anthropic 提出的模型上下文协议，统一工具与数据接入
 - [官方 MCP Servers](https://github.com/modelcontextprotocol/servers) - 官方维护的 MCP Server 集合，开箱即可接入
 - [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers) - 社区整理的 MCP Server 大全，按场景分类
-- ⭐ [Smithery](https://smithery.ai) - MCP Server 的托管与发现平台，可一键接入
+- [Smithery](https://smithery.ai) ⭐ - MCP Server 的托管与发现平台，可一键接入
 - [FastMCP](https://github.com/jlowin/fastmcp) - 用 Python 快速编写 MCP Server 的框架
 - [Playwright MCP](https://github.com/microsoft/playwright-mcp) - 微软的浏览器 MCP Server，让模型直接操作网页
 - [mcp-use](https://github.com/mcp-use/mcp-use) - 在应用中接入 MCP 工具的客户端库
@@ -211,7 +211,7 @@
 
 *算力、向量库与观测，按需取用。*
 
-- ⭐ [Milvus](https://milvus.io) - 开源向量数据库，支持十亿级向量检索 `国产`
+- [Milvus](https://milvus.io) ⭐ - 开源向量数据库，支持十亿级向量检索 `国产`
 - [Qdrant](https://qdrant.tech) - Rust 编写的向量数据库，过滤检索性能好
 - [Weaviate](https://weaviate.io) - 带混合检索的向量数据库，模块化向量化
 - [Chroma](https://www.trychroma.com) - 轻量嵌入式向量库，本地原型开发首选
@@ -229,8 +229,8 @@
 
 *系统入门看课程，跟前沿看媒体。*
 
-- ⭐ [动手学深度学习](https://zh.d2l.ai) - 中英文版教材与代码配套，适合系统入门 `国产`
-- ⭐ [Prompt Engineering Guide](https://www.promptingguide.ai) - 提示词工程指南，含中文版与大量示例
+- [动手学深度学习](https://zh.d2l.ai) ⭐ - 中英文版教材与代码配套，适合系统入门 `国产`
+- [Prompt Engineering Guide](https://www.promptingguide.ai) ⭐ - 提示词工程指南，含中文版与大量示例
 - [DeepLearning.AI](https://www.deeplearning.ai) - 吴恩达团队的 AI 课程平台，以短课为主
 - [fast.ai](https://www.fast.ai) - 实战导向的深度学习课程，配套代码完整
 - [李宏毅机器学习](https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php) - 台大李宏毅的机器学习课，中文讲解通俗
