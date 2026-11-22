@@ -55,11 +55,6 @@ function rel(path: string): string {
   return relative(ROOT, path);
 }
 
-function fail(message: string): never {
-  console.error(message);
-  process.exit(1);
-}
-
 function typeName(value: unknown): string {
   if (value === null) return "null";
   if (Array.isArray(value)) return "array";
@@ -133,7 +128,9 @@ function checkValue(value: unknown, spec: Spec, where: string, report: Report): 
       if (seen.size !== value.length) report.errors.push(`${where}: 存在重复项`);
     }
     if (spec.items) {
-      value.forEach((entry, index) => checkValue(entry, spec.items as Spec, `${where}[${index}]`, report));
+      value.forEach((entry, index) =>
+        checkValue(entry, spec.items as Spec, `${where}[${index}]`, report),
+      );
     }
   } else if (expected === "object") {
     if (typeof value !== "object" || value === null || Array.isArray(value)) {
@@ -162,7 +159,9 @@ function checkValue(value: unknown, spec: Spec, where: string, report: Report): 
   }
 
   if (spec.enum && !spec.enum.includes(value as never)) {
-    report.errors.push(`${where}: 取值非法 ${quote(value)}，只能是 ${JSON.stringify(spec.enum).replace(/"/g, "'")}`);
+    report.errors.push(
+      `${where}: 取值非法 ${quote(value)}，只能是 ${JSON.stringify(spec.enum).replace(/"/g, "'")}`,
+    );
   }
 }
 
@@ -269,10 +268,10 @@ function main(argv: string[]): number {
 
   let itemSpec: Spec | null = null;
   if (schema === FAILED || typeof schema !== "object" || schema === null) {
-    if (schema !== FAILED) report.errors.push(`${rel(join(CONFIG_DIR, "schema.json"))}: 顶层应为对象`);
+    if (schema !== FAILED)
+      report.errors.push(`${rel(join(CONFIG_DIR, "schema.json"))}: 顶层应为对象`);
   } else {
-    itemSpec =
-      ((schema as { $defs?: { item?: Spec } }).$defs?.item as Spec | undefined) ?? null;
+    itemSpec = ((schema as { $defs?: { item?: Spec } }).$defs?.item as Spec | undefined) ?? null;
     if (!itemSpec) {
       report.errors.push(`${rel(join(CONFIG_DIR, "schema.json"))}: 缺少 $defs.item 定义`);
     }
@@ -282,12 +281,16 @@ function main(argv: string[]): number {
   if (categoriesDoc !== FAILED && typeof categoriesDoc === "object" && categoriesDoc !== null) {
     const raw = (categoriesDoc as { categories?: unknown }).categories;
     if (!Array.isArray(raw) || raw.length === 0) {
-      report.errors.push(`${rel(join(CONFIG_DIR, "categories.json"))}: categories 必须是非空数组（至少一个主题）`);
+      report.errors.push(
+        `${rel(join(CONFIG_DIR, "categories.json"))}: categories 必须是非空数组（至少一个主题）`,
+      );
     } else {
       categories = raw as Record<string, unknown>[];
     }
   } else if (categoriesDoc !== FAILED) {
-    report.errors.push(`${rel(join(CONFIG_DIR, "categories.json"))}: 顶层应为对象，且包含 categories 数组`);
+    report.errors.push(
+      `${rel(join(CONFIG_DIR, "categories.json"))}: 顶层应为对象，且包含 categories 数组`,
+    );
   }
 
   const seenIds = new Set<string>();
@@ -331,7 +334,10 @@ function main(argv: string[]): number {
     if (filename && !filename.endsWith(".json")) {
       report.errors.push(`${where}: file 需以 .json 结尾：'${filename}'`);
     }
-    if (filename && (filename.includes("/") || filename.includes("\\") || filename.startsWith("."))) {
+    if (
+      filename &&
+      (filename.includes("/") || filename.includes("\\") || filename.startsWith("."))
+    ) {
       report.errors.push(`${where}: file 只能是 data/ 下的文件名，不能含路径：'${filename}'`);
     }
     if (cid && filename && filename !== `${cid}.json`) {
@@ -392,7 +398,9 @@ function main(argv: string[]): number {
         const iid = record.id;
         if (typeof iid === "string") {
           if (itemIds.has(iid)) {
-            report.errors.push(`${where}.id: id 全局重复：'${iid}'（首次出现于 ${itemIds.get(iid)}）`);
+            report.errors.push(
+              `${where}.id: id 全局重复：'${iid}'（首次出现于 ${itemIds.get(iid)}）`,
+            );
           } else {
             itemIds.set(iid, where);
           }
@@ -435,10 +443,14 @@ function main(argv: string[]): number {
       });
 
       if (featured > MAX_FEATURED_PER_MODULE) {
-        report.errors.push(`${rel(path)}: featured 条目 ${featured} 条，超过上限 ${MAX_FEATURED_PER_MODULE}`);
+        report.errors.push(
+          `${rel(path)}: featured 条目 ${featured} 条，超过上限 ${MAX_FEATURED_PER_MODULE}`,
+        );
       }
       if (body.length > MAX_ITEMS_PER_MODULE) {
-        report.warnings.push(`${rel(path)}: 条目 ${body.length} 条，建议拆分为子主题（阈值 ${MAX_ITEMS_PER_MODULE}）`);
+        report.warnings.push(
+          `${rel(path)}: 条目 ${body.length} 条，建议拆分为子主题（阈值 ${MAX_ITEMS_PER_MODULE}）`,
+        );
       }
     }
   }
@@ -452,7 +464,12 @@ function main(argv: string[]): number {
 
     lines.push("配置");
     lines.push(mark(join(CONFIG_DIR, "meta.json"), "config/meta.json"));
-    lines.push(mark(join(CONFIG_DIR, "categories.json"), `config/categories.json（${categories.length} 个主题）`));
+    lines.push(
+      mark(
+        join(CONFIG_DIR, "categories.json"),
+        `config/categories.json（${categories.length} 个主题）`,
+      ),
+    );
     lines.push(mark(join(CONFIG_DIR, "schema.json"), "config/schema.json"));
     lines.push(mark(TAGS_PATH, "config/tags.json"));
     lines.push("");

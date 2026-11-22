@@ -26,5 +26,12 @@ jobs:
         run: npm run validate
       - name: 检查 README 是否与数据一致
         run: npm run build:check
-      - name: 检查 Markdown 格式
+      - name: 检查格式（Markdown + TypeScript）
         run: npm run format:check
+      - name: 运行测试
+        run: npm test
+      - name: 校验 PR 标题（Conventional Commits）
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s' "$PR_TITLE" | npx commitlint

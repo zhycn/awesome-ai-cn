@@ -246,7 +246,11 @@ function unifiedDiff(a: string[], b: string[], context = 3): string[] {
 
   const keep = new Set<number>();
   for (const index of changed) {
-    for (let k = Math.max(0, index - context); k <= Math.min(ops.length - 1, index + context); k += 1) {
+    for (
+      let k = Math.max(0, index - context);
+      k <= Math.min(ops.length - 1, index + context);
+      k += 1
+    ) {
       keep.add(k);
     }
   }
