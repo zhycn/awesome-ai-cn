@@ -11,7 +11,7 @@
 
 <p align="center"><em>给中文开发者的 AI 资源地图</em></p>
 
-<p align="center">收集中文用户能直接使用的 AI 资源，按用途分类；每条附一句话说明，数据以 JSON 维护，程序与 Agent 可直接读取。</p>
+<p align="center">以中文可用为优先，也保留绕不开的国际主流；每条一句话说清能做什么，数据以 JSON 维护，程序与 Agent 可直接读取。</p>
 
 <p align="center">共 <strong>13</strong> 个主题、<strong>143</strong> 条资源。</p>
 
