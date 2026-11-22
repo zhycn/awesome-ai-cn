@@ -97,11 +97,11 @@ function escapeLinkText(text: string): string {
 }
 
 function itemLine(item: Item): string {
-  const star = item.featured ? "⭐ " : ""; // 仅作强调，不改变顺序
+  const star = item.featured ? " ⭐" : ""; // 仅作强调，不改变顺序；放在名称后，避免行首不齐
   const tags = (item.tags ?? []).map((tag) => `\`${tag}\``).join(" ");
   // 仅当 URL 含括号时用尖括号包裹（GitHub 已验证可渲染），避免无谓的源码噪音
   const target = item.url.includes("(") || item.url.includes(")") ? `<${item.url}>` : item.url;
-  const line = `- ${star}[${escapeLinkText(item.name)}](${target}) - ${item.desc}`;
+  const line = `- [${escapeLinkText(item.name)}](${target})${star} - ${item.desc}`;
   return tags ? `${line} ${tags}` : line;
 }
 
