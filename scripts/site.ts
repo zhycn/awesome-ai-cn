@@ -74,11 +74,17 @@ function renderItem(item: Item, categoryTitle: string): string {
     .toLowerCase();
 
   return `      <li class="item" data-text="${esc(haystack)}">
+        <a class="ext" href="${esc(item.url)}" target="_blank" rel="noopener" aria-label="在新标签页打开 ${esc(item.name)}" tabindex="-1">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" aria-hidden="true">
+            <path d="M5 11 11 5M6.5 5H11v4.5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
         <div class="item-head">
-          <a class="name" href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.name)}</a>
+          <a class="name" href="${esc(item.url)}" target="_blank" rel="noopener" title="${esc(item.name)}">${esc(item.name)}</a>
           ${badges}
         </div>
-        <p class="item-desc">${esc(item.desc)}</p>
+        <p class="item-desc" title="${esc(item.desc)}">${esc(item.desc)}</p>
         ${tags ? `<div class="tags">${tags}</div>` : ""}
       </li>`;
 }
@@ -275,6 +281,12 @@ h1 {
   outline: none; transition: border-color .15s;
 }
 .search input::placeholder { color: var(--placeholder); }
+.search input::-webkit-search-cancel-button,
+.search input::-webkit-search-decoration,
+.search input::-webkit-search-results-button,
+.search input::-webkit-search-results-decoration {
+  -webkit-appearance: none; appearance: none; display: none;
+}
 .search input:focus-visible {
   border-color: var(--accent); outline: 2px solid var(--accent-ring); outline-offset: 2px;
 }
@@ -349,16 +361,33 @@ h2 { margin: 0; font-size: 1.5rem; font-weight: 700; line-height: 1.3; letter-sp
 }
 .item:hover { border-color: var(--accent); box-shadow: var(--shadow); }
 .item:focus-within { border-color: var(--accent); box-shadow: var(--shadow); }
-.item-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.name { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
-.name:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.item-head {
+  display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; padding-right: 26px;
+}
+.name {
+  flex: 1 1 auto; min-width: 0;
+  font-size: 1.0625rem; font-weight: 600; line-height: 1.35;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.name:hover { color: var(--accent); }
+.ext {
+  position: absolute; top: 13px; right: 12px; display: inline-flex;
+  color: var(--muted); opacity: .38; transition: opacity .15s, color .15s;
+}
+.ext:hover { color: var(--accent); opacity: 1; }
+.item:hover .ext, .item:focus-within .ext { opacity: .8; }
 .badge {
+  flex: none;
   display: inline-flex; align-items: center; gap: 3px; height: 20px; padding: 0 7px;
   border-radius: 999px; font-size: 11.5px; font-weight: 600; line-height: 1; white-space: nowrap;
 }
 .badge-star { color: var(--star-fg); background: var(--star-bg); }
 .badge-proxy { color: var(--proxy-fg); background: var(--proxy-bg); }
-.item-desc { margin: 7px 0 10px; font-size: .875rem; line-height: 1.6; color: var(--fg-2); }
+.item-desc {
+  margin: 7px 0 10px; font-size: .875rem; line-height: 1.6; color: var(--fg-2);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; line-clamp: 2;
+}
 .name::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tag {
