@@ -1,0 +1,126 @@
+[
+  {
+    "id": "metaso",
+    "name": "秘塔 AI 搜索",
+    "url": "https://metaso.cn",
+    "desc": "中文 AI 搜索，答案带可溯源引用、无广告",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "秘塔科技",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "tingwu",
+    "name": "通义听悟",
+    "url": "https://tingwu.aliyun.com",
+    "desc": "会议与课程录音的转写、摘要与问答",
+    "tags": [
+      "国产",
+      "语音"
+    ],
+    "vendor": "阿里云",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "iflyrec",
+    "name": "讯飞听见",
+    "url": "https://www.iflyrec.com",
+    "desc": "语音转文字与会议纪要，中文识别准确",
+    "tags": [
+      "国产",
+      "语音"
+    ],
+    "vendor": "科大讯飞",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "immersivetranslate",
+    "name": "沉浸式翻译",
+    "url": "https://immersivetranslate.com",
+    "desc": "浏览器双语翻译插件，可切换多种翻译引擎",
+    "tags": [
+      "国产"
+    ],
+    "lang": "zh",
+    "pricing": "free",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "xiezuocat",
+    "name": "秘塔写作猫",
+    "url": "https://xiezuocat.com",
+    "desc": "中文写作润色与校对的在线工具",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "秘塔科技",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "wps",
+    "name": "WPS AI",
+    "url": "https://www.wps.cn",
+    "desc": "办公套件内置写作、表格与 PPT 辅助",
+    "tags": [
+      "国产",
+      "企业"
+    ],
+    "vendor": "金山办公",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "quark",
+    "name": "夸克",
+    "url": "https://quark.cn",
+    "desc": "夸克浏览器，内置 AI 搜索、扫描与文档问答",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "阿里巴巴",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "notion-ai",
+    "name": "Notion AI",
+    "url": "https://www.notion.com/product/ai",
+    "desc": "Notion 内置 AI，写作、总结与数据库问答",
+    "vendor": "Notion",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "gamma",
+    "name": "Gamma",
+    "url": "https://gamma.app",
+    "desc": "一句话生成演示文稿与网页，排版自动完成",
+    "vendor": "Gamma",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

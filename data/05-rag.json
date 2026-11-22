@@ -1,0 +1,107 @@
+[
+  {
+    "id": "ragflow",
+    "name": "RAGFlow",
+    "url": "https://ragflow.io",
+    "desc": "基于深度文档解析的 RAG 引擎，切片与检索可视化",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "InfiniFlow",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "qanything",
+    "name": "QAnything",
+    "url": "https://github.com/netease-youdao/QAnything",
+    "desc": "网易有道的本地知识库问答，支持多种文档格式",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "网易有道",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "anythingllm",
+    "name": "AnythingLLM",
+    "url": "https://anythingllm.com",
+    "desc": "可本地部署的知识库对话应用，可接入任意模型",
+    "tags": [
+      "私有化"
+    ],
+    "vendor": "Mintplex Labs",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "onyx",
+    "name": "Onyx",
+    "url": "https://onyx.app",
+    "desc": "开源的企业知识搜索与问答平台，可连常见数据源",
+    "tags": [
+      "企业"
+    ],
+    "vendor": "Onyx",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "mineru",
+    "name": "MinerU",
+    "url": "https://github.com/opendatalab/MinerU",
+    "desc": "PDF 与文档解析工具，输出结构化内容供 RAG 用",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "上海 AI Lab",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "markitdown",
+    "name": "MarkItDown",
+    "url": "https://github.com/microsoft/markitdown",
+    "desc": "微软的文档转 Markdown 工具，适配大模型输入",
+    "vendor": "Microsoft",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "unstructured",
+    "name": "Unstructured",
+    "url": "https://unstructured.io",
+    "desc": "文档解析与智能分块服务，擅长复杂版式与表格",
+    "vendor": "Unstructured",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "docling",
+    "name": "Docling",
+    "url": "https://github.com/docling-project/docling",
+    "desc": "IBM 的文档解析库，把 PDF 与 Office 转成结构化文本",
+    "vendor": "IBM",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

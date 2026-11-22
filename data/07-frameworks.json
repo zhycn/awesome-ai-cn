@@ -1,0 +1,142 @@
+[
+  {
+    "id": "langchain",
+    "name": "LangChain",
+    "url": "https://www.langchain.com",
+    "desc": "最通用的 LLM 应用框架，组件与集成极其丰富",
+    "vendor": "LangChain",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "llamaindex",
+    "name": "LlamaIndex",
+    "url": "https://www.llamaindex.ai",
+    "desc": "以数据为中心的 LLM 框架，索引与检索组件齐全",
+    "vendor": "LlamaIndex",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "ai-sdk",
+    "name": "Vercel AI SDK",
+    "url": "https://ai-sdk.dev",
+    "desc": "TypeScript 的 AI 应用 SDK，前后端流式集成顺手",
+    "vendor": "Vercel",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "semantic-kernel",
+    "name": "Semantic Kernel",
+    "url": "https://github.com/microsoft/semantic-kernel",
+    "desc": "微软的 LLM 编排 SDK，.NET 与 Java 生态友好",
+    "vendor": "Microsoft",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "spring-ai",
+    "name": "Spring AI",
+    "url": "https://spring.io/projects/spring-ai",
+    "desc": "Spring 生态的 AI 集成框架，Java 团队上手成本低",
+    "tags": [
+      "企业"
+    ],
+    "vendor": "VMware",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "langchain4j",
+    "name": "LangChain4j",
+    "url": "https://github.com/langchain4j/langchain4j",
+    "desc": "Java 版 LangChain，支持主流模型与向量库",
+    "vendor": "LangChain4j",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "pydantic-ai",
+    "name": "Pydantic AI",
+    "url": "https://ai.pydantic.dev",
+    "desc": "Pydantic 团队出品的 Agent 框架，类型安全",
+    "vendor": "Pydantic",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "instructor",
+    "name": "Instructor",
+    "url": "https://python.useinstructor.com",
+    "desc": "让模型稳定输出结构化数据的小而美工具",
+    "vendor": "567 Labs",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "outlines",
+    "name": "Outlines",
+    "url": "https://github.com/dottxt-ai/outlines",
+    "desc": "约束解码库，保证输出符合 JSON Schema 或正则",
+    "vendor": "dottxt",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "litellm",
+    "name": "LiteLLM",
+    "url": "https://www.litellm.ai",
+    "desc": "统一 100+ 模型接口的代理层，自带成本与限流",
+    "tags": [
+      "企业"
+    ],
+    "vendor": "BerriAI",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "agno",
+    "name": "Agno",
+    "url": "https://www.agno.com",
+    "desc": "轻量的 Agent 运行时，性能与上手速度兼顾",
+    "vendor": "Agno",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "mastra",
+    "name": "Mastra",
+    "url": "https://mastra.ai",
+    "desc": "TypeScript 的 Agent 框架，内置工作流与评测",
+    "vendor": "Mastra",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "mcp",
+    "name": "Model Context Protocol",
+    "url": "https://modelcontextprotocol.io",
+    "desc": "Anthropic 提出的模型上下文协议，统一工具与数据接入",
+    "vendor": "Anthropic",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "mcp-servers",
+    "name": "官方 MCP Servers",
+    "url": "https://github.com/modelcontextprotocol/servers",
+    "desc": "官方维护的 MCP Server 集合，开箱即可接入",
+    "vendor": "Anthropic",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "awesome-mcp",
+    "name": "Awesome MCP Servers",
+    "url": "https://github.com/punkpeye/awesome-mcp-servers",
+    "desc": "社区整理的 MCP Server 大全，按场景分类",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "smithery",
+    "name": "Smithery",
+    "url": "https://smithery.ai",
+    "desc": "MCP Server 的托管与发现平台，可一键接入",
+    "vendor": "Smithery",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "fastmcp",
+    "name": "FastMCP",
+    "url": "https://github.com/jlowin/fastmcp",
+    "desc": "用 Python 快速编写 MCP Server 的框架",
+    "vendor": "FastMCP",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "playwright-mcp",
+    "name": "Playwright MCP",
+    "url": "https://github.com/microsoft/playwright-mcp",
+    "desc": "微软的浏览器 MCP Server，让模型直接操作网页",
+    "vendor": "Microsoft",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "mcp-use",
+    "name": "mcp-use",
+    "url": "https://github.com/mcp-use/mcp-use",
+    "desc": "在应用中接入 MCP 工具的客户端库",
+    "vendor": "mcp-use",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "mcp-so",
+    "name": "mcp.so",
+    "url": "https://mcp.so",
+    "desc": "MCP Server 的聚合目录，支持搜索与筛选",
+    "lang": "en",
+    "pricing": "free",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

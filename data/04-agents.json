@@ -1,0 +1,191 @@
+[
+  {
+    "id": "dify",
+    "name": "Dify",
+    "url": "https://dify.ai",
+    "desc": "开源的大模型应用开发平台，可视化编排工作流与 Agent",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "LangGenius",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "coze",
+    "name": "扣子 Coze",
+    "url": "https://www.coze.cn",
+    "desc": "字节跳动的智能体搭建平台，拖拽即可发布到多端",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "字节跳动",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "yuanqi",
+    "name": "腾讯元器",
+    "url": "https://yuanqi.tencent.com",
+    "desc": "腾讯的智能体开发平台，可接入公众号与微信生态",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "腾讯",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "manus",
+    "name": "Manus",
+    "url": "https://manus.im",
+    "desc": "通用型 Agent，可自主拆解并执行多步任务",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "Monica",
+    "lang": "zh",
+    "pricing": "freemium",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "agentscope",
+    "name": "AgentScope",
+    "url": "https://github.com/agentscope-ai/agentscope",
+    "desc": "阿里开源的多智能体框架，含调试与评测工具",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "阿里巴巴",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "metagpt",
+    "name": "MetaGPT",
+    "url": "https://github.com/geekan/MetaGPT",
+    "desc": "模拟软件公司的多智能体框架，输入需求输出代码",
+    "tags": [
+      "国产"
+    ],
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "fastgpt",
+    "name": "FastGPT",
+    "url": "https://fastgpt.io",
+    "desc": "开源的知识库问答与工作流平台，支持私有化部署",
+    "tags": [
+      "国产",
+      "私有化"
+    ],
+    "vendor": "Sealos",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "n8n",
+    "name": "n8n",
+    "url": "https://n8n.io",
+    "desc": "开源的自动化工作流平台，节点覆盖常见 SaaS 与数据库",
+    "vendor": "n8n",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "langgraph",
+    "name": "LangGraph",
+    "url": "https://www.langchain.com/langgraph",
+    "desc": "用图编排有状态 Agent，适合需要回滚的复杂流程",
+    "vendor": "LangChain",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "crewai",
+    "name": "CrewAI",
+    "url": "https://www.crewai.com",
+    "desc": "面向多角色协作的 Agent 框架，抽象简洁上手快",
+    "vendor": "CrewAI",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "autogen",
+    "name": "AutoGen",
+    "url": "https://microsoft.github.io/autogen/",
+    "desc": "微软的多智能体对话框架，支持人机协同编排",
+    "vendor": "Microsoft",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "flowise",
+    "name": "Flowise",
+    "url": "https://flowiseai.com",
+    "desc": "拖拽式 LLM 应用搭建工具，可快速产出聊天与 Agent",
+    "vendor": "Flowise",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "langflow",
+    "name": "Langflow",
+    "url": "https://www.langflow.org",
+    "desc": "节点式 LLM 编排工具，搭好的流程可直接导出 API",
+    "vendor": "Langflow",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "openmanus",
+    "name": "OpenManus",
+    "url": "https://github.com/FoundationAgents/OpenManus",
+    "desc": "开源的通用 Agent 实现，可在本地复现多步任务",
+    "vendor": "FoundationAgents",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "browser-use",
+    "name": "Browser Use",
+    "url": "https://github.com/browser-use/browser-use",
+    "desc": "让 Agent 直接操作浏览器的开源框架",
+    "vendor": "Browser Use",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

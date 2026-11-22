@@ -1,0 +1,160 @@
+[
+  {
+    "id": "milvus",
+    "name": "Milvus",
+    "url": "https://milvus.io",
+    "desc": "开源向量数据库，支持十亿级向量检索",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "Zilliz",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "qdrant",
+    "name": "Qdrant",
+    "url": "https://qdrant.tech",
+    "desc": "Rust 编写的向量数据库，过滤检索性能好",
+    "vendor": "Qdrant",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "weaviate",
+    "name": "Weaviate",
+    "url": "https://weaviate.io",
+    "desc": "带混合检索的向量数据库，模块化向量化",
+    "vendor": "Weaviate",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "chroma",
+    "name": "Chroma",
+    "url": "https://www.trychroma.com",
+    "desc": "轻量嵌入式向量库，本地原型开发首选",
+    "vendor": "Chroma",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "pinecone",
+    "name": "Pinecone",
+    "url": "https://www.pinecone.io",
+    "desc": "全托管向量数据库，免运维、弹性扩缩",
+    "vendor": "Pinecone",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "modal",
+    "name": "Modal",
+    "url": "https://modal.com",
+    "desc": "Serverless GPU 平台，按秒计费跑推理任务",
+    "vendor": "Modal",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "runpod",
+    "name": "RunPod",
+    "url": "https://www.runpod.io",
+    "desc": "GPU 云主机与 Serverless 推理，价格透明",
+    "vendor": "RunPod",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "volcengine",
+    "name": "火山引擎",
+    "url": "https://www.volcengine.com",
+    "desc": "字节的云平台，提供方舟大模型与 GPU 算力",
+    "tags": [
+      "国产",
+      "企业"
+    ],
+    "vendor": "字节跳动",
+    "lang": "zh",
+    "pricing": "paid",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "aliyun-pai",
+    "name": "阿里云 PAI",
+    "url": "https://www.aliyun.com/product/bigdata/learn",
+    "desc": "阿里云机器学习平台，覆盖训练到部署",
+    "tags": [
+      "国产",
+      "企业"
+    ],
+    "vendor": "阿里云",
+    "lang": "zh",
+    "pricing": "paid",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "autodl",
+    "name": "AutoDL",
+    "url": "https://www.autodl.com",
+    "desc": "国内 GPU 租用平台，按小时计费适合实验",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "AutoDL",
+    "lang": "zh",
+    "pricing": "paid",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "langfuse",
+    "name": "Langfuse",
+    "url": "https://langfuse.com",
+    "desc": "开源的 LLM 可观测平台，追踪调用与成本",
+    "vendor": "Langfuse",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "langsmith",
+    "name": "LangSmith",
+    "url": "https://www.langchain.com/langsmith",
+    "desc": "LangChain 的调试与评测平台，链路追踪清晰",
+    "vendor": "LangChain",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "helicone",
+    "name": "Helicone",
+    "url": "https://www.helicone.ai",
+    "desc": "LLM 网关与可观测服务，代理层一行接入",
+    "vendor": "Helicone",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

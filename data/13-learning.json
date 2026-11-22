@@ -1,0 +1,114 @@
+[
+  {
+    "id": "d2l",
+    "name": "动手学深度学习",
+    "url": "https://zh.d2l.ai",
+    "desc": "中英文版教材与代码配套，适合系统入门",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "D2L.ai",
+    "lang": "zh",
+    "pricing": "free",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "prompt-guide",
+    "name": "Prompt Engineering Guide",
+    "url": "https://www.promptingguide.ai",
+    "desc": "提示词工程指南，含中文版与大量示例",
+    "vendor": "DAIR.AI",
+    "lang": "en",
+    "pricing": "free",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "deeplearning-ai",
+    "name": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai",
+    "desc": "吴恩达团队的 AI 课程平台，以短课为主",
+    "vendor": "DeepLearning.AI",
+    "lang": "en",
+    "pricing": "freemium",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "fastai",
+    "name": "fast.ai",
+    "url": "https://www.fast.ai",
+    "desc": "实战导向的深度学习课程，配套代码完整",
+    "vendor": "fast.ai",
+    "lang": "en",
+    "pricing": "free",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "hylee",
+    "name": "李宏毅机器学习",
+    "url": "https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php",
+    "desc": "台大李宏毅的机器学习课，中文讲解通俗",
+    "vendor": "NTU",
+    "lang": "zh",
+    "pricing": "free",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "leedl",
+    "name": "李宏毅笔记",
+    "url": "https://github.com/datawhalechina/leedl-tutorial",
+    "desc": "李宏毅课程的中文笔记，Datawhale 整理",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "Datawhale",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "awesome-llm",
+    "name": "Awesome-LLM",
+    "url": "https://github.com/Hannibal046/Awesome-LLM",
+    "desc": "大模型论文与资源清单，紧跟前沿",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "jiqizhixin",
+    "name": "机器之心",
+    "url": "https://www.jiqizhixin.com",
+    "desc": "AI 行业媒体，覆盖论文解读与产业动态",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "机器之心",
+    "lang": "zh",
+    "pricing": "free",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "qbitai",
+    "name": "量子位",
+    "url": "https://www.qbitai.com",
+    "desc": "AI 科技媒体，跟进模型发布与产品动态",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "量子位",
+    "lang": "zh",
+    "pricing": "free",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]

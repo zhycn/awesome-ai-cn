@@ -1,0 +1,175 @@
+[
+  {
+    "id": "vllm",
+    "name": "vLLM",
+    "url": "https://vllm.ai",
+    "desc": "高吞吐推理引擎，PagedAttention 显著节省显存",
+    "vendor": "vLLM Project",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "sglang",
+    "name": "SGLang",
+    "url": "https://github.com/sgl-project/sglang",
+    "desc": "面向结构化输出的推理引擎，吞吐表现出色",
+    "vendor": "LMSYS",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "url": "https://ollama.com",
+    "desc": "本地一键运行开源模型，命令行与 API 都简单",
+    "tags": [
+      "私有化"
+    ],
+    "vendor": "Ollama",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "featured": true,
+    "added": "2026-11-22"
+  },
+  {
+    "id": "llama-cpp",
+    "name": "llama.cpp",
+    "url": "https://github.com/ggml-org/llama.cpp",
+    "desc": "C++ 实现的推理，可在 CPU 与消费级显卡上运行",
+    "vendor": "ggml-org",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "llama-factory",
+    "name": "LLaMA-Factory",
+    "url": "https://github.com/hiyouga/LLaMA-Factory",
+    "desc": "一站式微调框架，覆盖主流模型与训练方法",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "hiyouga",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "unsloth",
+    "name": "Unsloth",
+    "url": "https://unsloth.ai",
+    "desc": "单卡微调加速库，显存占用低、训练更快",
+    "vendor": "Unsloth",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "axolotl",
+    "name": "Axolotl",
+    "url": "https://github.com/axolotl-ai-cloud/axolotl",
+    "desc": "配置驱动的微调工具，支持多种并行与量化策略",
+    "vendor": "Axolotl",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "deepspeed",
+    "name": "DeepSpeed",
+    "url": "https://www.deepspeed.ai",
+    "desc": "微软的分布式训练库，ZeRO 显著降低显存占用",
+    "vendor": "Microsoft",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "megatron",
+    "name": "Megatron-LM",
+    "url": "https://github.com/NVIDIA/Megatron-LM",
+    "desc": "NVIDIA 的大规模训练框架，支持千卡并行",
+    "vendor": "NVIDIA",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "tensorrt-llm",
+    "name": "TensorRT-LLM",
+    "url": "https://github.com/NVIDIA/TensorRT-LLM",
+    "desc": "NVIDIA 的推理优化库，延迟与吞吐领先",
+    "vendor": "NVIDIA",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "xtuner",
+    "name": "XTuner",
+    "url": "https://github.com/InternLM/xtuner",
+    "desc": "上海 AI Lab 的微调工具箱，小显存也能跑",
+    "tags": [
+      "国产",
+      "私有化"
+    ],
+    "vendor": "上海 AI Lab",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "ms-swift",
+    "name": "ms-swift",
+    "url": "https://github.com/modelscope/ms-swift",
+    "desc": "魔搭的微调与部署框架，覆盖训练到上线",
+    "tags": [
+      "国产"
+    ],
+    "vendor": "ModelScope",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "peft",
+    "name": "PEFT",
+    "url": "https://github.com/huggingface/peft",
+    "desc": "参数高效微调库，LoRA 等方法的官方实现",
+    "vendor": "Hugging Face",
+    "lang": "en",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  },
+  {
+    "id": "xinference",
+    "name": "Xinference",
+    "url": "https://github.com/xorbitsai/inference",
+    "desc": "统一的本地推理服务，可管理多种模型与嵌入",
+    "tags": [
+      "国产",
+      "私有化"
+    ],
+    "vendor": "Xorbits",
+    "lang": "zh",
+    "pricing": "open-source",
+    "status": "active",
+    "added": "2026-11-22"
+  }
+]
