@@ -1,4 +1,4 @@
-<!-- 本文件由 scripts/build.py 自动生成，请勿直接编辑；修改 data/*.json 后重新运行即可。 -->
+<!-- 本文件由 scripts/build.ts 自动生成，请勿直接编辑；修改 data/*.json 后重新运行即可。 -->
 
 # Awesome AI CN
 
@@ -239,7 +239,7 @@
 
 ## 收录说明
 
-- 本文件由 [`scripts/build.py`](scripts/build.py) 自动生成，请勿直接编辑；修正内容请改 `data/` 下对应的 JSON，再运行 `python3 scripts/build.py`。
+- 本文件由 [`scripts/build.ts`](scripts/build.ts) 自动生成，请勿直接编辑；修正内容请改 `data/` 下对应的 JSON，再运行 `npm run build`。
 - 新增或修正条目请先读 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 - 字段定义、写作口吻与排序规则见 [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md)。
 - 数据以 JSON 为唯一事实源，可被程序或 Agent 直接消费；结构定义见 [`config/schema.json`](config/schema.json)。

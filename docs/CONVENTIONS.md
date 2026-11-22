@@ -2,13 +2,13 @@
 
 本文件解释"为什么这样写"，字段的机器可读定义在 [`config/schema.json`](../config/schema.json)。
 
-> 边界说明：`config/schema.json` 负责**单条目的字段约束**（类型、枚举、长度、格式）；跨条目的规则（id/URL 查重、每主题 featured 上限、主题文件名）在 `scripts/validate.py` 里实现。
+> 边界说明：`config/schema.json` 负责**单条目的字段约束**（类型、枚举、长度、格式）；跨条目的规则（id/URL 查重、每主题 featured 上限、主题文件名）在 `scripts/validate.ts` 里实现。
 
 ## 1. 唯一事实源
 
-`data/*.json` 是内容的唯一来源，`README.md` 是 `scripts/build.py` 的产物。
+`data/*.json` 是内容的唯一来源，`README.md` 是 `scripts/build.ts` 的产物。
 
-- 改内容 → 改 `data/`，然后 `python3 scripts/build.py`
+- 改内容 → 改 `data/`，然后 `npm run build`
 - 直接改 README → 下次生成会被覆盖，`--check` 会报错
 - 这也是本项目"机可用"的基础：JSON 可被程序、Agent、检索服务直接消费
 
@@ -89,14 +89,14 @@
 ## 8. 提交前自检
 
 ```bash
-python3 scripts/validate.py        # 规范校验
-python3 scripts/build.py           # 重新生成 README
-python3 scripts/build.py --check   # 确认 README 与数据一致（CI 会再跑一遍）
+npm run validate      # 规范校验
+npm run build         # 重新生成 README
+npm run build:check   # 确认 README 与数据一致（CI 会再跑一遍）
 ```
 
 全过再提交。
 
-可选：`python3 scripts/check_links.py` 巡检外链（需要网络，CI 每周一自动跑；默认跳过 `archived`/`deprecated` 条目）。
+可选：`npm run check:links` 巡检外链（需要网络，CI 每周一自动跑；默认跳过 `archived`/`deprecated` 条目）。
 
 ## 9. 常见校验报错对照
 
@@ -119,6 +119,6 @@ npm run format   # 格式化
 npm run format:check  # 只检查（CI 跑这个）
 ```
 
-- `README.md` 是生成物，在 `.prettierignore` 里排除；它的格式由 `scripts/build.py` 保证
+- `README.md` 是生成物，在 `.prettierignore` 里排除；它的格式由 `scripts/build.ts` 保证
 - 配置了 `proseWrap: preserve`，不会把中文句子重排断行
 - 表格会被自动对齐，提交前跑一次即可，不用手调空格
