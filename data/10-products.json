@@ -121,6 +121,7 @@
     "lang": "en",
     "pricing": "freemium",
     "status": "active",
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   }
 ]

@@ -1,0 +1,578 @@
+{
+  "checkedAt": "2026-11-22",
+  "region": "cn",
+  "results": {
+    "deepseek": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "tongyi-qianwen": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "doubao": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "kimi": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "zhipu-qingyan": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "wenxin-yiyan": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "hunyuan": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "xinghuo": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "minimax": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "stepfun": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "yi": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "pangu": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "chatgpt": {
+      "state": "proxy",
+      "checkedAt": "2026-11-22"
+    },
+    "claude": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "gemini": {
+      "state": "proxy",
+      "checkedAt": "2026-11-22"
+    },
+    "llama": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "mistral": {
+      "state": "proxy",
+      "checkedAt": "2026-11-22"
+    },
+    "grok": {
+      "state": "proxy",
+      "checkedAt": "2026-11-22"
+    },
+    "bailian": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "siliconflow": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "tongyi-lingma": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "wenxin-comate": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "marscode": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "codegeex": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "tencent-acc": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "codearts-snap": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "trae": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "cursor": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "claude-code": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "github-copilot": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "codex": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "cline": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "continue": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "windsurf": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "aider": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "gemini-cli": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "zed": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "dify": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "coze": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "yuanqi": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "manus": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "agentscope": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "metagpt": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "fastgpt": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "n8n": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "langgraph": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "crewai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "autogen": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "flowise": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "langflow": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "openmanus": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "browser-use": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "ragflow": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "qanything": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "anythingllm": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "onyx": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "mineru": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "markitdown": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "unstructured": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "docling": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "jimeng": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "kling": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "hailuo": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "wanxiang": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "comfyui": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "flux": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "midjourney": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "elevenlabs": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "gpt-sovits": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "cosyvoice": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "langchain": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "llamaindex": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "ai-sdk": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "semantic-kernel": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "spring-ai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "langchain4j": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "pydantic-ai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "instructor": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "outlines": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "litellm": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "agno": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "mastra": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "vllm": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "sglang": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "ollama": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "llama-cpp": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "llama-factory": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "unsloth": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "axolotl": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "deepspeed": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "megatron": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "tensorrt-llm": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "xtuner": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "ms-swift": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "peft": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "xinference": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "modelscope": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "lm-eval-harness": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "opencompass": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "ceval": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "cmmlu": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "superclue": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "flageval": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "ragas": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "metaso": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "tingwu": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "iflyrec": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "immersivetranslate": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "xiezuocat": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "wps": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "quark": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "notion-ai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "gamma": {
+      "state": "proxy",
+      "checkedAt": "2026-11-22"
+    },
+    "mcp": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "mcp-servers": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "awesome-mcp": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "smithery": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "fastmcp": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "playwright-mcp": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "mcp-use": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "mcp-so": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "milvus": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "qdrant": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "weaviate": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "chroma": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "pinecone": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "modal": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "runpod": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "volcengine": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "aliyun-pai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "autodl": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "langfuse": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "langsmith": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "helicone": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "d2l": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "prompt-guide": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "deeplearning-ai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "fastai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "hylee": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "leedl": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "awesome-llm": {
+      "state": "blocked",
+      "checkedAt": "2026-11-22"
+    },
+    "jiqizhixin": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    },
+    "qbitai": {
+      "state": "ok",
+      "checkedAt": "2026-11-22"
+    }
+  }
+}

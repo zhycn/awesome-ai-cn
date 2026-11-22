@@ -112,7 +112,8 @@
     "pricing": "freemium",
     "status": "active",
     "featured": true,
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   },
   {
     "id": "claude-code",
@@ -156,7 +157,8 @@
     "lang": "en",
     "pricing": "open-source",
     "status": "active",
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   },
   {
     "id": "continue",
@@ -177,7 +179,8 @@
     "lang": "en",
     "pricing": "freemium",
     "status": "active",
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   },
   {
     "id": "aider",

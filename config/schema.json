@@ -98,20 +98,13 @@
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
           "description": "收录日期，ISO 格式 YYYY-MM-DD。"
         },
-        "links": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "repo": {
-              "type": "string",
-              "pattern": "^https?://[^\\s]+$"
-            },
-            "docs": {
-              "type": "string",
-              "pattern": "^https?://[^\\s]+$"
-            }
-          },
-          "description": "可选独立入口；README 中默认只展示 url。"
+        "access": {
+          "enum": [
+            "direct",
+            "proxy"
+          ],
+          "default": "direct",
+          "description": "国内网络可达性：direct 直连可达，proxy 需要科学上网。省略即 direct。"
         }
       }
     }

@@ -192,7 +192,8 @@
     "pricing": "freemium",
     "status": "active",
     "featured": true,
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   },
   {
     "id": "claude",
@@ -220,7 +221,8 @@
     "lang": "en",
     "pricing": "freemium",
     "status": "active",
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   },
   {
     "id": "llama",
@@ -242,7 +244,8 @@
     "lang": "en",
     "pricing": "freemium",
     "status": "active",
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   },
   {
     "id": "grok",
@@ -253,6 +256,7 @@
     "lang": "en",
     "pricing": "paid",
     "status": "active",
-    "added": "2026-11-22"
+    "added": "2026-11-22",
+    "access": "proxy"
   }
 ]
