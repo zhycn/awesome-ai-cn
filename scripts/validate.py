@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """校验 config/*.json 与 data/*.json 是否符合项目规范。
 
-约束的唯一来源是 config/schema.json：改规范只改 schema，本脚本自动跟随。
+条目字段的约束来自 config/schema.json（改 schema 即生效）；
+跨条目的规则（id/URL/名称查重、featured 上限、主题文件名、日期语义）在本文件实现。
 
 用法:
     python3 scripts/validate.py          # 全部校验
@@ -20,7 +21,7 @@ import sys
 from datetime import date
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config"
@@ -61,19 +62,24 @@ class Report:
         return not self.errors
 
 
-def load_json(path: Path, report: Report) -> Any | None:
+_FAILED = object()  # 读取失败；与 JSON null（返回 None）区分开
+
+
+def load_json(path: Path, report: Report) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError:
         report.error(rel(path), "文件不存在")
     except UnicodeDecodeError as exc:
         report.error(rel(path), f"不是合法的 UTF-8 文件：{exc}")
+    except OSError as exc:
+        report.error(rel(path), f"读取失败：{exc}")
     except json.JSONDecodeError as exc:
         report.error(
             rel(path),
             f"JSON 语法错误：第 {exc.lineno} 行第 {exc.colno} 列，{exc.msg}",
         )
-    return None
+    return _FAILED
 
 
 # ---------------------------------------------------------------- schema 校验
@@ -161,8 +167,9 @@ def check_item_semantics(item: dict[str, Any], where: str, report: Report) -> No
 
 def normalize_url(url: str) -> str:
     parts = urlsplit(url)
-    path = parts.path.rstrip("/")
-    return f"{parts.scheme.lower()}://{parts.netloc.lower()}{path}"
+    return urlunsplit(
+        (parts.scheme.lower(), parts.netloc.lower(), parts.path.rstrip("/"), parts.query, "")
+    )
 
 
 # ---------------------------------------------------------------- 主流程
@@ -188,12 +195,19 @@ def main(argv: list[str]) -> int:
     if not isinstance(schema, dict) or "$defs" not in schema:
         report.error(rel(CONFIG / "schema.json"), "缺少 $defs 定义")
         schema = None
-    item_spec = schema["$defs"]["item"] if schema else None
+    item_spec = schema.get("$defs", {}).get("item") if schema else None
+    if schema and not isinstance(item_spec, dict):
+        report.error(rel(CONFIG / "schema.json"), "缺少 $defs.item 定义")
+        item_spec = None
 
     categories: list[dict[str, Any]] = []
     if isinstance(categories_doc, dict):
-        categories = categories_doc.get("categories") or []
-    elif categories_doc is not None:
+        raw = categories_doc.get("categories")
+        if not isinstance(raw, list) or not raw:
+            report.error(rel(CONFIG / "categories.json"), "categories 必须是非空数组（至少一个主题）")
+        else:
+            categories = raw
+    elif categories_doc is not _FAILED and categories_doc is not None:
         report.error(rel(CONFIG / "categories.json"), "顶层应为对象，且包含 categories 数组")
 
     seen_ids: set[str] = set()
@@ -206,17 +220,27 @@ def main(argv: list[str]) -> int:
         for key in ("id", "title", "file"):
             if not cat.get(key):
                 report.error(where, f"缺少 {key!r}")
-        cid = cat.get("id", "")
+        cid = cat.get("id")
+        if not isinstance(cid, str):
+            if cid is not None:
+                report.error(where, f"id 应为字符串，实际是 {type(cid).__name__}")
+            cid = ""
         if cid and not ID_RE.fullmatch(cid):
             report.error(where, f"id 需为小写连字符：{cid!r}")
         if cid in seen_ids:
             report.error(where, f"id 重复：{cid!r}")
         seen_ids.add(cid)
-        filename = cat.get("file", "")
+        filename = cat.get("file")
+        if not isinstance(filename, str):
+            if filename is not None:
+                report.error(where, f"file 应为字符串，实际是 {type(filename).__name__}")
+            filename = ""
         if filename and not filename.endswith(".json"):
             report.error(where, f"file 需以 .json 结尾：{filename!r}")
         if filename and ("/" in filename or "\\" in filename or filename.startswith(".")):
             report.error(where, f"file 只能是 data/ 下的文件名，不能含路径：{filename!r}")
+        if cid and filename and filename != f"{cid}.json":
+            report.error(where, f"file 应为 <id>.json：期望 {cid}.json，实际 {filename!r}")
         if filename in seen_files:
             report.error(where, f"file 重复：{filename!r}")
         seen_files.add(filename)
@@ -235,7 +259,10 @@ def main(argv: list[str]) -> int:
     else:
         for path in sorted(DATA.glob("*.json")):
             body = load_json(path, report)
+            if body is _FAILED:
+                continue
             if body is None:
+                report.error(rel(path), "顶层不能为 null，应为条目数组")
                 continue
             module_count += 1
             if path.name not in registered:
@@ -293,13 +320,13 @@ def main(argv: list[str]) -> int:
     # 3. 输出
     if not quiet:
         lines.append("配置")
-        lines.append(f"  {OK} config/meta.json" if meta else f"  {BAD} config/meta.json")
-        lines.append(
-            f"  {OK} config/categories.json（{len(categories)} 个主题）"
-            if categories
-            else f"  {BAD} config/categories.json"
-        )
-        lines.append(f"  {OK} config/schema.json" if schema else f"  {BAD} config/schema.json")
+        def mark(path: Path, label: str) -> str:
+            bad = any(e.startswith(rel(path)) for e in report.errors)
+            return f"  {BAD} {label}" if bad else f"  {OK} {label}"
+
+        lines.append(mark(CONFIG / "meta.json", "config/meta.json"))
+        lines.append(mark(CONFIG / "categories.json", f"config/categories.json（{len(categories)} 个主题）"))
+        lines.append(mark(CONFIG / "schema.json", "config/schema.json"))
         lines.append("")
         lines.append("数据")
         lines.append(f"  {OK} {module_count} 个模块 / {item_count} 条条目")

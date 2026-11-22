@@ -12,6 +12,7 @@
 
 from __future__ import annotations
 
+import argparse
 import difflib
 import json
 import re
@@ -61,6 +62,10 @@ def load(path: Path) -> Any:
         return json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError:
         raise SystemExit(f"✘ 缺少文件：{path.relative_to(ROOT)}")
+    except UnicodeDecodeError as exc:
+        raise SystemExit(f"✘ {path.relative_to(ROOT)} 不是合法 UTF-8：{exc}")
+    except OSError as exc:
+        raise SystemExit(f"✘ {path.relative_to(ROOT)} 读取失败：{exc}")
     except json.JSONDecodeError as exc:
         raise SystemExit(
             f"✘ {path.relative_to(ROOT)} 解析失败：第 {exc.lineno} 行第 {exc.colno} 列，{exc.msg}"
@@ -81,10 +86,18 @@ def visible_items(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [i for i in items if i.get("status", "active") in VISIBLE_STATUS]
 
 
+def escape_link_text(text: str) -> str:
+    """名称里的方括号会截断 Markdown 链接，需要转义。"""
+    return text.replace("\\", "\\\\").replace("[", r"\[").replace("]", r"\]")
+
+
 def item_line(item: dict[str, Any]) -> str:
     star = "⭐ " if item.get("featured") else ""  # 仅作强调，不改变顺序
     tags = " ".join(f"`{t}`" for t in item.get("tags", []))
-    line = f"- {star}[{item['name']}]({item['url']}) - {item['desc']}"
+    # 仅当 URL 含括号时用尖括号包裹（GitHub 已验证可渲染），避免无谓的源码噪音
+    url = item["url"]
+    target = f"<{url}>" if ("(" in url or ")" in url) else url
+    line = f"- {star}[{escape_link_text(item['name'])}]({target}) - {item['desc']}"
     if tags:
         line += f" {tags}"
     return line
@@ -97,16 +110,28 @@ def render() -> tuple[str, int, int]:
     toc: list[str] = []
     sections: list[str] = []
     total = 0
-    used_anchors: dict[str, int] = {}
+    # 预置固定标题的锚点，避免主题标题与「目录」「收录说明」「License」重名时跳错
+    used_anchors: dict[str, int] = {
+        slugify(name): 0 for name in ("目录", "收录说明", "License")
+    }
 
     for cat in categories:
         path = DATA / cat["file"]
-        items = visible_items(load(path)) if path.exists() else []
+        raw = load(path) if path.exists() else []
+        if not isinstance(raw, list):
+            raise SystemExit(f"✘ {path.relative_to(ROOT)}: 顶层应为条目数组")
+        for index, item in enumerate(raw):
+            url = item.get("url") if isinstance(item, dict) else None
+            if not isinstance(url, str) or not url.startswith(("http://", "https://")):
+                raise SystemExit(
+                    f"✘ {path.relative_to(ROOT)}[{index}]: 非 http(s) 链接 {url!r}"
+                )
+        items = visible_items(raw)
         if not items:
             continue
 
         heading = cat["title"]
-        anchor = slugify(heading)
+        anchor = slugify(heading) or cat["id"]  # 标题全是符号时回退到 id，避免空锚点
         if anchor in used_anchors:  # 理论上不会发生，兜底
             used_anchors[anchor] += 1
             anchor = f"{anchor}-{used_anchors[anchor]}"
@@ -146,10 +171,12 @@ def render() -> tuple[str, int, int]:
 
 
 def main(argv: list[str]) -> int:
-    check = "--check" in argv
+    parser = argparse.ArgumentParser(description="由 config/ 与 data/ 生成 README.md")
+    parser.add_argument("--check", action="store_true", help="只比对不写文件，不一致时退出码 1")
+    args = parser.parse_args(argv)
     content, section_count, total = render()
 
-    if check:
+    if args.check:
         current = README.read_text(encoding="utf-8") if README.exists() else ""
         if current == content:
             print("✔ README.md 与数据一致")
@@ -174,7 +201,7 @@ def main(argv: list[str]) -> int:
         print("✔ README.md 无变化")
         return 0
 
-    README.write_text(content, encoding="utf-8")
+    README.write_text(content, encoding="utf-8", newline="\n")
     print(f"✔ 已生成 README.md（{section_count} 个主题分节 / {total} 条资源）")
     return 0
 

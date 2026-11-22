@@ -99,7 +99,7 @@
             "deprecated",
             "archived"
           ],
-          "description": "维护状态；deprecated 与 archived 默认不在 README 展示，除非显式保留。"
+          "description": "维护状态；deprecated 与 archived 不进入 README，也不参与链接巡检。"
         },
         "featured": {
           "type": "boolean",

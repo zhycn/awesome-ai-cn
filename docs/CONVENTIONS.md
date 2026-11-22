@@ -2,6 +2,8 @@
 
 本文件解释"为什么这样写"，字段的机器可读定义在 [`config/schema.json`](../config/schema.json)。
 
+> 边界说明：`config/schema.json` 负责**单条目的字段约束**（类型、枚举、长度、格式）；跨条目的规则（id/URL 查重、每主题 featured 上限、主题文件名）在 `scripts/validate.py` 里实现。
+
 ## 1. 唯一事实源
 
 `data/*.json` 是内容的唯一来源，`README.md` 是 `scripts/build.py` 的产物。
@@ -12,7 +14,7 @@
 
 ## 2. 主题与文件
 
-- 一个主题一个文件：`data/<category-id>.json`，内容是**条目数组**
+- 一个主题一个文件：`data/<category-id>.json`（文件名必须等于主题 `id` + `.json`，校验器会检查），内容是**条目数组**
 - 主题的标题、描述、顺序只写在 `config/categories.json`，数据文件里不重复
 - 新增主题：在 `config/categories.json` 追加一项，再新建同名文件；顺序即 README 中的顺序
 
@@ -94,7 +96,7 @@ python3 scripts/build.py --check   # 确认 README 与数据一致（CI 会再�
 
 全过再提交。
 
-可选：`python3 scripts/check_links.py` 巡检外链（需要网络，CI 每周一自动跑）。
+可选：`python3 scripts/check_links.py` 巡检外链（需要网络，CI 每周一自动跑；默认跳过 `archived`/`deprecated` 条目）。
 
 ## 9. 常见校验报错对照
 
