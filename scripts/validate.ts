@@ -260,6 +260,8 @@ function main(argv: string[]): number {
     const list = (tagsDoc as { tags?: unknown })?.tags;
     if (!Array.isArray(list) || list.length === 0 || !list.every((t) => typeof t === "string")) {
       report.errors.push(`${rel(TAGS_PATH)}: tags 必须是非空字符串数组`);
+    } else if (new Set(list).size !== list.length) {
+      report.errors.push(`${rel(TAGS_PATH)}: tags 存在重复项`);
     } else {
       vocabulary = list as string[];
     }
@@ -404,7 +406,7 @@ function main(argv: string[]): number {
             tags.forEach((tag, tagIndex) => {
               if (typeof tag === "string" && vocabulary.length > 0 && !vocabulary.includes(tag)) {
                 report.errors.push(
-                  `${where}.tags[${tagIndex}]: 取值非法 '${tag}'，只能是 ${vocabulary.map((t) => `'${t}'`).join(", ")}`,
+                  `${where}.tags[${tagIndex}]: 取值非法 '${tag}'，只能是 ${vocabulary.map((t) => `'${t}'`).join(", ")}（词表见 config/tags.json）`,
                 );
               }
             });
@@ -452,6 +454,7 @@ function main(argv: string[]): number {
     lines.push(mark(join(CONFIG_DIR, "meta.json"), "config/meta.json"));
     lines.push(mark(join(CONFIG_DIR, "categories.json"), `config/categories.json（${categories.length} 个主题）`));
     lines.push(mark(join(CONFIG_DIR, "schema.json"), "config/schema.json"));
+    lines.push(mark(TAGS_PATH, "config/tags.json"));
     lines.push("");
     lines.push("数据");
     lines.push(`  ${OK} ${moduleCount} 个模块 / ${itemCount} 条条目`);

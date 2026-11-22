@@ -23,7 +23,8 @@ npm run scaffold -- \
   --slug awesome-rust-cn \
   --repo https://github.com/you/awesome-rust-cn \
   --author you \
-  --topics rust,rust-lang,awesome-list
+  --topics rust,rust-lang,awesome-list \
+  --force      # 模板自带示例内容，不加会被拦下
 ```
 
 4. 编辑 `config/categories.json` 与 `data/*.json` 录入内容
@@ -33,7 +34,7 @@ npm run scaffold -- \
 ## 方式二：本地复制
 
 ```bash
-cp -R awesome-ai-cn awesome-rust-cn && cd awesome-rust-cn
+cp -R <母版目录> awesome-rust-cn && cd awesome-rust-cn
 rm -rf .git && git init
 npm ci
 npm run scaffold -- --name "Awesome Rust CN" --slug awesome-rust-cn \
@@ -63,7 +64,17 @@ npm run scaffold -- --name "Awesome Rust CN" --slug awesome-rust-cn \
 [{ "id": "01-basics", "title": "入门", "emoji": "🌱", "description": "一句话说明收什么。" }]
 ```
 
-`schema` 会自动把 `file` 补成 `<id>.json`，`data/` 下对应文件会被建成空数组。
+`scaffold` 会把 `file` 补成 `<id>.json`，并在 `data/` 下建立空数组文件。
+
+## scaffold 会顺带改这些
+
+除 `config/meta.json` 外，它还会同步：
+
+- `package.json` 与 `package-lock.json` 的包名
+- `config/schema.json` 的 `$id` 与标题
+- `SECURITY.md` 的漏洞上报链接
+- `LICENSE` 的版权年份与署名
+- `CONTRIBUTING.md` 里出现的旧仓库名
 
 ## 新仓库的 GitHub 设置（仓库里改不了）
 
@@ -90,6 +101,7 @@ git cherry-pick <母版提交>       # 只挑 scripts/ 与 .github/ 的提交
 - [ ] `npm run validate` 通过
 - [ ] `npm run build:check` 无差异
 - [ ] `npm run typecheck` 通过
+- [ ] `npm run format:check` 通过
 - [ ] `README.md` 标题、徽章、页脚署名正确
 - [ ] `LICENSE` 与 `SECURITY.md` 已换成本仓库
 - [ ] GitHub description / topics / 分支保护 / Actions 权限 已配置
