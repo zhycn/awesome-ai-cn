@@ -241,7 +241,6 @@ function main(argv: string[]): number {
     repo: options.repo,
     author: options.author,
     license: options.license,
-    version: "0.1.0",
     topics: options.topics,
   };
 
@@ -293,6 +292,7 @@ function main(argv: string[]): number {
   const pkg = readJson<Record<string, unknown>>(pkgPath, "package.json");
   pkg.name = options.slug;
   pkg.description = tagline;
+  pkg.version = "0.1.0";
   writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`, "utf8");
 
   const lockPath = join(ROOT, "package-lock.json");

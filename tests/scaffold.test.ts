@@ -64,6 +64,7 @@ test("正常派生：品牌、许可证、链接、README 全部替换", () => {
 
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     assert.equal(pkg.name, "awesome-test-cn");
+    assert.equal(pkg.version, "0.1.0");
 
     assert.match(readFileSync(join(dir, "LICENSE"), "utf8"), /Copyright \(c\) \d{4} u/);
     assert.match(
@@ -73,6 +74,9 @@ test("正常派生：品牌、许可证、链接、README 全部替换", () => {
 
     const contributing = readFileSync(join(dir, "CONTRIBUTING.md"), "utf8");
     assert.ok(!contributing.includes("awesome-ai-cn"), "CONTRIBUTING 不应残留旧仓库名");
+
+    // 新清单默认没有内容，应渲染空态提示
+    assert.match(readme, /\*内容正在收录中。\*/);
 
     const schema = JSON.parse(readFileSync(join(dir, "config/schema.json"), "utf8"));
     assert.equal(schema.$id, "https://github.com/u/awesome-test-cn/config/schema.json");
