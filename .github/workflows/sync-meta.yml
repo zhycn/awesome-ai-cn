@@ -1,0 +1,28 @@
+name: Sync repo metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - config/meta.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: 安装依赖
+        run: npm ci
+      - name: 同步 About 与 Topics
+        env:
+          GH_TOKEN: ${{ secrets.META_TOKEN }}
+        run: node scripts/sync_meta.ts
