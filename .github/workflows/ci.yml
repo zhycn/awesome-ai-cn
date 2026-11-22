@@ -21,3 +21,11 @@ jobs:
         run: python3 scripts/validate.py
       - name: 检查 README 是否与数据一致
         run: python3 scripts/build.py --check
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - name: 安装格式化依赖
+        run: npm ci
+      - name: 检查 Markdown 格式
+        run: npm run format:check

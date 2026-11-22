@@ -17,7 +17,11 @@ python3 scripts/validate.py
 python3 scripts/build.py
 python3 scripts/build.py --check
 
-# 4) 提交 PR
+# 4) 格式化 Markdown（首次需 npm install）
+npm install
+npm run format
+
+# 5) 提交 PR
 ```
 
 条目的字段说明见 [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md)，机器可读定义见 [`config/schema.json`](config/schema.json)。
@@ -69,7 +73,8 @@ python3 scripts/build.py --check
 - [ ] `tags` 只用了受控词表里的词，且同一主题内人人都有的能力没有打标签
 - [ ] 新条目追加在主题末尾（顺序由维护者调整）
 - [ ] 一个 PR 只做一件事（加条目 / 修链接 / 改结构分开提）
-- [ ] CI 变绿（`validate` + `build --check` 会自动跑）
+- [ ] `npm run format:check` 通过（Prettier 只校验手写文档，README 是生成物不入此列）
+- [ ] CI 变绿（`validate`、`build --check`、`format:check` 会自动跑）
 
 ## 关于排序
 
