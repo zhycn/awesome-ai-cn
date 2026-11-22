@@ -4,8 +4,9 @@
   "tagline": "面向中文用户、以 JSON 为唯一事实源的 AI 资源精选索引",
   "description": "收集中文用户可用的 AI 模型、工具、框架、产品与学习资源；README 由 data/*.json 自动生成，人可读，机可用。",
   "repo": "https://github.com/zhycn/awesome-ai-cn",
+  "author": "zhycn",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "topics": [
     "awesome-list",
     "ai",

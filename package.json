@@ -11,12 +11,16 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.md\"",
     "format:check": "prettier --check \"**/*.md\"",
-    "check": "npm run validate && npm run build:check && npm run format:check && npm run typecheck"
+    "check": "npm run validate && npm run build:check && npm run format:check && npm run typecheck",
+    "scaffold": "node scripts/scaffold.ts"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "@types/node": "^24.10.1"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  }
 }

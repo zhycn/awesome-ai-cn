@@ -32,6 +32,7 @@ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const URL_RE = /^https?:\/\/[^\s]+$/;
 
 const FAILED = Symbol("failed");
+const TAGS_PATH = join(CONFIG_DIR, "tags.json");
 
 type Report = { errors: string[]; warnings: string[] };
 
@@ -253,6 +254,17 @@ function main(argv: string[]): number {
     }
   }
 
+  const tagsDoc = loadJson(TAGS_PATH, report);
+  let vocabulary: string[] = [];
+  if (tagsDoc !== FAILED) {
+    const list = (tagsDoc as { tags?: unknown })?.tags;
+    if (!Array.isArray(list) || list.length === 0 || !list.every((t) => typeof t === "string")) {
+      report.errors.push(`${rel(TAGS_PATH)}: tags 必须是非空字符串数组`);
+    } else {
+      vocabulary = list as string[];
+    }
+  }
+
   let itemSpec: Spec | null = null;
   if (schema === FAILED || typeof schema !== "object" || schema === null) {
     if (schema !== FAILED) report.errors.push(`${rel(join(CONFIG_DIR, "schema.json"))}: 顶层应为对象`);
@@ -381,6 +393,21 @@ function main(argv: string[]): number {
             report.errors.push(`${where}.id: id 全局重复：'${iid}'（首次出现于 ${itemIds.get(iid)}）`);
           } else {
             itemIds.set(iid, where);
+          }
+        }
+
+        const tags = record.tags;
+        if (Array.isArray(tags)) {
+          if (tags.length === 0) {
+            report.errors.push(`${where}.tags: 为空时请直接省略该字段`);
+          } else {
+            tags.forEach((tag, tagIndex) => {
+              if (typeof tag === "string" && vocabulary.length > 0 && !vocabulary.includes(tag)) {
+                report.errors.push(
+                  `${where}.tags[${tagIndex}]: 取值非法 '${tag}'，只能是 ${vocabulary.map((t) => `'${t}'`).join(", ")}`,
+                );
+              }
+            });
           }
         }
 

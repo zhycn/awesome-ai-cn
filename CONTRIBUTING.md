@@ -88,3 +88,7 @@ README 里条目的顺序就是 JSON 数组的顺序，由维护者人工编排�
 feat: 收录 Cursor、Cline 等 5 个 AI 编程工具
 fix: 修正 Kimi 官网域名
 ```
+
+## 用这套工具开新清单
+
+本仓库同时是 awesome list 母版：`scripts/` 里没有项目名和作者，全部读 `config/meta.json`。想派生一个新主题的清单，看 [`docs/TEMPLATE.md`](docs/TEMPLATE.md)。

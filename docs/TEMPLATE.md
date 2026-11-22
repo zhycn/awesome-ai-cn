@@ -1,0 +1,95 @@
+# 用这个模板开一个新的清单
+
+本仓库同时是「一份 AI 清单」和「一套 awesome list 母版」。下面讲怎么用它派生新清单。
+
+## 框架层与内容层
+
+| 层     | 文件                                                                                                                             | 新清单是否要改 |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| 框架层 | `scripts/*.ts`、`tsconfig.json`、`.prettier*`、`.gitignore`、`.gitattributes`、`.github/workflows/`、`config/schema.json` 的结构 | 否             |
+| 内容层 | `config/meta.json`、`config/categories.json`、`config/tags.json`、`data/*.json`、`LICENSE`、`SECURITY.md` 的署名                 | 是             |
+
+`scripts/` 不含任何项目名、作者、仓库地址——全部从 `config/meta.json` 读取。
+
+## 方式一：GitHub 模板（推荐）
+
+1. 仓库页 → **Use this template** → Create a new repository（不要 Fork，fork 会带上原仓库历史）
+2. `git clone <新仓库> && cd <新仓库> && npm ci`
+3. 运行初始化：
+
+```bash
+npm run scaffold -- \
+  --name "Awesome Rust CN" \
+  --slug awesome-rust-cn \
+  --repo https://github.com/you/awesome-rust-cn \
+  --author you \
+  --topics rust,rust-lang,awesome-list
+```
+
+4. 编辑 `config/categories.json` 与 `data/*.json` 录入内容
+5. `npm run validate && npm run build`
+6. 提交推送
+
+## 方式二：本地复制
+
+```bash
+cp -R awesome-ai-cn awesome-rust-cn && cd awesome-rust-cn
+rm -rf .git && git init
+npm ci
+npm run scaffold -- --name "Awesome Rust CN" --slug awesome-rust-cn \
+  --repo https://github.com/you/awesome-rust-cn --author you
+```
+
+## scaffold 参数
+
+| 参数            | 必填 | 说明                                         |
+| --------------- | ---- | -------------------------------------------- |
+| `--name`        | ✅   | 清单名称，如 `Awesome Rust CN`               |
+| `--slug`        | ✅   | 仓库/包名，小写连字符                        |
+| `--repo`        | ✅   | 仓库地址，用于徽章、SECURITY 链接            |
+| `--author`      | ✅   | 版权署名，写入 LICENSE 与 README 页脚        |
+| `--license`     |      | 许可证标识，默认 `MIT`                       |
+| `--tagline`     |      | 一句话定位，默认由名称推导                   |
+| `--description` |      | 描述，默认由名称推导                         |
+| `--topics`      |      | GitHub topics，逗号分隔，默认 `awesome-list` |
+| `--categories`  |      | 主题定义 JSON 文件，给定后重建 `data/` 骨架  |
+| `--keep-data`   |      | 保留现有条目                                 |
+| `--dry-run`     |      | 只打印将要执行的改动                         |
+| `--force`       |      | `data/` 非空时仍需清空                       |
+
+## categories.json 格式
+
+```json
+[{ "id": "01-basics", "title": "入门", "emoji": "🌱", "description": "一句话说明收什么。" }]
+```
+
+`schema` 会自动把 `file` 补成 `<id>.json`，`data/` 下对应文件会被建成空数组。
+
+## 新仓库的 GitHub 设置（仓库里改不了）
+
+- **Description / Topics**：用 `meta.json` 里的 `description` 和 `topics`
+- **分支保护**：Settings → Branches → Add rule，至少勾选「Require a pull request」+「Require status checks → check」
+- **Actions**：Settings → Actions → General，把默认 token 设为只读；外部贡献者 PR 需批准后才跑
+- **安全**：开启 Secret scanning、Dependabot alerts、Private vulnerability reporting
+- 想让自己也被模板化：Settings 勾选 **Template repository**
+
+## 升级模板
+
+框架层改动建议在母版仓库做，再同步到各清单：
+
+```bash
+git remote add template https://github.com/zhycn/awesome-ai-cn.git
+git fetch template
+git cherry-pick <母版提交>       # 只挑 scripts/ 与 .github/ 的提交
+```
+
+不要直接 `merge` 母版分支——会把 AI 内容带进来。
+
+## 自检清单
+
+- [ ] `npm run validate` 通过
+- [ ] `npm run build:check` 无差异
+- [ ] `npm run typecheck` 通过
+- [ ] `README.md` 标题、徽章、页脚署名正确
+- [ ] `LICENSE` 与 `SECURITY.md` 已换成本仓库
+- [ ] GitHub description / topics / 分支保护 / Actions 权限 已配置

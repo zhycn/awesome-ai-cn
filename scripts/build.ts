@@ -106,13 +106,15 @@ function itemLine(item: Item): string {
 }
 
 function header(meta: Record<string, unknown>): string {
+  const repo = String(meta.repo ?? "").replace(/\/$/, "");
+  const license = String(meta.license ?? "MIT");
   return `<!-- 本文件由 scripts/build.ts 自动生成，请勿直接编辑；修改 data/*.json 后重新运行即可。 -->
 
 # ${meta.name}
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![CI](${String(meta.repo).replace(/\/$/, "")}/actions/workflows/ci.yml/badge.svg)](${String(meta.repo).replace(/\/$/, "")}/actions/workflows/ci.yml)
+[![License: ${license}](https://img.shields.io/badge/License-${encodeURIComponent(license)}-blue.svg)](LICENSE)
+[![CI](${repo}/actions/workflows/ci.yml/badge.svg)](${repo}/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > ${meta.tagline}
@@ -123,17 +125,24 @@ ${meta.description}
 
 const EMPTY_HINT = "> 内容正在收录中，首批资源即将上线。\n";
 
-const FOOTER = `## 收录说明
+const FOOTER_BODY = `## 收录说明
 
 - 本文件由 [\`scripts/build.ts\`](scripts/build.ts) 自动生成，请勿直接编辑；修正内容请改 \`data/\` 下对应的 JSON，再运行 \`npm run build\`。
 - 新增或修正条目请先读 [\`CONTRIBUTING.md\`](CONTRIBUTING.md)。
 - 字段定义、写作口吻与排序规则见 [\`docs/CONVENTIONS.md\`](docs/CONVENTIONS.md)。
 - 数据以 JSON 为唯一事实源，可被程序或 Agent 直接消费；结构定义见 [\`config/schema.json\`](config/schema.json)。
 
-## License
-
-[MIT](LICENSE) © zhycn
 `;
+
+function footer(meta: Record<string, unknown>): string {
+  const license = String(meta.license ?? "MIT");
+  const author = String(meta.author ?? "");
+  const holder = author ? ` © ${author}` : "";
+  return `${FOOTER_BODY}## License
+
+[${license}](LICENSE)${holder}
+`;
+}
 
 function render(): { content: string; sectionCount: number; total: number } {
   const meta = load(join(CONFIG_DIR, "meta.json")) as Record<string, unknown>;
@@ -192,7 +201,7 @@ function render(): { content: string; sectionCount: number; total: number } {
     parts.push(EMPTY_HINT);
   }
 
-  parts.push(FOOTER);
+  parts.push(footer(meta));
   const content = `${parts.join("\n").replace(/\s+$/, "")}\n`;
   return { content, sectionCount: sections.length, total };
 }
