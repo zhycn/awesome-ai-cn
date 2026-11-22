@@ -4,10 +4,10 @@
 
 ## 框架层与内容层
 
-| 层     | 文件                                                                                                                                                     | 新清单是否要改 |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| 框架层 | `scripts/*.ts`、`tests/`、`tsconfig.json`、`commitlint.config.mjs`、`.prettier*`、`.editorconfig`、`.nvmrc`、`.gitignore`、`.gitattributes`、`.github/*` | 否             |
-| 内容层 | `config/meta.json`、`config/categories.json`、`config/tags.json`、`config/schema.json` 的 `$id`/标题、`data/*.json`、`LICENSE`、`SECURITY.md` 的署名     | 是             |
+| 层     | 文件                                                                                                                                                                                        | 新清单是否要改 |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| 框架层 | `scripts/*.ts`、`scripts/site.css`（Tailwind v4）、`tests/`、`tsconfig.json`、`commitlint.config.mjs`、`.prettier*`、`.editorconfig`、`.nvmrc`、`.gitignore`、`.gitattributes`、`.github/*` | 否             |
+| 内容层 | `config/meta.json`、`config/categories.json`、`config/tags.json`、`config/schema.json` 的 `$id`/标题、`data/*.json`、`LICENSE`、`SECURITY.md` 的署名                                        | 是             |
 
 `scripts/` 不含任何项目名、作者、仓库地址——全部从 `config/meta.json` 读取。
 
@@ -100,8 +100,11 @@ npm run scaffold -- --name "Awesome Rust CN" --slug awesome-rust-cn \
 仓库自带一个零依赖的静态站生成器 `scripts/site.ts`，输出 `site/`：
 
 ```bash
-npm run build:site      # 生成 site/index.html + style.css + app.js
+npm run build:css       # Tailwind 编译样式到 .cache/site.css
+npm run build:site      # 编译样式并生成单文件 site/index.html
 ```
+
+样式用 Tailwind v4 的组件层（`@layer components` + `@apply`）+ `@theme` token，设计变量集中在 `scripts/site.css` 顶部，深浅色成对维护。
 
 - 支持关键词搜索（按 `/` 聚焦）、主题跳转、🌐 标记、深色模式
 - 推送涉及 `config/`、`data/`、`scripts/site.ts` 的改动时，`pages.yml` 会自动构建并部署
