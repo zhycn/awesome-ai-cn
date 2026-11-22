@@ -78,7 +78,7 @@ npm test
 - [ ] 一个 PR 只做一件事（加条目 / 修链接 / 改结构分开提）
 - [ ] `npm run format:check` 通过（Prettier 校验手写文档与脚本，README 是生成物不入此列）
 - [ ] `npm test` 通过
-- [ ] CI 变绿（`validate`、`build --check`、`format:check` 会自动跑）
+- [ ] CI 变绿（typecheck、validate、build:check、format:check、test 与 PR 标题校验会自动跑）
 
 ## 关于排序
 
