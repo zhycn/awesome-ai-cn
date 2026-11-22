@@ -30,6 +30,8 @@ jobs:
         run: npm run format:check
       - name: 运行测试
         run: npm test
+      - name: 构建静态站点
+        run: npm run build:site
       - name: 校验 PR 标题（Conventional Commits）
         if: github.event_name == 'pull_request'
         env:
