@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/zhycn/awesome-ai-cn/config/schema.json",
   "title": "Awesome AI CN — 条目规范",
-  "description": "data/<category-id>.json 是一个条目数组。validate.py 以本文件中的 required、enum、maxLength 等约束为准，改规范即改本文件。",
+  "description": "data/<category-id>.json 是一个条目数组。validate.ts 以本文件中的 required、enum、maxLength 等约束为准，改规范即改本文件。",
   "type": "array",
   "items": {
     "$ref": "#/$defs/item"
