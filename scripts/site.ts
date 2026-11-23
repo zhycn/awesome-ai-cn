@@ -88,6 +88,7 @@ function main(): number {
 
   const sections: string[] = [];
   const nav: string[] = [];
+  const tagCount = new Map<string, number>();
   let total = 0;
   let proxyCount = 0;
 
@@ -101,6 +102,9 @@ function main(): number {
 
     total += items.length;
     proxyCount += items.filter((item) => item.access === "proxy").length;
+    for (const item of items) {
+      for (const tag of item.tags ?? []) tagCount.set(tag, (tagCount.get(tag) ?? 0) + 1);
+    }
 
     const anchor = slug(cat.title) || cat.id;
     nav.push(
@@ -142,6 +146,11 @@ ${items.map((item, i) => renderRow(item, i, cat.title)).join("\n")}
       checkedAt = "";
     }
   }
+
+  const topTags = [...tagCount.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([tag]) => tag);
 
   const MARK_SVG =
     "<svg viewBox='0 0 32 32' aria-hidden='true'><g fill='currentColor'>" +
@@ -265,7 +274,13 @@ ${nav.join("\n")}
   </div>
 
   <main id="main" tabindex="-1">
-    <p id="empty" class="empty" hidden>没有匹配的条目，换个关键词试试。<button id="reset" class="reset" type="button">清除搜索</button></p>
+    <p id="empty" class="empty" hidden>
+      <span>没有匹配的条目，换个关键词试试。</span>
+      <span class="empty-tags">试试 ${topTags
+        .map((t) => `<button class="tag" type="button" data-tag="${esc(t)}">${esc(t)}</button>`)
+        .join(" ")}</span>
+      <button id="reset" class="reset" type="button">清除搜索</button>
+    </p>
     <p id="q-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
 ${sections.join("\n\n")}
   </main>
