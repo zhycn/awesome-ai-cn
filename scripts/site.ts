@@ -59,6 +59,7 @@ function slug(text: string): string {
 }
 
 function renderRow(item: Item, index: number, categoryTitle: string): string {
+  const pick = item.featured ? '<span class="pick" title="精选" aria-label="精选">★</span>' : "";
   const proxy =
     item.access === "proxy" ? `<span class="flag" title="需要科学上网">proxy</span>` : "";
   const tags = (item.tags ?? [])
@@ -78,7 +79,7 @@ function renderRow(item: Item, index: number, categoryTitle: string): string {
             <span class="vendor">${esc(item.vendor ?? "")}</span>
           </span>
           <span class="desc" title="${esc(item.desc)}">${esc(item.desc)}</span>
-          <span class="tags">${proxy}${tags}</span>
+          <span class="tags">${pick}${proxy}${tags}</span>
         </div>`;
 }
 
@@ -261,6 +262,9 @@ ${nav.join("\n")}
     <h2>Resource index</h2>
     <span id="index-count" data-total="${total}">${total} entries</span>
   </div>
+  <div class="thead" aria-hidden="true">
+    <span>#</span><span>资源</span><span>说明</span><span>标签</span>
+  </div>
 
   <main id="main" tabindex="-1">
     <p id="empty" class="empty" hidden>
@@ -287,6 +291,9 @@ ${sections.join("\n\n")}
         }</p>
       </div>
     </div>
+    <nav class="foot-nav" aria-label="主题索引">
+${nav.join("\n")}
+    </nav>
     <div class="foot-meta">
       <span>数据以 JSON 维护 · 本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</span>
       <span class="footer-links">
