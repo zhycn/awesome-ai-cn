@@ -113,12 +113,14 @@ function main(): number {
 
     sections.push(`    <section id="${anchor}">
       <div class="sec-head">
-        <span class="sec-num">${String(sections.length + 1).padStart(2, "0")}</span>
-        <h3>${esc(cat.title)}</h3>
-        <span class="sec-line"></span>
-        <span class="sec-count" aria-hidden="true">${items.length}</span>
+        <div class="sec-title">
+          <span class="sec-num">${String(sections.length + 1).padStart(2, "0")}</span>
+          <h3>${esc(cat.title)}</h3>
+          <span class="sec-line"></span>
+          <span class="sec-count" aria-hidden="true">${items.length}</span>
+        </div>
+        ${cat.description ? `<p class="sec-desc">${esc(cat.description)}</p>` : ""}
       </div>
-      ${cat.description ? `<p class="sec-desc">${esc(cat.description)}</p>` : ""}
       <div class="rows">
 ${items.map((item, i) => renderRow(item, i, cat.title)).join("\n")}
       </div>
@@ -240,20 +242,7 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
   <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
-<div class="wrap">
-  <section class="hero">
-    <div>
-      <h1>Awesome<br><span class="outline">AI CN</span></h1>
-      <p class="eyebrow">The Chinese AI resource index</p>
-    </div>
-    <div>
-      <p class="lede">按用途分类的 AI 资源索引，每条一句话说清它强在哪、适合谁。以中文可直接使用为优先，绕不开的国际主流也会保留。</p>
-      <p class="hero-stats">${total} entries · ${nav.length} topics · ${proxyCount} need proxy${
-        checkedAt ? ` · checked ${esc(checkedAt)}` : ""
-      }</p>
-    </div>
-  </section>
-</div>
+<h1 class="visually-hidden">${esc(meta.name)} — 中文 AI 资源索引</h1>
 
 <div class="rail-wrap" id="topics">
   <div class="wrap rail-inner">
@@ -285,14 +274,28 @@ ${nav.join("\n")}
 ${sections.join("\n\n")}
   </main>
 
-  <footer>
-    <span>数据以 JSON 维护 · 本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</span>
-    <span class="footer-links">
-      <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a>
-      <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
-      <a href="${repo}/blob/main/LICENSE">${license}</a>
-      <a href="#top" class="to-top">回到顶部 ↑</a>
-    </span>
+  <footer class="site-foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="wordmark" aria-hidden="true">Awesome<br><span class="outline">AI CN</span></p>
+        <p class="eyebrow">The Chinese AI resource index</p>
+      </div>
+      <div class="foot-side">
+        <p class="lede">按用途分类的 AI 资源索引，每条一句话说清它强在哪、适合谁。以中文可直接使用为优先，绕不开的国际主流也会保留。</p>
+        <p class="hero-stats">${total} entries · ${nav.length} topics · ${proxyCount} need proxy${
+          checkedAt ? ` · checked ${esc(checkedAt)}` : ""
+        }</p>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>数据以 JSON 维护 · 本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</span>
+      <span class="footer-links">
+        <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a>
+        <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
+        <a href="${repo}/blob/main/LICENSE">${license}</a>
+        <a href="#top">回到顶部 ↑</a>
+      </span>
+    </div>
   </footer>
 </div>
 
