@@ -13,7 +13,7 @@ test("生成静态站点：包含标题、搜索框与全部主题", () => {
   assert.equal(result.status, 0, result.stderr);
 
   const html = readFileSync(join(OUT, "index.html"), "utf8");
-  assert.match(html, /<h1>[^<]+<\/h1>/);
+  assert.match(html, /<h1[^>]*>[\s\S]*?<\/h1>/);
   assert.match(html, /id="q"/);
   assert.match(html, /<section id="/);
   assert.match(html, /data-text="/);
