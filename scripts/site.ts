@@ -286,6 +286,10 @@ ${sections.join("\n\n")}
       </div>
       <div class="foot-side">
         <p class="lede">按用途分类的 AI 资源索引，每条一句话说清它强在哪、适合谁。以中文可直接使用为优先，绕不开的国际主流也会保留。</p>
+        <p class="foot-cta">
+          <a href="${repo}" target="_blank" rel="noopener">在 GitHub 上加星 ↗</a>
+          <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
+        </p>
         <p class="hero-stats">${total} entries · ${nav.length} topics · ${proxyCount} need proxy${
           checkedAt ? ` · checked ${esc(checkedAt)}` : ""
         }</p>
