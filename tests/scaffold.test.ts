@@ -75,7 +75,7 @@ test("正常派生：品牌、许可证、链接、README 全部替换", () => {
     const contributing = readFileSync(join(dir, "CONTRIBUTING.md"), "utf8");
     assert.ok(!contributing.includes("awesome-ai-cn"), "CONTRIBUTING 不应残留旧仓库名");
 
-    // 新清单默认没有内容，应渲染空态提示
+    // --force 会清空内容，README 应回到空态提示
     assert.match(readme, /\*内容正在收录中。\*/);
 
     const schema = JSON.parse(readFileSync(join(dir, "config/schema.json"), "utf8"));
@@ -88,6 +88,8 @@ test("正常派生：品牌、许可证、链接、README 全部替换", () => {
 test("data/ 非空且未加 --force：拒绝执行且不改动 meta", () => {
   const dir = sandbox();
   try {
+    // 母版仓库自带的条目可能为空（刚 scaffold 过），测试自带一条，保证 data/ 非空
+    writeFileSync(join(dir, "data", "zz-test-guard.json"), '[{"id":"zz-test-guard"}]', "utf8");
     const before = readFileSync(join(dir, "config/meta.json"), "utf8");
     const result = scaffold(dir, BASE);
     assert.equal(result.status, 1);
@@ -101,6 +103,12 @@ test("data/ 非空且未加 --force：拒绝执行且不改动 meta", () => {
 test("--keep-data 与 --categories 冲突：报错而不是静默删数据", () => {
   const dir = sandbox();
   try {
+    // 自带一条不在新主题里的条目，制造真实冲突（母版 data/ 可能为空）
+    writeFileSync(
+      join(dir, "data", "01-foundation-models.json"),
+      '[{"id":"existing-entry"}]',
+      "utf8",
+    );
     const cats = withCategories(dir);
     const result = scaffold(dir, [...BASE, "--categories", cats, "--keep-data"]);
     assert.equal(result.status, 1);

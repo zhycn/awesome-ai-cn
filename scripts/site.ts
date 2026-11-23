@@ -89,6 +89,7 @@ function main(): number {
 
   const sections: string[] = [];
   const nav: string[] = [];
+  const footNav: string[] = [];
   const tagCount = new Map<string, number>();
   let total = 0;
   let proxyCount = 0;
@@ -110,6 +111,14 @@ function main(): number {
     const anchor = slug(cat.title) || cat.id;
     nav.push(
       `<a href="#${anchor}"><i>${String(nav.length + 1).padStart(2, "0")}</i><span>${esc(cat.title)}</span><b>${items.length}</b></a>`,
+    );
+
+    const members = items
+      .slice(0, 3)
+      .map((item) => esc(item.name))
+      .join(" · ");
+    footNav.push(
+      `<a href="#${anchor}"><span class="tile-top"><i>${String(footNav.length + 1).padStart(2, "0")}</i><span>${esc(cat.title)}</span><b>${items.length}</b></span><span class="tile-more">${members}</span></a>`,
     );
 
     sections.push(`    <section id="${anchor}">
@@ -267,13 +276,14 @@ ${nav.join("\n")}
   </div>
 
   <main id="main" tabindex="-1">
-    <p id="empty" class="empty" hidden>
-      <span>没有匹配的条目，换个关键词试试。</span>
-      <span class="empty-tags">试试 ${topTags
+    <div id="empty" class="empty" hidden>
+      <p class="empty-head"><span class="empty-cap">No matches</span><span id="empty-q" class="empty-q"></span></p>
+      <p class="empty-hint">换个关键词，或按标签浏览</p>
+      <div class="empty-tags">${topTags
         .map((t) => `<button class="tag" type="button" data-tag="${esc(t)}">${esc(t)}</button>`)
-        .join(" ")}</span>
+        .join("")}</div>
       <button id="reset" class="reset" type="button">清除搜索</button>
-    </p>
+    </div>
     <p id="q-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
 ${sections.join("\n\n")}
   </main>
@@ -296,7 +306,7 @@ ${sections.join("\n\n")}
       </div>
     </div>
     <nav class="foot-nav" aria-label="主题索引">
-${nav.join("\n")}
+${footNav.join("\n")}
     </nav>
     <div class="foot-meta">
       <span>数据以 JSON 维护 · 本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</span>
@@ -408,6 +418,10 @@ function apply() {
 
   const active = q.length > 0 || tags.length > 0;
   empty.hidden = visible > 0;
+  if (!empty.hidden) {
+    const echo = document.getElementById("empty-q");
+    if (echo) echo.textContent = q.length > 0 ? "“" + input.value.trim() + "”" : "";
+  }
   rail.hidden = active;
   railFilter.hidden = !active;
   if (active) {

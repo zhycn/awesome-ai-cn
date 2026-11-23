@@ -302,8 +302,8 @@
   }
   .foot-nav a {
     display: flex;
-    align-items: baseline;
-    gap: 8px;
+    flex-direction: column;
+    gap: 4px;
     padding: 10px 12px;
     border: 1px solid var(--line);
     color: var(--fg-2);
@@ -317,6 +317,18 @@
     border-color: var(--stroke);
     background: var(--hover);
     color: var(--fg);
+  }
+  .tile-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .tile-more {
+    color: var(--faint);
+    font-size: 10.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .foot-nav i {
     color: var(--faint);
@@ -745,12 +757,32 @@
   .empty {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 72px 0;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 44px 0;
+    border-top: 1px solid var(--line-2);
+    border-bottom: 1px solid var(--line-2);
     color: var(--muted);
     font-size: 13px;
-    text-align: center;
+  }
+  .empty-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0;
+  }
+  .empty-cap {
+    color: var(--faint);
+    font: 10px var(--mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .empty-q {
+    color: var(--fg-2);
+    font: 12px var(--mono);
+  }
+  .empty-hint {
+    margin: 0;
   }
   .empty-tags {
     display: inline-flex;
