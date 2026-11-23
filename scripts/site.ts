@@ -150,7 +150,7 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
 
   const faviconSvg =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>" +
-    "<rect width='32' height='32' rx='8' fill='%234f46e5'/>" +
+    "<rect width='32' height='32' rx='8' fill='%232563eb'/>" +
     "<g fill='white'>" +
     "<rect x='8' y='10' width='16' height='3' rx='1.5'/>" +
     "<rect x='8' y='15' width='12' height='3' rx='1.5'/>" +
@@ -163,8 +163,8 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fb">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0e11">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0b0c">
 <title>${esc(meta.name)}</title>
 <meta name="description" content="${esc(summary)}">
 <link rel="icon" href="data:image/svg+xml,${faviconSvg}">
