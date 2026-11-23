@@ -59,11 +59,14 @@ function slug(text: string): string {
 
 function renderItem(item: Item, categoryTitle: string): string {
   const badges = [
-    item.featured
-      ? `<span class="badge badge-star"><span aria-hidden="true">★</span> 精选</span>`
-      : "",
+    item.featured ? `<span class="badge badge-star" title="精选" aria-label="精选">★</span>` : "",
     item.access === "proxy"
-      ? `<span class="badge badge-proxy"><span aria-hidden="true">🌐</span> 需代理</span>`
+      ? `<span class="badge badge-proxy" title="需要科学上网" aria-label="需要科学上网">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </span>`
       : "",
   ]
     .filter(Boolean)
@@ -86,7 +89,7 @@ function renderItem(item: Item, categoryTitle: string): string {
           ${badges}
         </div>
         <p class="item-desc" title="${esc(item.desc)}">${esc(item.desc)}</p>
-        ${tags ? `<div class="tags">${tags}</div>` : ""}
+        <div class="tags">${tags}</div>
       </li>`;
 }
 
