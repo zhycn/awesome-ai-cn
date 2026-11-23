@@ -80,6 +80,11 @@
     text-decoration: none;
   }
 
+  ::selection {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
   button {
     font: inherit;
   }
@@ -542,6 +547,7 @@
   }
   .row:hover {
     background: var(--hover);
+    box-shadow: inset 2px 0 0 var(--fg-2);
   }
   .rank {
     color: var(--faint);
@@ -642,6 +648,19 @@
     color: var(--muted);
     font-size: 13px;
     text-align: center;
+  }
+  .empty-tags {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--faint);
+    font-size: 12px;
+  }
+  .empty-tags .tag {
+    border-color: var(--line);
+  }
+  .empty-tags .tag::before {
+    content: none;
   }
 
   /* ---------- 页脚 ---------- */
