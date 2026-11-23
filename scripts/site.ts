@@ -59,6 +59,8 @@ function slug(text: string): string {
 }
 
 function renderRow(item: Item, index: number, categoryTitle: string): string {
+  const proxy =
+    item.access === "proxy" ? `<span class="flag" title="需要科学上网">proxy</span>` : "";
   const tags = (item.tags ?? [])
     .map(
       (tag) =>
@@ -72,11 +74,11 @@ function renderRow(item: Item, index: number, categoryTitle: string): string {
   return `        <div class="row" data-text="${esc(haystack)}" data-tags="${esc((item.tags ?? []).join("|"))}">
           <span class="rank">${String(index + 1).padStart(3, "0")}</span>
           <span class="who">
-            <a class="name" href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.name)}</a>
+            <a class="name" href="${esc(item.url)}" target="_blank" rel="noopener" title="${esc(item.name)}">${esc(item.name)}</a>
             <span class="vendor">${esc(item.vendor ?? "")}</span>
           </span>
           <span class="desc" title="${esc(item.desc)}">${esc(item.desc)}</span>
-          <span class="tags">${tags}</span>
+          <span class="tags">${proxy}${tags}</span>
         </div>`;
 }
 
@@ -101,7 +103,9 @@ function main(): number {
     proxyCount += items.filter((item) => item.access === "proxy").length;
 
     const anchor = slug(cat.title) || cat.id;
-    nav.push(`<a href="#${anchor}"><span>${esc(cat.title)}</span><b>${items.length}</b></a>`);
+    nav.push(
+      `<a href="#${anchor}"><i>${String(nav.length + 1).padStart(2, "0")}</i><span>${esc(cat.title)}</span><b>${items.length}</b></a>`,
+    );
 
     sections.push(`    <section id="${anchor}">
       <div class="sec-head">
@@ -189,16 +193,27 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
 
 <header class="bar">
   <div class="bar-inner">
-  <a class="brand" href="./" aria-label="${esc(meta.name)} 首页">
-    ${MARK_SVG}
-    <span>${esc(meta.name)}</span>
-    <em>/ index</em>
-  </a>
-  <nav aria-label="页面导航">
-    <a href="#index">索引</a>
-    <a href="#topics">主题</a>
-    <a href="${repo}/tree/main/data">数据</a>
-    <a class="keep" href="${repo}" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="brand" href="./" aria-label="${esc(meta.name)} 首页">
+      ${MARK_SVG}
+      <span>${esc(meta.name)}</span>
+      <em>/ index</em>
+    </a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#index">索引</a>
+      <a href="#topics">主题</a>
+      <a href="${repo}/tree/main/data">数据</a>
+      <a href="${repo}" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <div class="search" role="search">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M13.5 13.5 17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <input id="q" type="search" placeholder="搜索名称、简介、标签或主题" autocomplete="off"
+             aria-label="搜索名称、简介、标签或主题" aria-keyshortcuts="/">
+      <kbd id="kbd" aria-hidden="true">/</kbd>
+      <button id="clear" class="clear" type="button" hidden aria-label="清除搜索">×</button>
+    </div>
     <button id="theme" class="theme-toggle" type="button" data-mode="dark" aria-label="切换主题">
       <svg class="theme-icon icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
@@ -212,8 +227,8 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
         <path d="M8 2.4a5.6 5.6 0 0 1 0 11.2V2.4Z" fill="currentColor"/>
       </svg>
     </button>
-  </nav>
   </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
 <div class="wrap">
@@ -229,31 +244,21 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
       }</p>
     </div>
   </section>
+</div>
 
-  <div class="tools" id="topics">
-    <div>
-      <p class="cap">Search</p>
-      <div class="search">
-        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
-          <path d="M13.5 13.5 17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <input id="q" type="search" placeholder="搜索名称、简介、标签或主题" autocomplete="off"
-               aria-label="搜索名称、简介、标签或主题" aria-keyshortcuts="/">
-        <kbd id="kbd" aria-hidden="true">/</kbd>
-        <button id="clear" class="clear" type="button" hidden aria-label="清除搜索">×</button>
-      </div>
-      <p id="results" class="results" hidden></p>
-      <div id="filters" class="filters" hidden></div>
-    </div>
-    <div class="topics-col">
-      <p class="cap">Topics · ${nav.length}</p>
-      <div class="topics">
+<div class="rail-wrap" id="topics">
+  <div class="wrap rail-inner">
+    <nav class="rail" id="rail" aria-label="主题导航">
 ${nav.join("\n")}
-      </div>
+    </nav>
+    <div class="rail-filter" id="rail-filter" hidden>
+      <span id="results" class="results"></span>
+      <div id="filters" class="filters"></div>
     </div>
   </div>
+</div>
 
+<div class="wrap">
   <div class="index-cap" id="index">
     <h2>Resource index</h2>
     <span id="index-count" data-total="${total}">${total} entries</span>
@@ -271,6 +276,7 @@ ${sections.join("\n\n")}
       <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a>
       <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
       <a href="${repo}/blob/main/LICENSE">${license}</a>
+      <a href="#top" class="to-top">回到顶部 ↑</a>
     </span>
   </footer>
 </div>
@@ -300,7 +306,10 @@ const status = document.getElementById("q-status");
 const themeBtn = document.getElementById("theme");
 const items = Array.from(document.querySelectorAll(".row"));
 const sections = Array.from(document.querySelectorAll("main section"));
-const links = Array.from(document.querySelectorAll(".topics a"));
+const links = Array.from(document.querySelectorAll(".rail a"));
+const rail = document.getElementById("rail");
+const railFilter = document.getElementById("rail-filter");
+const progress = document.getElementById("progress");
 const selected = new Set();
 
 const itemTags = (el) => (el.dataset.tags || "").split("|").filter(Boolean);
@@ -370,12 +379,12 @@ function apply() {
 
   const active = q.length > 0 || tags.length > 0;
   empty.hidden = visible > 0;
-  results.hidden = !active;
+  rail.hidden = active;
+  railFilter.hidden = !active;
   if (active) {
     results.textContent =
-      visible > 0
-        ? "共 " + visible + " 条结果 · " + visibleSections + " 个主题"
-        : "没有匹配的条目";
+      visible > 0 ? visible + " 条结果 · " + visibleSections + " 个主题" : "0 条结果";
+    results.hidden = false;
   }
   clear.hidden = q.length === 0;
   kbd.hidden = q.length > 0;
@@ -485,6 +494,68 @@ media.addEventListener("change", () => {
 });
 
 applyTheme();
+
+/* ---------- 顶栏：阅读进度与当前分区 ---------- */
+let ticking = false;
+
+function syncProgress() {
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - doc.clientHeight;
+  const ratio = max > 0 ? Math.min(1, Math.max(0, doc.scrollTop / max)) : 0;
+  if (progress) progress.style.transform = "scaleX(" + ratio + ")";
+}
+
+function syncActiveSection() {
+  const line = Math.max(160, innerHeight * 0.33);
+  let current = null;
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= line) current = section;
+  }
+  for (const link of links) {
+    const on = current !== null && link.getAttribute("href") === "#" + current.id;
+    link.classList.toggle("on", on);
+    if (on) link.setAttribute("aria-current", "true");
+    else link.removeAttribute("aria-current");
+  }
+  if (current && rail && !rail.hidden) {
+    const active = links.find((l) => l.getAttribute("href") === "#" + current.id);
+    if (active) {
+      const box = rail.getBoundingClientRect();
+      const item = active.getBoundingClientRect();
+      if (item.left < box.left || item.right > box.right) {
+        rail.scrollLeft += item.left - box.left - 24;
+      }
+    }
+  }
+}
+
+function onScroll() {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    ticking = false;
+    syncProgress();
+    syncActiveSection();
+  });
+}
+
+function syncRailEdge() {
+  if (rail) rail.dataset.left = rail.scrollLeft > 4 ? "1" : "0";
+}
+if (rail) rail.addEventListener("scroll", syncRailEdge, { passive: true });
+syncRailEdge();
+
+addEventListener("scroll", onScroll, { passive: true });
+addEventListener("resize", onScroll, { passive: true });
+syncProgress();
+syncActiveSection();
+
+/* 窄屏：缩短搜索提示语，避免被截断 */
+function syncPlaceholder() {
+  input.placeholder = innerWidth < 720 ? "搜索资源…" : "搜索名称、简介、标签或主题";
+}
+addEventListener("resize", syncPlaceholder, { passive: true });
+syncPlaceholder();
 
 `;
 
