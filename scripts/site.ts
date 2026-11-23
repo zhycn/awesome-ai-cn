@@ -141,6 +141,16 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
 
   const summary = String(meta.description ?? "").slice(0, 120);
   const repo = esc(meta.repo ?? "#");
+  const homepage = String(meta.homepage ?? "").trim();
+
+  const faviconSvg =
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>" +
+    "<rect width='32' height='32' rx='8' fill='%234f46e5'/>" +
+    "<g fill='white'>" +
+    "<rect x='8' y='10' width='16' height='3' rx='1.5'/>" +
+    "<rect x='8' y='15' width='12' height='3' rx='1.5'/>" +
+    "<rect x='8' y='20' width='8' height='3' rx='1.5'/>" +
+    "</g></svg>";
 
   const html = `<!doctype html>
 <html lang="zh-CN">
@@ -152,6 +162,12 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d0e11">
 <title>${esc(meta.name)}</title>
 <meta name="description" content="${esc(summary)}">
+<link rel="icon" href="data:image/svg+xml,${faviconSvg}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${esc(meta.name)}">
+<meta property="og:description" content="${esc(summary)}">
+${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
+<meta name="twitter:card" content="summary">
 <style>${css}</style>
 </head>
 <body>

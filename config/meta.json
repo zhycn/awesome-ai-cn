@@ -30,5 +30,6 @@
       "字段定义、写作口吻与排序规则见 [docs/CONVENTIONS.md](docs/CONVENTIONS.md)。"
     ]
   },
-  "about": "给中文开发者的 AI 资源地图：模型、工具、产品与学习资料"
+  "about": "给中文开发者的 AI 资源地图：模型、工具、产品与学习资料",
+  "homepage": "https://zhycn.github.io/awesome-ai-cn/"
 }

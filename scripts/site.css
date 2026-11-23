@@ -315,6 +315,16 @@
   .section-head {
     @apply mb-1 flex items-baseline gap-2;
   }
+  @media (min-width: 861px) {
+    .section-head {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      padding: 10px 0 8px;
+      background: var(--bg);
+      box-shadow: 0 12px 16px -16px rgb(17 19 24 / 0.25);
+    }
+  }
   h2 {
     @apply text-[1.375rem] leading-[1.25] font-bold tracking-[-0.01em];
   }
@@ -566,9 +576,18 @@
   section {
     scroll-margin-top: 74px;
   }
-  /* 单列时不需要为对齐预留两行 */
+  /* 单列时卡片自适应高度，不必为对齐预留空间 */
+  .item-head {
+    height: auto;
+    margin-bottom: 4px;
+  }
   .item-desc {
-    min-height: 0;
+    height: auto;
+  }
+  .tags {
+    height: auto;
+    flex-wrap: wrap;
+    margin-top: 8px;
   }
   .search kbd {
     display: none;

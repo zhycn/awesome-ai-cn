@@ -252,6 +252,13 @@ function main(argv: string[]): number {
         }
       }
 
+      const homepage = metaRecord.homepage;
+      if (homepage !== undefined) {
+        if (typeof homepage !== "string" || !/^https?:\/\//.test(homepage)) {
+          report.errors.push(`${rel(join(CONFIG_DIR, "meta.json"))}.homepage: 应为 http(s) 地址`);
+        }
+      }
+
       const about = metaRecord.about;
       if (about !== undefined) {
         if (typeof about !== "string" || !about.trim()) {
