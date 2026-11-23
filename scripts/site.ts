@@ -72,12 +72,17 @@ function renderItem(item: Item, categoryTitle: string): string {
     .filter(Boolean)
     .join("");
 
-  const tags = (item.tags ?? []).map((tag) => `<span class="tag">${esc(tag)}</span>`).join("");
+  const tags = (item.tags ?? [])
+    .map(
+      (tag) =>
+        `<button class="tag" type="button" data-tag="${esc(tag)}" aria-pressed="false">${esc(tag)}</button>`,
+    )
+    .join("");
   const haystack = [item.name, item.desc, categoryTitle, ...(item.tags ?? [])]
     .join(" ")
     .toLowerCase();
 
-  return `      <li class="item" data-text="${esc(haystack)}">
+  return `      <li class="item" data-text="${esc(haystack)}" data-tags="${esc((item.tags ?? []).join("|"))}">
         <a class="ext" href="${esc(item.url)}" target="_blank" rel="noopener" aria-label="在新标签页打开 ${esc(item.name)}" tabindex="-1">
           <svg viewBox="0 0 16 16" width="13" height="13" fill="none" aria-hidden="true">
             <path d="M5 11 11 5M6.5 5H11v4.5" stroke="currentColor" stroke-width="1.6"
@@ -168,12 +173,21 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
 <meta property="og:description" content="${esc(summary)}">
 ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
 <meta name="twitter:card" content="summary">
+<script>
+  try {
+    var saved = localStorage.getItem("theme");
+    var dark = saved === "dark" || (saved !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    document.documentElement.style.colorScheme = dark ? "dark" : "light";
+  } catch (error) {}
+</script>
 <style>${css}</style>
 </head>
 <body>
 <a class="skip" href="#main">跳到主要内容</a>
 
 <header class="hero">
+  <button id="theme" class="theme-toggle" type="button" aria-label="切换主题">☀</button>
   <div class="hero-inner">
     <h1>${esc(meta.name)}</h1>
     <p class="tagline">${esc(meta.tagline ?? "")}</p>
@@ -194,6 +208,7 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
       <button id="clear" class="clear" type="button" hidden aria-label="清除搜索">×</button>
     </div>
     <p id="results" class="results" hidden></p>
+    <div id="filters" class="filters" hidden></div>
   </div>
 </header>
 
@@ -235,23 +250,60 @@ const input = document.getElementById("q");
 const clear = document.getElementById("clear");
 const reset = document.getElementById("reset");
 const results = document.getElementById("results");
+const filters = document.getElementById("filters");
 const kbd = document.getElementById("kbd");
 const empty = document.getElementById("empty");
 const status = document.getElementById("q-status");
+const themeBtn = document.getElementById("theme");
 const items = Array.from(document.querySelectorAll(".item"));
 const sections = Array.from(document.querySelectorAll("main section"));
 const links = Array.from(document.querySelectorAll(".sidebar a"));
+const selected = new Set();
 
-function linkFor(section) {
-  return links.find((link) => link.getAttribute("href") === "#" + section.id);
+const itemTags = (el) => (el.dataset.tags || "").split("|").filter(Boolean);
+
+function renderFilters() {
+  filters.textContent = "";
+  if (selected.size === 0) {
+    filters.hidden = true;
+    return;
+  }
+  filters.hidden = false;
+  const label = document.createElement("span");
+  label.className = "filters-label";
+  label.textContent = "筛选";
+  filters.append(label);
+  for (const tag of selected) {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.dataset.tag = tag;
+    chip.setAttribute("aria-label", "移除筛选 " + tag);
+    chip.textContent = tag;
+    filters.append(chip);
+  }
+  const clearAll = document.createElement("button");
+  clearAll.type = "button";
+  clearAll.className = "chip-clear";
+  clearAll.textContent = "清除";
+  filters.append(clearAll);
 }
 
-function apply(raw) {
-  const q = raw.trim().toLowerCase();
+function syncTagButtons() {
+  for (const btn of document.querySelectorAll(".tag")) {
+    btn.setAttribute("aria-pressed", selected.has(btn.dataset.tag) ? "true" : "false");
+  }
+}
+
+function apply() {
+  const q = input.value.trim().toLowerCase();
+  const tags = [...selected];
   let visible = 0;
 
   for (const item of items) {
-    const hit = !q || item.dataset.text.includes(q);
+    const textOk = !q || item.dataset.text.includes(q);
+    const tagsOk = tags.every((tag) => itemTags(item).includes(tag));
+    const hit = textOk && tagsOk;
     item.hidden = !hit;
     if (hit) visible += 1;
   }
@@ -265,7 +317,7 @@ function apply(raw) {
     const badge = section.querySelector(".count");
     if (badge) badge.textContent = String(count);
 
-    const link = linkFor(section);
+    const link = links.find((l) => l.getAttribute("href") === "#" + section.id);
     if (link) {
       const n = link.querySelector(".n");
       if (n) n.textContent = String(count);
@@ -275,34 +327,64 @@ function apply(raw) {
     }
   }
 
-  const hasQuery = q.length > 0;
+  const active = q.length > 0 || tags.length > 0;
   empty.hidden = visible > 0;
-  results.hidden = !hasQuery;
-  if (hasQuery) {
+  results.hidden = !active;
+  if (active) {
     results.textContent =
-      visible > 0 ? "共 " + visible + " 条结果 · " + visibleSections + " 个主题" : "没有匹配的条目";
+      visible > 0
+        ? "共 " + visible + " 条结果 · " + visibleSections + " 个主题"
+        : "没有匹配的条目";
   }
-  clear.hidden = !hasQuery;
-  kbd.hidden = hasQuery;
+  clear.hidden = q.length === 0;
+  kbd.hidden = q.length > 0;
 
   if (status) {
-    status.textContent = !hasQuery
+    status.textContent = !active
       ? ""
       : visible > 0
         ? "共 " + visible + " 条结果"
-        : "没有匹配「" + input.value.trim() + "」的条目";
+        : "没有匹配的条目";
   }
+
+  renderFilters();
+  syncTagButtons();
 }
 
-function clearSearch() {
+function clearAll() {
   input.value = "";
-  apply("");
+  selected.clear();
+  apply();
   input.focus();
 }
 
-input.addEventListener("input", (event) => apply(event.target.value));
-clear.addEventListener("click", clearSearch);
-reset.addEventListener("click", clearSearch);
+document.addEventListener("click", (event) => {
+  const tagBtn = event.target.closest(".tag");
+  if (tagBtn) {
+    const tag = tagBtn.dataset.tag;
+    if (selected.has(tag)) selected.delete(tag);
+    else selected.add(tag);
+    apply();
+    return;
+  }
+  const chip = event.target.closest(".chip");
+  if (chip) {
+    selected.delete(chip.dataset.tag);
+    apply();
+    return;
+  }
+  if (event.target.closest(".chip-clear")) {
+    selected.clear();
+    apply();
+  }
+});
+
+input.addEventListener("input", () => apply());
+clear.addEventListener("click", clearAll);
+reset.addEventListener("click", clearAll);
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") clearAll();
+});
 document.addEventListener("keydown", (event) => {
   if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey) return;
   const active = document.activeElement;
@@ -315,11 +397,52 @@ document.addEventListener("keydown", (event) => {
   event.preventDefault();
   input.focus();
 });
-input.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") clearSearch();
+
+/* 主题：auto → light → dark 循环，localStorage 记忆 */
+const media = matchMedia("(prefers-color-scheme: dark)");
+let mode = localStorage.getItem("theme") || "auto";
+
+function resolved(m) {
+  return m === "auto" ? (media.matches ? "dark" : "light") : m;
+}
+
+function applyTheme() {
+  const theme = resolved(mode);
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+  themeBtn.textContent = theme === "dark" ? "☾" : "☀";
+  const names = { auto: "跟随系统", light: "浅色", dark: "深色" };
+  const next = { auto: "浅色", light: "深色", dark: "跟随系统" };
+  themeBtn.title = "主题：" + names[mode] + "（点击切换为" + next[mode] + "）";
+  themeBtn.setAttribute("aria-label", themeBtn.title);
+  themeBtn.dataset.mode = mode;
+}
+
+themeBtn.addEventListener("click", () => {
+  // auto 时先切到当前系统的反面，保证每次点击都有可见变化
+  mode =
+    mode === "auto"
+      ? resolved("auto") === "dark"
+        ? "light"
+        : "dark"
+      : mode === "dark"
+        ? "light"
+        : "auto";
+  try {
+    localStorage.setItem("theme", mode);
+  } catch (error) {}
+  applyTheme();
 });
 
-const initial = location.hash ? linkFor(document.querySelector(location.hash) || sections[0]) : null;
+media.addEventListener("change", () => {
+  if (mode === "auto") applyTheme();
+});
+
+applyTheme();
+
+const initial = location.hash
+  ? links.find((link) => link.getAttribute("href") === location.hash)
+  : null;
 const first = initial || links[0];
 if (first) {
   first.classList.add("active");
