@@ -22,6 +22,7 @@ type Item = {
   url: string;
   desc: string;
   tags?: string[];
+  vendor?: string;
   featured?: boolean;
   status?: string;
   access?: string;
@@ -57,45 +58,26 @@ function slug(text: string): string {
     .replace(/ /g, "-");
 }
 
-function renderItem(item: Item, categoryTitle: string): string {
-  const badges = [
-    item.featured ? `<span class="badge badge-star" title="精选" aria-label="精选">★</span>` : "",
-    item.access === "proxy"
-      ? `<span class="badge badge-proxy" title="需要科学上网" aria-label="需要科学上网">
-            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/>
-              <path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12" stroke="currentColor" stroke-width="1.2"/>
-            </svg>
-          </span>`
-      : "",
-  ]
-    .filter(Boolean)
-    .join("");
-
+function renderRow(item: Item, index: number, categoryTitle: string): string {
   const tags = (item.tags ?? [])
     .map(
       (tag) =>
         `<button class="tag" type="button" data-tag="${esc(tag)}" aria-pressed="false">${esc(tag)}</button>`,
     )
     .join("");
-  const haystack = [item.name, item.desc, categoryTitle, ...(item.tags ?? [])]
+  const haystack = [item.name, item.desc, categoryTitle, item.vendor ?? "", ...(item.tags ?? [])]
     .join(" ")
     .toLowerCase();
 
-  return `      <li class="item" data-text="${esc(haystack)}" data-tags="${esc((item.tags ?? []).join("|"))}">
-        <a class="ext" href="${esc(item.url)}" target="_blank" rel="noopener" aria-label="在新标签页打开 ${esc(item.name)}" tabindex="-1">
-          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" aria-hidden="true">
-            <path d="M5 11 11 5M6.5 5H11v4.5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <div class="item-head">
-          <a class="name" href="${esc(item.url)}" target="_blank" rel="noopener" title="${esc(item.name)}">${esc(item.name)}</a>
-          ${badges}
-        </div>
-        <p class="item-desc" title="${esc(item.desc)}">${esc(item.desc)}</p>
-        <div class="tags">${tags}</div>
-      </li>`;
+  return `        <div class="row" data-text="${esc(haystack)}" data-tags="${esc((item.tags ?? []).join("|"))}">
+          <span class="rank">${String(index + 1).padStart(3, "0")}</span>
+          <span class="who">
+            <a class="name" href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.name)}</a>
+            <span class="vendor">${esc(item.vendor ?? "")}</span>
+          </span>
+          <span class="desc" title="${esc(item.desc)}">${esc(item.desc)}</span>
+          <span class="tags">${tags}</span>
+        </div>`;
 }
 
 function main(): number {
@@ -119,23 +101,20 @@ function main(): number {
     proxyCount += items.filter((item) => item.access === "proxy").length;
 
     const anchor = slug(cat.title) || cat.id;
-    const emoji = cat.emoji
-      ? `<span class="emoji" aria-hidden="true">${esc(cat.emoji)}</span>`
-      : "";
-    nav.push(
-      `<a href="#${anchor}"><span class="label">${emoji}${esc(cat.title)}</span><span class="n" aria-hidden="true">${items.length}</span><span class="visually-hidden">${items.length} 条资源</span></a>`,
-    );
+    nav.push(`<a href="#${anchor}"><span>${esc(cat.title)}</span><b>${items.length}</b></a>`);
 
-    sections.push(`  <section id="${anchor}">
-    <div class="section-head">
-      <h2>${emoji}${esc(cat.title)}</h2>
-      <span class="count" aria-hidden="true">${items.length}</span>
-    </div>
-    ${cat.description ? `<p class="section-desc">${esc(cat.description)}</p>` : ""}
-    <ul class="items" role="list">
-${items.map((item) => renderItem(item, cat.title)).join("\n")}
-    </ul>
-  </section>`);
+    sections.push(`    <section id="${anchor}">
+      <div class="sec-head">
+        <span class="sec-num">${String(sections.length + 1).padStart(2, "0")}</span>
+        <h3>${esc(cat.title)}</h3>
+        <span class="sec-line"></span>
+        <span class="sec-count" aria-hidden="true">${items.length}</span>
+      </div>
+      ${cat.description ? `<p class="sec-desc">${esc(cat.description)}</p>` : ""}
+      <div class="rows">
+${items.map((item, i) => renderRow(item, i, cat.title)).join("\n")}
+      </div>
+    </section>`);
   }
 
   if (!existsSync(CSS_PATH)) {
@@ -148,8 +127,6 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
   const repo = esc(meta.repo ?? "#");
   const homepage = String(meta.homepage ?? "").trim();
   const license = esc(meta.license ?? "MIT");
-  const author = esc(meta.author ?? "");
-  const year = String(new Date().getFullYear());
 
   // 链接核对时间来自 check_links 的产物，缺失时不显示
   let checkedAt = "";
@@ -186,8 +163,8 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0b0c">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
 <title>${esc(meta.name)}</title>
 <meta name="description" content="${esc(summary)}">
 <link rel="icon" href="data:image/svg+xml,${faviconSvg}">
@@ -199,7 +176,8 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
 <script>
   try {
     var saved = localStorage.getItem("theme");
-    var dark = saved === "dark" || (saved !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+    var pick = saved === "light" || saved === "auto" || saved === "dark" ? saved : "dark";
+    var dark = pick === "dark" || (pick === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
     document.documentElement.dataset.theme = dark ? "dark" : "light";
     document.documentElement.style.colorScheme = dark ? "dark" : "light";
   } catch (error) {}
@@ -209,49 +187,58 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
 <body id="top">
 <a class="skip" href="#main">跳到主要内容</a>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-bar">
-      <span class="mark" aria-hidden="true">${MARK_SVG}</span>
-      <h1>${esc(meta.name)}</h1>
-      <div class="hero-actions">
-        <a class="hero-link" href="${repo}" target="_blank" rel="noopener" aria-label="GitHub 仓库，新标签页打开">
-          GitHub
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M5 11 11 5M6.5 5H11v4.5" stroke="currentColor" stroke-width="1.6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <button id="theme" class="theme-toggle" type="button" data-mode="auto" aria-label="切换主题">
-          <svg class="theme-icon icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M8 1.2v1.8M8 13v1.8M1.2 8H3M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-          <svg class="theme-icon icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-          </svg>
-          <svg class="theme-icon icon-auto" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M8 2.4a5.6 5.6 0 0 1 0 11.2V2.4Z" fill="currentColor"/>
-          </svg>
-          </button>
-      </div>
+<header class="bar">
+  <div class="bar-inner">
+  <a class="brand" href="./" aria-label="${esc(meta.name)} 首页">
+    ${MARK_SVG}
+    <span>${esc(meta.name)}</span>
+    <em>/ index</em>
+  </a>
+  <nav aria-label="页面导航">
+    <a href="#index">索引</a>
+    <a href="#topics">主题</a>
+    <a href="${repo}/tree/main/data">数据</a>
+    <a class="keep" href="${repo}" target="_blank" rel="noopener">GitHub ↗</a>
+    <button id="theme" class="theme-toggle" type="button" data-mode="dark" aria-label="切换主题">
+      <svg class="theme-icon icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 1.2v1.8M8 13v1.8M1.2 8H3M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <svg class="theme-icon icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <svg class="theme-icon icon-auto" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 2.4a5.6 5.6 0 0 1 0 11.2V2.4Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Awesome<br><span class="outline">AI CN</span></h1>
+      <p class="eyebrow">The Chinese AI resource index</p>
     </div>
-    <div class="hero-main">
-      <p class="tagline">${esc(meta.tagline ?? "")}</p>
-      <p class="hero-meta">
-        <span><strong>${total}</strong> 条资源</span>
-        <span><strong>${nav.length}</strong> 个主题</span>
-        ${proxyCount > 0 ? `<span><strong>${proxyCount}</strong> 条需科学上网</span>` : ""}
-      </p>
+    <div>
+      <p class="lede">按用途分类的 AI 资源索引，每条一句话说清它强在哪、适合谁。以中文可直接使用为优先，绕不开的国际主流也会保留。</p>
+      <p class="hero-stats">${total} entries · ${nav.length} topics · ${proxyCount} need proxy${
+        checkedAt ? ` · checked ${esc(checkedAt)}` : ""
+      }</p>
     </div>
-    <div class="hero-side">
+  </section>
+
+  <div class="tools" id="topics">
+    <div>
+      <p class="cap">Search</p>
       <div class="search">
-        <svg class="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
           <path d="M13.5 13.5 17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
-        <input id="q" type="search" placeholder="搜索名称、简介、标签或主题…" autocomplete="off"
+        <input id="q" type="search" placeholder="搜索名称、简介、标签或主题" autocomplete="off"
                aria-label="搜索名称、简介、标签或主题" aria-keyshortcuts="/">
         <kbd id="kbd" aria-hidden="true">/</kbd>
         <button id="clear" class="clear" type="button" hidden aria-label="清除搜索">×</button>
@@ -259,57 +246,34 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
       <p id="results" class="results" hidden></p>
       <div id="filters" class="filters" hidden></div>
     </div>
-  </div>
-</header>
-
-<div class="layout">
-  <aside class="sidebar">
-    <p class="sidebar-title" id="toc-title">主题</p>
-    <nav aria-labelledby="toc-title">
+    <div class="topics-col">
+      <p class="cap">Topics · ${nav.length}</p>
+      <div class="topics">
 ${nav.join("\n")}
-    </nav>
-  </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="index-cap" id="index">
+    <h2>Resource index</h2>
+    <span id="index-count" data-total="${total}">${total} entries</span>
+  </div>
 
   <main id="main" tabindex="-1">
     <p id="empty" class="empty" hidden>没有匹配的条目，换个关键词试试。<button id="reset" class="reset" type="button">清除搜索</button></p>
     <p id="q-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
 ${sections.join("\n\n")}
   </main>
-</div>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="footer-brand-row">
-          <span class="mark footer-mark" aria-hidden="true">${MARK_SVG}</span>
-          <span class="footer-name">${esc(meta.name)}</span>
-        </span>
-        <p class="footer-about">${esc(meta.description ?? "")}</p>
-        <a class="footer-repo" href="${repo}">GitHub 仓库<span aria-hidden="true"> ↗</span></a>
-      </div>
-      <nav class="footer-col" aria-labelledby="footer-join">
-        <p class="footer-label" id="footer-join">参与</p>
-        <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
-        <a href="${repo}/issues/new?template=broken-link.yml">报告失效链接</a>
-        <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a>
-        <a href="${repo}/blob/main/docs/CONVENTIONS.md">写作约定</a>
-      </nav>
-      <nav class="footer-col" aria-labelledby="footer-data">
-        <p class="footer-label" id="footer-data">数据</p>
-        <a href="${repo}/tree/main/data">data/*.json</a>
-        <a href="${repo}/blob/main/config/categories.json">分类定义</a>
-        <a href="${repo}/blob/main/config/schema.json">字段校验</a>
-        <a href="${repo}/blob/main/LICENSE">${license} 许可</a>
-      </nav>
-    </div>
-    <div class="footer-bottom">
-      <p>数据以 JSON 维护，本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</p>
-      <p>${checkedAt ? `链接核对 ${esc(checkedAt)} · ` : ""}© ${year} ${author}</p>
-      <a class="footer-top-link" href="#top">回到顶部 ↑</a>
-    </div>
-  </div>
-</footer>
+  <footer>
+    <span>数据以 JSON 维护 · 本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</span>
+    <span class="footer-links">
+      <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a>
+      <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
+      <a href="${repo}/blob/main/LICENSE">${license}</a>
+    </span>
+  </footer>
+</div>
 
 <script>${JS}</script>
 </body>
@@ -334,9 +298,9 @@ const kbd = document.getElementById("kbd");
 const empty = document.getElementById("empty");
 const status = document.getElementById("q-status");
 const themeBtn = document.getElementById("theme");
-const items = Array.from(document.querySelectorAll(".item"));
+const items = Array.from(document.querySelectorAll(".row"));
 const sections = Array.from(document.querySelectorAll("main section"));
-const links = Array.from(document.querySelectorAll(".sidebar a"));
+const links = Array.from(document.querySelectorAll(".topics a"));
 const selected = new Set();
 
 const itemTags = (el) => (el.dataset.tags || "").split("|").filter(Boolean);
@@ -389,19 +353,17 @@ function apply() {
 
   let visibleSections = 0;
   for (const section of sections) {
-    const count = section.querySelectorAll(".item:not([hidden])").length;
+    const count = section.querySelectorAll(".row:not([hidden])").length;
     section.hidden = count === 0;
     if (count > 0) visibleSections += 1;
 
-    const badge = section.querySelector(".count");
+    const badge = section.querySelector(".sec-count");
     if (badge) badge.textContent = String(count);
 
     const link = links.find((l) => l.getAttribute("href") === "#" + section.id);
     if (link) {
-      const n = link.querySelector(".n");
+      const n = link.querySelector("b");
       if (n) n.textContent = String(count);
-      const spoken = link.querySelector(".visually-hidden");
-      if (spoken) spoken.textContent = count + " 条资源";
       link.hidden = count === 0;
     }
   }
@@ -424,6 +386,12 @@ function apply() {
       : visible > 0
         ? "共 " + visible + " 条结果"
         : "没有匹配的条目";
+  }
+
+  const indexCount = document.getElementById("index-count");
+  if (indexCount) {
+    const totalEntries = indexCount.dataset.total;
+    indexCount.textContent = active ? visible + " / " + totalEntries + " entries" : totalEntries + " entries";
   }
 
   renderFilters();
@@ -479,7 +447,7 @@ document.addEventListener("keydown", (event) => {
 
 /* 主题：auto → light → dark 循环，localStorage 记忆 */
 const media = matchMedia("(prefers-color-scheme: dark)");
-let mode = localStorage.getItem("theme") || "auto";
+let mode = localStorage.getItem("theme") || "dark";
 
 function resolved(m) {
   return m === "auto" ? (media.matches ? "dark" : "light") : m;
@@ -518,35 +486,6 @@ media.addEventListener("change", () => {
 
 applyTheme();
 
-const initial = location.hash
-  ? links.find((link) => link.getAttribute("href") === location.hash)
-  : null;
-const first = initial || links[0];
-if (first) {
-  first.classList.add("active");
-  first.setAttribute("aria-current", "location");
-}
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      const target = "#" + entry.target.id;
-      for (const link of links) {
-        const on = link.getAttribute("href") === target;
-        link.classList.toggle("active", on);
-        if (on) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      }
-      if (window.innerWidth <= 860) {
-        const current = links.find((link) => link.getAttribute("href") === target);
-        if (current) current.scrollIntoView({ inline: "center", block: "nearest" });
-      }
-    }
-  },
-  { rootMargin: "-15% 0px -75% 0px" },
-);
-for (const section of sections) observer.observe(section);
 `;
 
 process.exit(main());
