@@ -147,14 +147,37 @@ ${items.map((item) => renderItem(item, cat.title)).join("\n")}
   const summary = String(meta.description ?? "").slice(0, 120);
   const repo = esc(meta.repo ?? "#");
   const homepage = String(meta.homepage ?? "").trim();
+  const license = esc(meta.license ?? "MIT");
+  const author = esc(meta.author ?? "");
+  const year = String(new Date().getFullYear());
+
+  // 链接核对时间来自 check_links 的产物，缺失时不显示
+  let checkedAt = "";
+  const statusPath = join(ROOT, "config/link-status.json");
+  if (existsSync(statusPath)) {
+    try {
+      checkedAt = String(readJson<{ checkedAt?: string }>(statusPath).checkedAt ?? "");
+    } catch {
+      checkedAt = "";
+    }
+  }
+
+  const MARK_SVG =
+    "<svg viewBox='0 0 32 32' aria-hidden='true'><g fill='currentColor'>" +
+    "<rect x='6' y='8' width='9' height='9' rx='2'/>" +
+    "<rect x='17' y='8' width='9' height='9' rx='2'/>" +
+    "<rect x='6' y='19' width='9' height='9' rx='2'/>" +
+    "<rect x='17' y='19' width='9' height='9' rx='2'/>" +
+    "</g></svg>";
 
   const faviconSvg =
     "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>" +
     "<rect width='32' height='32' rx='8' fill='%232563eb'/>" +
     "<g fill='white'>" +
-    "<rect x='8' y='10' width='16' height='3' rx='1.5'/>" +
-    "<rect x='8' y='15' width='12' height='3' rx='1.5'/>" +
-    "<rect x='8' y='20' width='8' height='3' rx='1.5'/>" +
+    "<rect x='6' y='8' width='9' height='9' rx='2'/>" +
+    "<rect x='17' y='8' width='9' height='9' rx='2'/>" +
+    "<rect x='6' y='19' width='9' height='9' rx='2'/>" +
+    "<rect x='17' y='19' width='9' height='9' rx='2'/>" +
     "</g></svg>";
 
   const html = `<!doctype html>
@@ -183,31 +206,43 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
 </script>
 <style>${css}</style>
 </head>
-<body>
+<body id="top">
 <a class="skip" href="#main">跳到主要内容</a>
 
 <header class="hero">
   <div class="hero-inner">
-    <button id="theme" class="theme-toggle" type="button" data-mode="auto" aria-label="切换主题">
-      <svg class="theme-icon icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M8 1.2v1.8M8 13v1.8M1.2 8H3M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-      </svg>
-      <svg class="theme-icon icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-      </svg>
-      <svg class="theme-icon icon-auto" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M8 2.4a5.6 5.6 0 0 1 0 11.2V2.4Z" fill="currentColor"/>
-      </svg>
-    </button>
-    <div class="hero-main">
+    <div class="hero-bar">
+      <span class="mark" aria-hidden="true">${MARK_SVG}</span>
       <h1>${esc(meta.name)}</h1>
+      <div class="hero-actions">
+        <a class="hero-link" href="${repo}" target="_blank" rel="noopener" aria-label="GitHub 仓库，新标签页打开">
+          GitHub
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M5 11 11 5M6.5 5H11v4.5" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <button id="theme" class="theme-toggle" type="button" data-mode="auto" aria-label="切换主题">
+          <svg class="theme-icon icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8 1.2v1.8M8 13v1.8M1.2 8H3M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <svg class="theme-icon icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          <svg class="theme-icon icon-auto" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8 2.4a5.6 5.6 0 0 1 0 11.2V2.4Z" fill="currentColor"/>
+          </svg>
+          </button>
+      </div>
+    </div>
+    <div class="hero-main">
       <p class="tagline">${esc(meta.tagline ?? "")}</p>
       <p class="hero-meta">
-        <span>${total} 条资源</span>
-        <span>${nav.length} 个主题</span>
-        ${proxyCount > 0 ? `<span>${proxyCount} 条需科学上网</span>` : ""}
+        <span><strong>${total}</strong> 条资源</span>
+        <span><strong>${nav.length}</strong> 个主题</span>
+        ${proxyCount > 0 ? `<span><strong>${proxyCount}</strong> 条需科学上网</span>` : ""}
       </p>
     </div>
     <div class="hero-side">
@@ -244,11 +279,34 @@ ${sections.join("\n\n")}
 
 <footer>
   <div class="footer-inner">
-    <p class="footer-label">关于</p>
-    <p class="footer-about">${esc(meta.description ?? "")}</p>
-    <div class="footer-meta">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-brand-row">
+          <span class="mark footer-mark" aria-hidden="true">${MARK_SVG}</span>
+          <span class="footer-name">${esc(meta.name)}</span>
+        </span>
+        <p class="footer-about">${esc(meta.description ?? "")}</p>
+        <a class="footer-repo" href="${repo}">GitHub 仓库<span aria-hidden="true"> ↗</span></a>
+      </div>
+      <nav class="footer-col" aria-labelledby="footer-join">
+        <p class="footer-label" id="footer-join">参与</p>
+        <a href="${repo}/issues/new?template=add-entry.yml">提交条目</a>
+        <a href="${repo}/issues/new?template=broken-link.yml">报告失效链接</a>
+        <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a>
+        <a href="${repo}/blob/main/docs/CONVENTIONS.md">写作约定</a>
+      </nav>
+      <nav class="footer-col" aria-labelledby="footer-data">
+        <p class="footer-label" id="footer-data">数据</p>
+        <a href="${repo}/tree/main/data">data/*.json</a>
+        <a href="${repo}/blob/main/config/categories.json">分类定义</a>
+        <a href="${repo}/blob/main/config/schema.json">字段校验</a>
+        <a href="${repo}/blob/main/LICENSE">${license} 许可</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
       <p>数据以 JSON 维护，本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</p>
-      <p class="footer-links"><a href="${repo}">GitHub 仓库</a> · <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a> · <a href="${repo}/blob/main/LICENSE">MIT</a></p>
+      <p>${checkedAt ? `链接核对 ${esc(checkedAt)} · ` : ""}© ${year} ${author}</p>
+      <a class="footer-top-link" href="#top">回到顶部 ↑</a>
     </div>
   </div>
 </footer>
