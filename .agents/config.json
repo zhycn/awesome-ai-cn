@@ -1,0 +1,35 @@
+{
+  "$comment": ".agents 套件自身的配置。所有路径相对于仓库根目录，派生新清单后无需修改。字段约束以 config/schema.json 为唯一事实源，limits 仅作快速参考。",
+  "version": 2,
+  "paths": {
+    "meta": "config/meta.json",
+    "categories": "config/categories.json",
+    "tags": "config/tags.json",
+    "schema": "config/schema.json",
+    "linkStatus": "config/link-status.json",
+    "data": "data/",
+    "conventions": "docs/CONVENTIONS.md",
+    "contributing": "CONTRIBUTING.md",
+    "template": "docs/TEMPLATE.md",
+    "adr": ".agents/references/adr/"
+  },
+  "checks": {
+    "validate": "npm run validate",
+    "build": "npm run build",
+    "buildCheck": "npm run build:check",
+    "format": "npm run format",
+    "formatCheck": "npm run format:check",
+    "typecheck": "npm run typecheck",
+    "test": "npm test",
+    "all": "npm run check",
+    "checkLinksCnWrite": "npm run check:links -- --region cn --write"
+  },
+  "limits": {
+    "$comment": "仅缓存供快速查阅；唯一事实源是 config/schema.json 与 scripts/validate.ts",
+    "descMaxLength": 60,
+    "tagsMax": 3,
+    "featuredMaxPerCategory": 3,
+    "staleMonths": 12,
+    "linkWatchWeeks": 2
+  }
+}
