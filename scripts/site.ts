@@ -187,28 +187,43 @@ ${homepage ? `<meta property="og:url" content="${esc(homepage)}">` : ""}
 <a class="skip" href="#main">跳到主要内容</a>
 
 <header class="hero">
-  <button id="theme" class="theme-toggle" type="button" aria-label="切换主题">☀</button>
   <div class="hero-inner">
-    <h1>${esc(meta.name)}</h1>
-    <p class="tagline">${esc(meta.tagline ?? "")}</p>
-    <p class="desc">${esc(meta.description ?? "")}</p>
-    <p class="stats">
-      <span><strong>${total}</strong> 条资源</span>
-      <span><strong>${nav.length}</strong> 个主题</span>
-      ${proxyCount > 0 ? `<span><strong>${proxyCount}</strong> 条需科学上网</span>` : ""}
-    </p>
-    <div class="search">
-      <svg class="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
-        <path d="M13.5 13.5 17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <button id="theme" class="theme-toggle" type="button" data-mode="auto" aria-label="切换主题">
+      <svg class="theme-icon icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="3.1" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 1.2v1.8M8 13v1.8M1.2 8H3M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
-      <input id="q" type="search" placeholder="搜索名称、简介、标签或主题…" autocomplete="off"
-             aria-label="搜索名称、简介、标签或主题" aria-keyshortcuts="/">
-      <kbd id="kbd" aria-hidden="true">/</kbd>
-      <button id="clear" class="clear" type="button" hidden aria-label="清除搜索">×</button>
+      <svg class="theme-icon icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M13.2 9.6A5.6 5.6 0 0 1 6.4 2.8a5.6 5.6 0 1 0 6.8 6.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+      <svg class="theme-icon icon-auto" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 2.4a5.6 5.6 0 0 1 0 11.2V2.4Z" fill="currentColor"/>
+      </svg>
+    </button>
+    <div class="hero-main">
+      <h1>${esc(meta.name)}</h1>
+      <p class="tagline">${esc(meta.tagline ?? "")}</p>
+      <p class="hero-meta">
+        <span>${total} 条资源</span>
+        <span>${nav.length} 个主题</span>
+        ${proxyCount > 0 ? `<span>${proxyCount} 条需科学上网</span>` : ""}
+      </p>
     </div>
-    <p id="results" class="results" hidden></p>
-    <div id="filters" class="filters" hidden></div>
+    <div class="hero-side">
+      <div class="search">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M13.5 13.5 17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input id="q" type="search" placeholder="搜索名称、简介、标签或主题…" autocomplete="off"
+               aria-label="搜索名称、简介、标签或主题" aria-keyshortcuts="/">
+        <kbd id="kbd" aria-hidden="true">/</kbd>
+        <button id="clear" class="clear" type="button" hidden aria-label="清除搜索">×</button>
+      </div>
+      <p id="results" class="results" hidden></p>
+      <div id="filters" class="filters" hidden></div>
+    </div>
   </div>
 </header>
 
@@ -228,8 +243,14 @@ ${sections.join("\n\n")}
 </div>
 
 <footer>
-  <p>数据以 JSON 维护，本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</p>
-  <p><a href="${repo}">GitHub 仓库</a> · <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a> · <a href="${repo}/blob/main/LICENSE">MIT</a></p>
+  <div class="footer-inner">
+    <p class="footer-label">关于</p>
+    <p class="footer-about">${esc(meta.description ?? "")}</p>
+    <div class="footer-meta">
+      <p>数据以 JSON 维护，本页由 <a href="${repo}/blob/main/scripts/site.ts">scripts/site.ts</a> 生成</p>
+      <p class="footer-links"><a href="${repo}">GitHub 仓库</a> · <a href="${repo}/blob/main/CONTRIBUTING.md">贡献指南</a> · <a href="${repo}/blob/main/LICENSE">MIT</a></p>
+    </div>
+  </div>
 </footer>
 
 <script>${JS}</script>
@@ -410,7 +431,6 @@ function applyTheme() {
   const theme = resolved(mode);
   document.documentElement.dataset.theme = theme;
   document.documentElement.style.colorScheme = theme;
-  themeBtn.textContent = theme === "dark" ? "☾" : "☀";
   const names = { auto: "跟随系统", light: "浅色", dark: "深色" };
   const next = { auto: "浅色", light: "深色", dark: "跟随系统" };
   themeBtn.title = "主题：" + names[mode] + "（点击切换为" + next[mode] + "）";
